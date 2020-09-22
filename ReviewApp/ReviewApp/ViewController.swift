@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ReviewPlanner
+//  ReviewApp
 //
 //  Created by Y on 2020/09/22.
 //
