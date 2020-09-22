@@ -7,7 +7,7 @@
 import FSCalendar
 import UIKit
 
-class ViewController: UIViewController, FSCalendarDelegate {
+class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
 
     @IBOutlet var calendar: FSCalendar!
     
