@@ -32,6 +32,34 @@ class TodoManager {
     var todos: [Todo] = []
     
     func createTodo(detail: String) -> Todo {
-        return Todo(id: 1, isDone: false, detail: "2")
+        let nextId = TodoManager.lastId + 1
+        TodoManager.lastId = nextId
+        return Todo(id: nextId, isDone: false, detail: detail)
+    }
+    
+    func addTodo(_ todo: Todo) {
+        todos.append(todo)
+        saveTodo()
+    }
+    
+    func deleteTodo(_ todo: Todo) {
+        todos = todos.filter { existingTodo in
+            return existingTodo.id != todo.id
+        }
+        saveTodo()
+    }
+    
+    func updateTodo(_ todo: Todo) {
+        guard let index = todos.firstIndex(of: todo) else { return }
+        todos[index].update(isDone: todo.isDone, detail: todo.detail)
+        saveTodo()
+    }
+    
+    func saveTodo() {
+       
+    }
+    
+    func retrieveTodo() {
+        
     }
 }
