@@ -71,4 +71,14 @@ class ReviewPlannerCell: UICollectionViewCell {
     
     @IBOutlet weak var modifyButton: UIButton!
     
+    var doneButtonTapHandler: (() -> Void)?
+    
+    func updateUI(todo: Todo) {
+        // 셀 업데이트 하기
+    }
+    
+    @IBAction func checkButtonTapped(_ sender: Any) {
+        // checkButton 처리
+    }
+    
 }

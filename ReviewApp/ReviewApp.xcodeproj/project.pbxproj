@@ -13,6 +13,7 @@
 		186A75B3251A307D009CE14B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B1251A307D009CE14B /* Main.storyboard */; };
 		186A75B5251A3080009CE14B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B4251A3080009CE14B /* Assets.xcassets */; };
 		186A75B8251A3080009CE14B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B6251A3080009CE14B /* LaunchScreen.storyboard */; };
+		18B22562251B805B001DFAC5 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22561251B805B001DFAC5 /* Todo.swift */; };
 		1CC8DF47B144193663573CCE /* Pods_ReviewApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7AA7A0ED498DB94937282 /* Pods_ReviewApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		186A75B4251A3080009CE14B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		186A75B7251A3080009CE14B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186A75B9251A3080009CE14B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18B22561251B805B001DFAC5 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		22B7AA7A0ED498DB94937282 /* Pods_ReviewApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReviewApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		654774B3E87B16A454773E56 /* Pods-ReviewApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewApp.release.xcconfig"; path = "Target Support Files/Pods-ReviewApp/Pods-ReviewApp.release.xcconfig"; sourceTree = "<group>"; };
 		AC86418E41C23173E81BB7E5 /* Pods-ReviewApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewApp.debug.xcconfig"; path = "Target Support Files/Pods-ReviewApp/Pods-ReviewApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				186A75B4251A3080009CE14B /* Assets.xcassets */,
 				186A75B6251A3080009CE14B /* LaunchScreen.storyboard */,
 				186A75B9251A3080009CE14B /* Info.plist */,
+				18B22561251B805B001DFAC5 /* Todo.swift */,
 			);
 			path = ReviewApp;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				186A75B0251A307D009CE14B /* ReviewPlannerViewController.swift in Sources */,
 				186A75AC251A307D009CE14B /* AppDelegate.swift in Sources */,
 				186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */,
+				18B22562251B805B001DFAC5 /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
