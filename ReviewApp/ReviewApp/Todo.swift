@@ -12,10 +12,12 @@ struct Todo: Codable, Equatable {
     let id: Int
     var isDone: Bool
     var detail: String
+    var isToday: Bool       // isToday 대신 날짜 받아와서 해당 날짜에 등록...? 훔...
 
-    mutating func update(isDone: Bool, detail: String) {
+    mutating func update(isDone: Bool, detail: String, isToday: Bool) {
         self.isDone = isDone
         self.detail = detail
+        self.isToday = isToday
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -31,10 +33,10 @@ class TodoManager {
     
     var todos: [Todo] = []
     
-    func createTodo(detail: String) -> Todo {
+    func createTodo(detail: String, isToday: Bool) -> Todo {
         let nextId = TodoManager.lastId + 1
         TodoManager.lastId = nextId
-        return Todo(id: nextId, isDone: false, detail: detail)
+        return Todo(id: nextId, isDone: false, detail: detail, isToday: isToday)
     }
     
     func addTodo(_ todo: Todo) {
@@ -51,15 +53,69 @@ class TodoManager {
     
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
-        todos[index].update(isDone: todo.isDone, detail: todo.detail)
+        todos[index].update(isDone: todo.isDone, detail: todo.detail, isToday: todo.isToday)
         saveTodo()
     }
     
     func saveTodo() {
+        Storage.store(todos, to: .documents, as: "todos.jason")
        
     }
     
     func retrieveTodo() {
+        todos = Storage.retrive("todos.jason", from: .documents, as: [Todo].self) ?? []
+        
+        let lastId = todos.last?.id ?? 0
+        TodoManager.lastId = lastId
         
     }
+}
+
+class ReviewPlannerViewModel {
+    
+    enum Section: Int, CaseIterable {
+        case today
+        case upcoming  // 이걸 다른 날짜에 어떻게 넘겨줄까?
+        
+        var title: String {
+            switch self {
+                case .today: return "Today"
+                default: return "Upcoming"
+            }
+        }
+    }
+    private let manager = TodoManager.shared
+    
+    var todos: [Todo] {
+        return manager.todos
+    }
+    
+    var todayTodos: [Todo] {
+        return todos.filter { $0.isToday == true }
+    }
+    
+    var upcomingTodos: [Todo] {
+        return todos.filter { $0.isToday == false }
+    }
+    
+    var numOfSection: Int {
+        return Section.allCases.count
+    }
+    
+    func addTodo(_ todo: Todo) {
+        manager.addTodo(todo)
+    }
+    
+    func deleteTodo(_ todo: Todo) {
+        manager.deleteTodo(todo)
+    }
+    
+    func updateTodo(_ todo: Todo) {
+        manager.updateTodo(todo)
+    }
+    
+    func loadTasks() {
+        manager.retrieveTodo()
+    }
+   
 }

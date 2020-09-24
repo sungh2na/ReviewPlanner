@@ -12,9 +12,12 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
     @IBOutlet var calendar: FSCalendar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let reviewPlannerViewModel = ReviewViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.delegate = self
+        reviewPlannerViewModel.loadTasks()
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -36,11 +39,11 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
 extension ReviewPlannerViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // 섹션 몇개
-        return 2
+        return reviewPlannerViewModel.numOfSection
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 섹션별 아이템 몇개
-        return 5
+        return reviewPlannerViewModel.todayTodo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,6 +51,10 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
             return UICollectionViewCell()
         }
+        
+        var todo: Todo
+        todo = reviewPlannerViewModel.todayTodos[indexPath.item]
+        cell.updateUI(todo: todo)
         return cell
     }
     
@@ -68,7 +75,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
-    
+     
     @IBOutlet weak var modifyButton: UIButton!
     
     var doneButtonTapHandler: (() -> Void)?
