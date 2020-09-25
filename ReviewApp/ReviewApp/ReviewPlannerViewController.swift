@@ -21,7 +21,22 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.delegate = self
+        
+        // 키보드 디렉션
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
+        // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @IBAction func isTodayButtonTapped(_ sender: Any) {
+        isTodayButton.isSelected = !isTodayButton.isSelected 
+    }
+    @IBAction func addTaskButtonTapped(_ sender: Any) {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -31,6 +46,8 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
         print("\(string)")
         // 날짜 선택시 발생하는 이벤트!
     }
+    
+
 
 }
 
@@ -42,6 +59,20 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
 //}
 
 extension ReviewPlannerViewController: UICollectionViewDataSource {
+    
+    @objc private func adjustInputView(noti: Notification) {
+        guard let userInfo = noti.userInfo else { return }
+        // 키보드 높이에 따른 인풋뷰 위치 변경
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        if noti.name == UIResponder.keyboardWillShowNotification {
+            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
+            inputViewBottom.constant = adjustmentHeight
+        } else {
+            inputViewBottom.constant = 0
+        }
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // 섹션 몇개
         return reviewPlannerViewModel.numOfSection
