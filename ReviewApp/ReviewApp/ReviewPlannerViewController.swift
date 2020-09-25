@@ -11,6 +11,10 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
 
     @IBOutlet var calendar: FSCalendar!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var inputViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var isTodayButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     
@@ -134,5 +138,6 @@ class ReviewPlannerCell: UICollectionViewCell {
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
+        deleteButtonTapHandler?()
     }
 }
