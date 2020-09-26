@@ -186,6 +186,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="KJi-ej-hj9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="16c-Sg-bRH"/>
                             <constraint firstItem="kkf-l8-YF9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7xb-Yq-KO8"/>
@@ -200,6 +201,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kkf-l8-YF9" secondAttribute="trailing" symbolic="YES" id="gEx-Ez-ZWl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UIo-XP-Ehg" secondAttribute="bottom" id="hhA-7J-fiR"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4ow-3n-eza" appends="YES" id="Bpa-sG-Jm0"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="QNf-F7-2au">
                         <imageReference key="image" image="calendar" catalog="system" symbolScale="large"/>
@@ -214,6 +218,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4ow-3n-eza">
+                    <connections>
+                        <action selector="tapBG:" destination="BYZ-38-t0r" id="wu5-1r-1mT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1404.3478260869567" y="928.79464285714278"/>
         </scene>

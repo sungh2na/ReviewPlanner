@@ -47,7 +47,11 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
         // 날짜 선택시 발생하는 이벤트!
     }
     
-
+    // BG 탭했을 때, 키보드 내려오게 하기
+    @IBAction func tapBG(_ sender: Any) {
+        inputTextField.resignFirstResponder()
+    }
+    
 
 }
 
