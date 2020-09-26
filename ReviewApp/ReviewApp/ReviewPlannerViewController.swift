@@ -37,6 +37,12 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
         isTodayButton.isSelected = !isTodayButton.isSelected 
     }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
+        guard let detail = inputTextField.text, detail.isEmpty == false else { return }
+        let todo = TodoManager.shared.createTodo(detail: detail, isToday: isTodayButton.isSelected)
+        reviewPlannerViewModel.addTodo(todo)
+        collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
+        inputTextField.text = ""
+        isTodayButton.isSelected = false
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -97,7 +103,23 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         }
         
         var todo: Todo
-        todo = reviewPlannerViewModel.todayTodos[indexPath.item]
+        if indexPath.section == 0 {
+            todo = reviewPlannerViewModel.todayTodos[indexPath.item]
+        } else {
+            todo = reviewPlannerViewModel.upcomingTodos[indexPath.item]
+        }
+        
+        cell.doneButtonTapHandler = { isDone in
+            todo.isDone = isDone
+            self.reviewPlannerViewModel.updateTodo(todo)
+            self.collectionView.reloadData()
+        }
+        
+        cell.deleteButtonTapHandler = {
+            self.reviewPlannerViewModel.deleteTodo(todo)
+            self.collectionView.reloadData()
+        }
+        
         cell.updateUI(todo: todo)
         return cell
     }
@@ -126,7 +148,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     
     @IBOutlet weak var modifyButton: UIButton!
     
-    var doneButtonTapHandler: (() -> Void)?
+    var doneButtonTapHandler: ((Bool) -> Void)?
     var deleteButtonTapHandler: (() -> Void)?
     
     override func awakeFromNib() {
@@ -169,6 +191,9 @@ class ReviewPlannerCell: UICollectionViewCell {
         showStrikeThrough(isDone)                       // 수정하기
         descriptionLabel.alpha = isDone ? 0.2 : 1
         deleteButton.isHidden = !isDone
+        
+        // 데이터 업데이트
+        doneButtonTapHandler?(isDone)
         
     }
     

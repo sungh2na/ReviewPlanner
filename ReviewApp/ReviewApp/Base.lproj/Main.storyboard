@@ -92,38 +92,88 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgP-ZS-TSM">
-                                                    <rect key="frame" x="3" y="6" width="21" height="24"/>
+                                                    <rect key="frame" x="3" y="0.5" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="rb6-ql-Ngx"/>
+                                                        <constraint firstAttribute="height" constant="35" id="yG5-T7-Xje"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="tintColor" systemColor="systemPinkColor"/>
                                                     <state key="normal" image="circle" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                                     </state>
                                                     <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="checkButtonTapped:" destination="coW-bs-mfj" eventType="touchUpInside" id="Etp-b6-dJm"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8p-PP-YoH">
-                                                    <rect key="frame" x="32" y="7.5" width="23" height="21"/>
+                                                    <rect key="frame" x="46" y="0.5" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="Nng-rv-pph"/>
+                                                        <constraint firstAttribute="width" constant="35" id="OGr-G2-Vfm"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.4810126582" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영어빈출어휘 Day1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3b-C6-81t">
-                                                    <rect key="frame" x="63" y="7.5" width="129.5" height="21"/>
+                                                    <rect key="frame" x="89" y="0.5" width="234" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="Vbt-l6-4bE"/>
+                                                        <constraint firstAttribute="width" constant="250" id="rxJ-9e-z0n"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIv-bP-3g0">
+                                                    <rect key="frame" x="48" y="17.5" width="250" height="1"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="1Kw-h9-VyG"/>
+                                                        <constraint firstAttribute="width" constant="250" id="hm6-O0-BLl"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-Xh-Zoe">
+                                                    <rect key="frame" x="333" y="0.5" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="BqN-GD-rt9"/>
+                                                        <constraint firstAttribute="height" constant="35" id="xmD-gU-1os"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="xmark.circle.fill" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonTapped:" destination="coW-bs-mfj" eventType="touchUpInside" id="RKN-pE-aCA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="p3b-C6-81t" firstAttribute="centerY" secondItem="C5d-v1-N4D" secondAttribute="centerY" id="5Cw-pj-Z7t"/>
+                                                <constraint firstItem="vIv-bP-3g0" firstAttribute="leading" secondItem="cgP-ZS-TSM" secondAttribute="trailing" constant="10" id="6t8-sz-xgv"/>
+                                                <constraint firstItem="qCH-Xh-Zoe" firstAttribute="leading" secondItem="p3b-C6-81t" secondAttribute="trailing" constant="10" id="7WV-TD-NYf"/>
+                                                <constraint firstAttribute="trailing" secondItem="qCH-Xh-Zoe" secondAttribute="trailing" constant="3" id="V0M-WK-gvJ"/>
                                                 <constraint firstItem="cgP-ZS-TSM" firstAttribute="leading" secondItem="C5d-v1-N4D" secondAttribute="leading" constant="3" id="dZj-Qx-G78"/>
                                                 <constraint firstItem="i8p-PP-YoH" firstAttribute="leading" secondItem="cgP-ZS-TSM" secondAttribute="trailing" constant="8" symbolic="YES" id="mGd-Ce-Adf"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="p3b-C6-81t" secondAttribute="trailing" constant="20" symbolic="YES" id="mTv-oT-etD"/>
+                                                <constraint firstItem="vIv-bP-3g0" firstAttribute="centerY" secondItem="C5d-v1-N4D" secondAttribute="centerY" id="nMD-xt-rqZ"/>
                                                 <constraint firstItem="cgP-ZS-TSM" firstAttribute="centerY" secondItem="C5d-v1-N4D" secondAttribute="centerY" id="oB9-MU-kWi"/>
                                                 <constraint firstItem="p3b-C6-81t" firstAttribute="leading" secondItem="i8p-PP-YoH" secondAttribute="trailing" constant="8" symbolic="YES" id="tvS-ZT-WQx"/>
                                                 <constraint firstItem="i8p-PP-YoH" firstAttribute="centerY" secondItem="C5d-v1-N4D" secondAttribute="centerY" id="wXd-Mi-bAZ"/>
+                                                <constraint firstItem="qCH-Xh-Zoe" firstAttribute="centerY" secondItem="C5d-v1-N4D" secondAttribute="centerY" id="z0k-7R-Twy"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="371" height="36"/>
+                                        <connections>
+                                            <outlet property="checkButton" destination="cgP-ZS-TSM" id="BOQ-aQ-1Q3"/>
+                                            <outlet property="deleteButton" destination="qCH-Xh-Zoe" id="gXQ-JM-R65"/>
+                                            <outlet property="descriptionLabel" destination="p3b-C6-81t" id="cOM-8R-63l"/>
+                                            <outlet property="progressLabel" destination="i8p-PP-YoH" id="HKs-ml-QNX"/>
+                                            <outlet property="strikeThroughView" destination="vIv-bP-3g0" id="dTS-Z3-eh1"/>
+                                            <outlet property="strikeThroughWidth" destination="hm6-O0-BLl" id="dHH-Ba-kl4"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -347,6 +397,7 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -355,6 +406,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
