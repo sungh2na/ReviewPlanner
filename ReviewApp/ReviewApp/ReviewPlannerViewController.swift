@@ -7,20 +7,23 @@
 import FSCalendar
 import UIKit
 
-class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
+class ReviewPlannerViewController: UIViewController {
 
     @IBOutlet var calendar: FSCalendar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var inputViewBottom: NSLayoutConstraint!
     @IBOutlet weak var inputTextField: UITextField!
-    @IBOutlet weak var isTodayButton: UIButton!
+//    @IBOutlet weak var isTodayButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calendar.delegate = self
+        print("ddddd")
+        calendar.appearance.headerDateFormat = "YYYY년 M월"
+        calendar.locale = Locale(identifier: "ko_KR")
         
         // 키보드 디렉션
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -33,30 +36,23 @@ class ReviewPlannerViewController: UIViewController, FSCalendarDelegate {
         super.viewDidAppear(animated)
     }
     
-    @IBAction func isTodayButtonTapped(_ sender: Any) {
-        isTodayButton.isSelected = !isTodayButton.isSelected 
-    }
+//    @IBAction func isTodayButtonTapped(_ sender: Any) {
+//        isTodayButton.isSelected = !isTodayButton.isSelected
+//    }
+    
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         guard let detail = inputTextField.text, detail.isEmpty == false else { return }
-        let todo = TodoManager.shared.createTodo(detail: detail, isToday: isTodayButton.isSelected)
+        let todo = TodoManager.shared.createTodo(detail: detail)
         reviewPlannerViewModel.addTodo(todo)
         collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
         inputTextField.text = ""
-        isTodayButton.isSelected = false
+//        isTodayButton.isSelected = false
     }
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE MM-dd-YYYY"
-        let string = formatter.string(from: date)
-        print("\(string)")
-        // 날짜 선택시 발생하는 이벤트!
-    }
-    
-    // BG 탭했을 때, 키보드 내려오게 하기
-    @IBAction func tapBG(_ sender: Any) {
-        inputTextField.resignFirstResponder()
-    }
+//    // BG 탭했을 때, 키보드 내려오게 하기
+//    @IBAction func tapBG(_ sender: Any) {
+//        inputTextField.resignFirstResponder()
+//    }
     
 
 }
@@ -83,17 +79,19 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         }
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // 섹션 몇개
-        return reviewPlannerViewModel.numOfSection
-    }
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        // 섹션 몇개
+//        return 1
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 섹션별 아이템 몇개
-        if section == 0 {       // Today
-            return reviewPlannerViewModel.todayTodos.count
-        } else {                // upcoming
-            return reviewPlannerViewModel.upcomingTodos.count
-        }
+        return reviewPlannerViewModel.todos.count
+//        if section == 0 {       // Today
+//            return reviewPlannerViewModel.todayTodos.count
+//        } else {                // upcoming
+//            return reviewPlannerViewModel.upcomingTodos.count
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -103,11 +101,12 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         }
         
         var todo: Todo
-        if indexPath.section == 0 {
-            todo = reviewPlannerViewModel.todayTodos[indexPath.item]
-        } else {
-            todo = reviewPlannerViewModel.upcomingTodos[indexPath.item]
-        }
+        todo = reviewPlannerViewModel.todos[indexPath.item]
+//        if indexPath.section == 0 {
+//            todo = reviewPlannerViewModel.todayTodos[indexPath.item]
+//        } else {
+//            todo = reviewPlannerViewModel.upcomingTodos[indexPath.item]
+//        }
         
         cell.doneButtonTapHandler = { isDone in
             todo.isDone = isDone
@@ -123,8 +122,6 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         cell.updateUI(todo: todo)
         return cell
     }
-    
-    
 }
 
 extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
@@ -135,6 +132,34 @@ extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 }
+
+extension ReviewPlannerViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendar.delegate = self
+        calendar.dataSource = self
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let string = dateFormatter.string(from: date)
+        print("\(string)")
+        // 날짜 선택시 발생하는 이벤트!
+    }
+    
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        switch dateFormatter.string(from: date) {
+        case dateFormatter.string(from: Date()):
+            return "오늘"
+        case "2020-09-10":
+            return "출근"
+        case "2020-09-11":
+            return "지각"
+        case "2020-09-12":
+            return "결근"
+        default:
+            return nil
+        }
+    }
+}
+
 
 class ReviewPlannerCell: UICollectionViewCell {
     

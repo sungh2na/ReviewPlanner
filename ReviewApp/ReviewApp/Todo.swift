@@ -12,12 +12,12 @@ struct Todo: Codable, Equatable {
     let id: Int
     var isDone: Bool
     var detail: String
-    var isToday: Bool       // isToday 대신 날짜 받아와서 해당 날짜에 등록...? 훔...
+//    var isToday: Bool       // isToday 대신 날짜 받아와서 해당 날짜에 등록...? 훔...
 
-    mutating func update(isDone: Bool, detail: String, isToday: Bool) {
+    mutating func update(isDone: Bool, detail: String) {
         self.isDone = isDone
         self.detail = detail
-        self.isToday = isToday
+//        self.isToday = isToday
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -33,10 +33,10 @@ class TodoManager {
     
     var todos: [Todo] = []
     
-    func createTodo(detail: String, isToday: Bool) -> Todo {
+    func createTodo(detail: String) -> Todo {
         let nextId = TodoManager.lastId + 1
         TodoManager.lastId = nextId
-        return Todo(id: nextId, isDone: false, detail: detail, isToday: isToday)
+        return Todo(id: nextId, isDone: false, detail: detail)
     }
     
     func addTodo(_ todo: Todo) {
@@ -53,7 +53,7 @@ class TodoManager {
     
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
-        todos[index].update(isDone: todo.isDone, detail: todo.detail, isToday: todo.isToday)
+        todos[index].update(isDone: todo.isDone, detail: todo.detail)
         saveTodo()
     }
     
@@ -73,34 +73,34 @@ class TodoManager {
 
 class ReviewPlannerViewModel {
     
-    enum Section: Int, CaseIterable {
-        case today
-        case upcoming  // 이걸 다른 날짜에 어떻게 넘겨줄까?
-        
-        var title: String {
-            switch self {
-                case .today: return "Today"
-                default: return "Upcoming"
-            }
-        }
-    }
+//    enum Section: Int, CaseIterable {
+//        case today
+//        case upcoming  // 이걸 다른 날짜에 어떻게 넘겨줄까?
+//
+//        var title: String {
+//            switch self {
+//                case .today: return "Today"
+//                default: return "Upcoming"
+//            }
+//        }
+//    }
     private let manager = TodoManager.shared
     
     var todos: [Todo] {
         return manager.todos
     }
     
-    var todayTodos: [Todo] {
-        return todos.filter { $0.isToday == true }
-    }
+//    var todayTodos: [Todo] {                        // 해당 날짜에 해당하는 todo를 필터링 하도록 만들기...
+//        return todos.filter { $0.isToday == true }
+//    }
     
-    var upcomingTodos: [Todo] {
-        return todos.filter { $0.isToday == false }
-    }
+//    var upcomingTodos: [Todo] {
+//        return todos.filter { $0.isToday == false }
+//    }
     
-    var numOfSection: Int {
-        return Section.allCases.count
-    }
+//    var numOfSection: Int {
+//        return Section.allCases.count
+//    }
     
     func addTodo(_ todo: Todo) {
         manager.addTodo(todo)
