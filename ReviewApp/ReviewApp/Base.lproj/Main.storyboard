@@ -46,6 +46,10 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="YYYY년 M월"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="0lC-4N-dY5"/>
@@ -241,6 +245,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kkf-l8-YF9" secondAttribute="trailing" symbolic="YES" id="gEx-Ez-ZWl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UIo-XP-Ehg" secondAttribute="bottom" id="hhA-7J-fiR"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="csm-Vs-AY6" appends="YES" id="AbA-hm-zzA"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="QNf-F7-2au">
                         <imageReference key="image" image="calendar" catalog="system" symbolScale="large"/>
@@ -249,11 +256,17 @@
                         <outlet property="addButton" destination="OG3-Ov-ZnG" id="028-mP-MdV"/>
                         <outlet property="calendar" destination="KJi-ej-hj9" id="hfz-XB-gUz"/>
                         <outlet property="collectionView" destination="2Bt-Hp-3X9" id="2KA-zz-fiw"/>
+                        <outlet property="dateLabel" destination="kkf-l8-YF9" id="FJX-dj-zy8"/>
                         <outlet property="inputTextField" destination="acf-vY-6Ir" id="cHO-sd-nFT"/>
                         <outlet property="inputViewBottom" destination="hhA-7J-fiR" id="GcX-bd-1WJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="csm-Vs-AY6">
+                    <connections>
+                        <action selector="tapBG:" destination="BYZ-38-t0r" id="aFL-ih-lUE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1404.3478260869567" y="928.79464285714278"/>
         </scene>

@@ -9,7 +9,8 @@ import UIKit
 
 class ReviewPlannerViewController: UIViewController {
 
-    @IBOutlet var calendar: FSCalendar!
+    @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var inputViewBottom: NSLayoutConstraint!
     @IBOutlet weak var inputTextField: UITextField!
@@ -21,8 +22,6 @@ class ReviewPlannerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ddddd")
-        calendar.appearance.headerDateFormat = "YYYY년 M월"
         calendar.locale = Locale(identifier: "ko_KR")
         
         // 키보드 디렉션
@@ -49,20 +48,11 @@ class ReviewPlannerViewController: UIViewController {
 //        isTodayButton.isSelected = false
     }
     
-//    // BG 탭했을 때, 키보드 내려오게 하기
-//    @IBAction func tapBG(_ sender: Any) {
-//        inputTextField.resignFirstResponder()
-//    }
-    
-
+    // BG 탭했을 때, 키보드 내려오게 하기
+    @IBAction func tapBG(_ sender: Any) {
+        inputTextField.resignFirstResponder()
+    }
 }
-
-//extension ReviewPlannerViewController {
-//    @objc private func adjustInputView(noti: Notification) {
-//        guard let userInfo = noti.userInfo else { return }
-//        // 키보드 높이에 따른 인풋뷰 위치 변경
-//    }
-//}
 
 extension ReviewPlannerViewController: UICollectionViewDataSource {
     
@@ -133,31 +123,64 @@ extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ReviewPlannerViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        calendar.delegate = self
-        calendar.dataSource = self
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let string = dateFormatter.string(from: date)
-        print("\(string)")
-        // 날짜 선택시 발생하는 이벤트!
-    }
+extension ReviewPlannerViewController: FSCalendarDelegate {
     
-    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        switch dateFormatter.string(from: date) {
-        case dateFormatter.string(from: Date()):
-            return "오늘"
-        case "2020-09-10":
-            return "출근"
-        case "2020-09-11":
-            return "지각"
-        case "2020-09-12":
-            return "결근"
+
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+
+        dateFormatter.dateFormat = "EEE MM.dd"
+        var date = dateFormatter.string(from: date)
+        let dateArr = date.components(separatedBy: " ")
+        
+        switch dateArr[0] {
+        case "Mon":
+            date = dateArr[1] + " 월"
+        case "Tue":
+            date = dateArr[1] + " 화"
+        case "Wed":
+            date = dateArr[1] + " 수"
+        case "Thu":
+            date = dateArr[1] + " 목"
+        case "Fri":
+            date = dateArr[1] + " 금"
+        case "Sat":
+            date = dateArr[1] + " 토"
+        case "Sun":
+            date = dateArr[1] + " 일"
         default:
-            return nil
+            date = date + ""
+            
         }
+        // 날짜 선택시 발생하는 이벤트!
+        dateLabel.text = date
     }
+}
+
+extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        guard let eventDate = dateFormatter.date(from: "2020-09-22") else { return 0 }
+        if date.compare(eventDate) == .orderedSame {
+            return 2
+        }
+        return 0
+    }
+//       func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//        switch dateFormatter.string(from: date) {
+//        case dateFormatter.string(from: Date()):
+//            return "오늘"
+//        case "2020-09-10":
+//            return "출근"
+//        case "2020-09-11":
+//            return "지각"
+//        case "2020-09-12":
+//            return "결근"
+//        default:
+//            return nil
+//        }
+//    }
 }
 
 
