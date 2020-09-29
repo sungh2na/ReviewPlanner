@@ -20,6 +20,7 @@ class ReviewPlannerViewController: UIViewController {
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     let dateFormatter = DateFormatter()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
@@ -99,6 +100,11 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
 //            todo = reviewPlannerViewModel.upcomingTodos[indexPath.item]
 //        }
         
+        
+    //    var todayTodos: [Todo] {                        // 해당 날짜에 해당하는 todo를 필터링 하도록 만들기...
+    //        return todos.filter { $0.isToday == true }
+    //    }
+        
         cell.doneButtonTapHandler = { isDone in
             todo.isDone = isDone
             self.reviewPlannerViewModel.updateTodo(todo)
@@ -154,6 +160,11 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 //        }
         // 날짜 선택시 발생하는 이벤트!
         dateLabel.text = date
+        
+        // 해당 날짜로 필터링
+        reviewPlannerViewModel.todayTodo(date)
+        
+        collectionView.reloadData()
     }
 }
 
@@ -212,6 +223,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     
     func updateUI(todo: Todo) {
         // 셀 업데이트 하기
+        
         checkButton.isSelected = todo.isDone
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1

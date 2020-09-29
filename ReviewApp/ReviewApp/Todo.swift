@@ -34,6 +34,7 @@ class TodoManager {
     static var lastId: Int = 0
     
     var todos: [Todo] = []
+    var todayTodos: [Todo] = []
     
     func createTodo(detail: String, date: String) -> Todo {
         let nextId = TodoManager.lastId + 1
@@ -69,7 +70,10 @@ class TodoManager {
         
         let lastId = todos.last?.id ?? 0
         TodoManager.lastId = lastId
-        
+    }
+    
+    func todayTodo(_ date: String) {
+        todayTodos = todos.filter { $0.date == date }
     }
 }
 
@@ -92,6 +96,9 @@ class ReviewPlannerViewModel {
         return manager.todos
     }
     
+    var todayTodos: [Todo] {
+        return manager.todayTodos
+    }
 //    var todayTodos: [Todo] {                        // 해당 날짜에 해당하는 todo를 필터링 하도록 만들기...
 //        return todos.filter { $0.isToday == true }
 //    }
@@ -118,6 +125,10 @@ class ReviewPlannerViewModel {
     
     func loadTasks() {
         manager.retrieveTodo()
+    }
+    
+    func todayTodo(_ date: String) {
+        manager.todayTodo(date)
     }
    
 }
