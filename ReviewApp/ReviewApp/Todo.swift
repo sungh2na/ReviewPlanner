@@ -12,11 +12,13 @@ struct Todo: Codable, Equatable {
     let id: Int
     var isDone: Bool
     var detail: String
+    var date: String
 //    var isToday: Bool       // isToday 대신 날짜 받아와서 해당 날짜에 등록...? 훔...
 
-    mutating func update(isDone: Bool, detail: String) {
+    mutating func update(isDone: Bool, detail: String, date: String) {
         self.isDone = isDone
         self.detail = detail
+        self.date = date
 //        self.isToday = isToday
     }
     
@@ -33,10 +35,10 @@ class TodoManager {
     
     var todos: [Todo] = []
     
-    func createTodo(detail: String) -> Todo {
+    func createTodo(detail: String, date: String) -> Todo {
         let nextId = TodoManager.lastId + 1
         TodoManager.lastId = nextId
-        return Todo(id: nextId, isDone: false, detail: detail)
+        return Todo(id: nextId, isDone: false, detail: detail, date: date)
     }
     
     func addTodo(_ todo: Todo) {
@@ -53,7 +55,7 @@ class TodoManager {
     
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
-        todos[index].update(isDone: todo.isDone, detail: todo.detail)
+        todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date)
         saveTodo()
     }
     

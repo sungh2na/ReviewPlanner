@@ -41,7 +41,8 @@ class ReviewPlannerViewController: UIViewController {
     
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         guard let detail = inputTextField.text, detail.isEmpty == false else { return }
-        let todo = TodoManager.shared.createTodo(detail: detail)
+        guard let date = dateLabel.text, date.isEmpty == false else { return }
+        let todo = TodoManager.shared.createTodo(detail: detail, date: date)
         reviewPlannerViewModel.addTodo(todo)
         collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
         inputTextField.text = ""
@@ -49,9 +50,9 @@ class ReviewPlannerViewController: UIViewController {
     }
     
     // BG 탭했을 때, 키보드 내려오게 하기
-    @IBAction func tapBG(_ sender: Any) {
-        inputTextField.resignFirstResponder()
-    }
+//    @IBAction func tapBG(_ sender: Any) {
+//        inputTextField.resignFirstResponder()
+//    }
 }
 
 extension ReviewPlannerViewController: UICollectionViewDataSource {
@@ -128,29 +129,29 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
-        dateFormatter.dateFormat = "EEE MM.dd"
+//        dateFormatter.dateFormat = "EEE MM.dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         var date = dateFormatter.string(from: date)
-        let dateArr = date.components(separatedBy: " ")
-        
-        switch dateArr[0] {
-        case "Mon":
-            date = dateArr[1] + " 월"
-        case "Tue":
-            date = dateArr[1] + " 화"
-        case "Wed":
-            date = dateArr[1] + " 수"
-        case "Thu":
-            date = dateArr[1] + " 목"
-        case "Fri":
-            date = dateArr[1] + " 금"
-        case "Sat":
-            date = dateArr[1] + " 토"
-        case "Sun":
-            date = dateArr[1] + " 일"
-        default:
-            date = date + ""
-            
-        }
+//        let dateArr = date.components(separatedBy: " ")
+//
+//        switch dateArr[0] {
+//        case "Mon":
+//            date = dateArr[1] + " 월"
+//        case "Tue":
+//            date = dateArr[1] + " 화"
+//        case "Wed":
+//            date = dateArr[1] + " 수"
+//        case "Thu":
+//            date = dateArr[1] + " 목"
+//        case "Fri":
+//            date = dateArr[1] + " 금"
+//        case "Sat":
+//            date = dateArr[1] + " 토"
+//        case "Sun":
+//            date = dateArr[1] + " 일"
+//        default:
+//            date = date + ""
+//        }
         // 날짜 선택시 발생하는 이벤트!
         dateLabel.text = date
     }

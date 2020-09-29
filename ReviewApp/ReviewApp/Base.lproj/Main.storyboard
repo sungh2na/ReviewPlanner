@@ -245,9 +245,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kkf-l8-YF9" secondAttribute="trailing" symbolic="YES" id="gEx-Ez-ZWl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UIo-XP-Ehg" secondAttribute="bottom" id="hhA-7J-fiR"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="csm-Vs-AY6" appends="YES" id="AbA-hm-zzA"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="QNf-F7-2au">
                         <imageReference key="image" image="calendar" catalog="system" symbolScale="large"/>
@@ -262,11 +259,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="csm-Vs-AY6">
-                    <connections>
-                        <action selector="tapBG:" destination="BYZ-38-t0r" id="aFL-ih-lUE"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1404.3478260869567" y="928.79464285714278"/>
         </scene>
