@@ -18,8 +18,11 @@ class ReviewPlannerViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
-    let dateFormatter = DateFormatter()
-    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,9 @@ class ReviewPlannerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
+        
+//        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
+//        calendar.addGestureRecognizer(scopeGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,7 +142,6 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
 //        dateFormatter.dateFormat = "EEE MM.dd"
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         var date = dateFormatter.string(from: date)
 //        let dateArr = date.components(separatedBy: " ")
 //
@@ -170,7 +175,6 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         guard let eventDate = dateFormatter.date(from: "2020-09-22") else { return 0 }
         if date.compare(eventDate) == .orderedSame {
             return 2
