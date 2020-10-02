@@ -52,6 +52,7 @@ class ReviewPlannerViewController: UIViewController {
         let todo = TodoManager.shared.createTodo(detail: detail, date: date)
         reviewPlannerViewModel.addTodo(todo)
         collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
+        calendar.reloadData()
         inputTextField.text = ""
 //        isTodayButton.isSelected = false
     }
@@ -119,6 +120,7 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         cell.deleteButtonTapHandler = {
             self.reviewPlannerViewModel.deleteTodo(todayTodo)
             self.collectionView.reloadData()
+            self.calendar.reloadData()
         }
         
         cell.updateUI(todo: todayTodo)
@@ -172,9 +174,8 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
-//        var dic: Dictionary<String, Int> = ["2020-10-22":1, "2020-10-23":2, "2020-10-25":3]
-        let dic = reviewPlannerViewModel.dateDic
-        for (dicDate, count) in dic {
+        let datedic = reviewPlannerViewModel.dateDic
+        for (dicDate, count) in datedic {
             guard let eventDate = dateFormatter.date(from: dicDate) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
                 return count

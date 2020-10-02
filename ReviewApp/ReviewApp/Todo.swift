@@ -48,6 +48,18 @@ class TodoManager {
         todos.append(todo)
         todayTodo(todo.date)
         saveTodo()
+        
+        if let count = dateDic[todo.date] {
+            dateDic.updateValue(count + 1, forKey: todo.date)
+        } else {
+            dateDic.updateValue(1, forKey: todo.date)
+        }
+        
+//        guard let count = dateDic[todo.date] else {
+//            dateDic.updateValue(1, forKey: todo.date)
+//            return
+//        }
+//        dateDic.updateValue(count + 1, forKey: todo.date)
     }
     
     func deleteTodo(_ todo: Todo) {
@@ -56,6 +68,11 @@ class TodoManager {
         }
         todayTodo(todo.date)
         saveTodo()
+        if let count = dateDic[todo.date], count > 1 {
+            dateDic.updateValue(count - 1, forKey: todo.date)
+        } else {
+            dateDic.removeValue(forKey: todo.date)
+        }
     }
     
     func updateTodo(_ todo: Todo) {
@@ -76,11 +93,10 @@ class TodoManager {
         TodoManager.lastId = lastId
         todayTodo(date)
         todos.forEach {
-            if dateDic[$0.date] == nil {
-                dateDic.updateValue(1, forKey: $0.date)
+            if let count = dateDic[$0.date] {
+                dateDic.updateValue(count + 1, forKey: $0.date)
             } else {
-                let count = dateDic[$0.date]! + 1
-                dateDic.updateValue(count, forKey: $0.date)
+                dateDic.updateValue(1, forKey: $0.date)
             }
         }
     }
