@@ -27,7 +27,7 @@ class ReviewPlannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
-        
+//        calendar.select(Date())
         // 키보드 디렉션
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -140,7 +140,6 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-
 //        dateFormatter.dateFormat = "EEE MM.dd"
         var date = dateFormatter.string(from: date)
 //        let dateArr = date.components(separatedBy: " ")
@@ -174,7 +173,8 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 }
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
+        dateLabel.text = dateFormatter.string(from: Date()) // 위치 수정해줘야 함
         guard let eventDate = dateFormatter.date(from: "2020-09-22") else { return 0 }
         if date.compare(eventDate) == .orderedSame {
             return 2
