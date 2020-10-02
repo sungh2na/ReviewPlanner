@@ -35,6 +35,7 @@ class TodoManager {
     
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
+    var dateDic: Dictionary<String, Int> = [:]
     
     func createTodo(detail: String, date: String) -> Todo {
         let nextId = TodoManager.lastId + 1
@@ -74,6 +75,14 @@ class TodoManager {
         let lastId = todos.last?.id ?? 0
         TodoManager.lastId = lastId
         todayTodo(date)
+        todos.forEach {
+            if dateDic[$0.date] == nil {
+                dateDic.updateValue(1, forKey: $0.date)
+            } else {
+                let count = dateDic[$0.date]! + 1
+                dateDic.updateValue(count, forKey: $0.date)
+            }
+        }
     }
     
     func todayTodo(_ date: String) {
@@ -95,7 +104,6 @@ class ReviewPlannerViewModel {
 //        }
 //    }
     private let manager = TodoManager.shared
-    
     var todos: [Todo] {
         return manager.todos
     }
@@ -103,6 +111,10 @@ class ReviewPlannerViewModel {
     var todayTodos: [Todo] {
         return manager.todayTodos
     }
+    var dateDic: Dictionary<String, Int> {
+        return manager.dateDic
+    }
+        //["2020-10-22":1, "2020-10-23":2, "2020-10-25":3]
 //    var todayTodos: [Todo] {                        // 해당 날짜에 해당하는 todo를 필터링 하도록 만들기...
 //        return todos.filter { $0.isToday == true }
 //    }

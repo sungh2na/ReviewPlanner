@@ -172,7 +172,8 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
-        var dic: Dictionary<String, Int> = ["2020-10-22":1, "2020-10-23":2, "2020-10-25":3]
+//        var dic: Dictionary<String, Int> = ["2020-10-22":1, "2020-10-23":2, "2020-10-25":3]
+        let dic = reviewPlannerViewModel.dateDic
         for (dicDate, count) in dic {
             guard let eventDate = dateFormatter.date(from: dicDate) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
