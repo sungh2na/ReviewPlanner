@@ -32,7 +32,7 @@ class ReviewPlannerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         // 데이터 불러오기
-        reviewPlannerViewModel.loadTasks()
+        reviewPlannerViewModel.loadTasks(dateFormatter.string(from: Date()))
         
 //        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
 //        calendar.addGestureRecognizer(scopeGesture)
@@ -84,7 +84,7 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 섹션별 아이템 몇개
-        return reviewPlannerViewModel.todos.count
+        return reviewPlannerViewModel.todayTodos.count
 //        if section == 0 {       // Today
 //            return reviewPlannerViewModel.todayTodos.count
 //        } else {                // upcoming
@@ -97,9 +97,8 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
             return UICollectionViewCell()
         }
-        
-        var todo: Todo
-        todo = reviewPlannerViewModel.todos[indexPath.item]
+        var todayTodo: Todo
+        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
 //        if indexPath.section == 0 {
 //            todo = reviewPlannerViewModel.todayTodos[indexPath.item]
 //        } else {
@@ -112,17 +111,17 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
     //    }
         
         cell.doneButtonTapHandler = { isDone in
-            todo.isDone = isDone
-            self.reviewPlannerViewModel.updateTodo(todo)
+            todayTodo.isDone = isDone
+            self.reviewPlannerViewModel.updateTodo(todayTodo)
             self.collectionView.reloadData()
         }
         
         cell.deleteButtonTapHandler = {
-            self.reviewPlannerViewModel.deleteTodo(todo)
+            self.reviewPlannerViewModel.deleteTodo(todayTodo)
             self.collectionView.reloadData()
         }
         
-        cell.updateUI(todo: todo)
+        cell.updateUI(todo: todayTodo)
         return cell
     }
 }
