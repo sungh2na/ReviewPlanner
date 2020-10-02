@@ -33,7 +33,7 @@ class ReviewPlannerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         // 데이터 불러오기
         reviewPlannerViewModel.loadTasks(dateFormatter.string(from: Date()))
-        
+        dateLabel.text = dateFormatter.string(from: Date())
 //        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
 //        calendar.addGestureRecognizer(scopeGesture)
     }
@@ -163,7 +163,6 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 //        }
         // 날짜 선택시 발생하는 이벤트!
         dateLabel.text = date
-        
         // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
         
@@ -173,10 +172,12 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
-        dateLabel.text = dateFormatter.string(from: Date()) // 위치 수정해줘야 함
-        guard let eventDate = dateFormatter.date(from: "2020-09-22") else { return 0 }
-        if date.compare(eventDate) == .orderedSame {
-            return 2
+        var dic: Dictionary<String, Int> = ["2020-10-22":1, "2020-10-23":2, "2020-10-25":3]
+        for (dicDate, count) in dic {
+            guard let eventDate = dateFormatter.date(from: dicDate) else { return 0 }
+            if date.compare(eventDate) == .orderedSame {
+                return count
+            }
         }
         return 0
     }
