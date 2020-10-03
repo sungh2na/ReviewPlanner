@@ -49,8 +49,15 @@ class ReviewPlannerViewController: UIViewController {
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         guard let detail = inputTextField.text, detail.isEmpty == false else { return }
         guard let date = dateLabel.text, date.isEmpty == false else { return }
-        let todo = TodoManager.shared.createTodo(detail: detail, date: date)
-        reviewPlannerViewModel.addTodo(todo)
+        let dateFormat = dateFormatter.date(from:date)
+        let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
+        interval.forEach {
+            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){       // 초단위
+                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay))
+                reviewPlannerViewModel.addTodo(todo)
+            }
+        }
+        
         collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
         calendar.reloadData()
         inputTextField.text = ""

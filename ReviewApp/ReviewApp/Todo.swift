@@ -63,7 +63,7 @@ class TodoManager {
     }
     
     func deleteTodo(_ todo: Todo) {
-        todos = todos.filter { existingTodo in
+        todos = todos.filter { existingTodo in           // 같은 계획 모두 삭제, 반복 계획만 삭제하는 코드 id != id , progress != progress
             return existingTodo.id != todo.id
         }
         todayTodo(todo.date)
