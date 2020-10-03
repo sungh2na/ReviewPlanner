@@ -46,6 +46,9 @@ class ReviewPlannerViewController: UIViewController {
 //        isTodayButton.isSelected = !isTodayButton.isSelected
 //    }
     
+    @IBAction func addTaskButton(_ sender: Any) {
+        performSegue(withIdentifier: "showAdd", sender: nil)
+    }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         guard let detail = inputTextField.text, detail.isEmpty == false else { return }
         guard let date = dateLabel.text, date.isEmpty == false else { return }
