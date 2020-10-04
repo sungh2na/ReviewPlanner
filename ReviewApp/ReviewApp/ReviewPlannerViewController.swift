@@ -12,9 +12,6 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var inputViewBottom: NSLayoutConstraint!
-    @IBOutlet weak var inputTextField: UITextField!
-//    @IBOutlet weak var isTodayButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
@@ -30,8 +27,8 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
         calendar.locale = Locale(identifier: "ko_KR")
 //        calendar.select(Date())
         // 키보드 디렉션
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.todayTodo(dateFormatter.string(from: Date()))
@@ -69,25 +66,24 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
         reviewPlannerViewModel.todayTodo(date)
         collectionView.reloadData()
         calendar.reloadData()
-        inputTextField.text = ""
     }
 }
 
 extension ReviewPlannerViewController: UICollectionViewDataSource {
     
-    @objc private func adjustInputView(noti: Notification) {
-        guard let userInfo = noti.userInfo else { return }
-        // 키보드 높이에 따른 인풋뷰 위치 변경
-        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        if noti.name == UIResponder.keyboardWillShowNotification {
-            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
-            inputViewBottom.constant = adjustmentHeight
-        } else {
-            inputViewBottom.constant = 0
-        }
-    }
-    
+//    @objc private func adjustInputView(noti: Notification) {
+//        guard let userInfo = noti.userInfo else { return }
+//        // 키보드 높이에 따른 인풋뷰 위치 변경
+//        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+//
+//        if noti.name == UIResponder.keyboardWillShowNotification {
+//            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
+//            inputViewBottom.constant = adjustmentHeight
+//        } else {
+//            inputViewBottom.constant = 0
+//        }
+//    }
+//
 //    func numberOfSections(in collectionView: UICollectionView) -> Int {
 //        // 섹션 몇개
 //        return 1
