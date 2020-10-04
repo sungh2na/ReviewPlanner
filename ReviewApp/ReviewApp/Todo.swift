@@ -40,7 +40,6 @@ class TodoManager {
     func createTodo(detail: String, date: String) -> Todo {
         let nextId = TodoManager.lastId + 1
         TodoManager.lastId = nextId
-        todayTodo(date)
         return Todo(id: nextId, isDone: false, detail: detail, date: date)
     }
     
@@ -78,7 +77,6 @@ class TodoManager {
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
         todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date)
-        todayTodo(todo.date)
         saveTodo()
     }
     
@@ -91,7 +89,6 @@ class TodoManager {
         todos = Storage.retrive("todos.jason", from: .documents, as: [Todo].self) ?? []
         let lastId = todos.last?.id ?? 0
         TodoManager.lastId = lastId
-        todayTodo(date)
         todos.forEach {
             if let count = dateDic[$0.date] {
                 dateDic.updateValue(count + 1, forKey: $0.date)

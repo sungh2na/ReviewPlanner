@@ -60,7 +60,7 @@ class ReviewPlannerViewController: UIViewController {
                 reviewPlannerViewModel.addTodo(todo)
             }
         }
-        
+        reviewPlannerViewModel.todayTodo(date)      // 이거 훔... 이렇게 써도 되나.
         collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
         calendar.reloadData()
         inputTextField.text = ""
@@ -124,11 +124,13 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         cell.doneButtonTapHandler = { isDone in
             todayTodo.isDone = isDone
             self.reviewPlannerViewModel.updateTodo(todayTodo)
+            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
             self.collectionView.reloadData()
         }
         
         cell.deleteButtonTapHandler = {
             self.reviewPlannerViewModel.deleteTodo(todayTodo)
+            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
             self.collectionView.reloadData()
             self.calendar.reloadData()
         }
@@ -177,7 +179,6 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
         dateLabel.text = date
         // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
-        
         collectionView.reloadData()
     }
 }
