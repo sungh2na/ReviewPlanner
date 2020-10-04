@@ -506,6 +506,9 @@
                             <constraint firstItem="j8R-sV-cjt" firstAttribute="trailing" secondItem="oD9-vt-rX0" secondAttribute="trailing" constant="28" id="wmE-xV-Zz5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inputTextField" destination="1cU-M8-2Ci" id="gaZ-H1-zcf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeM-Wz-rjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

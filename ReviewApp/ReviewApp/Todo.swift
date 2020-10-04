@@ -85,7 +85,7 @@ class TodoManager {
        
     }
     
-    func retrieveTodo(_ date: String) {
+    func retrieveTodo() {
         todos = Storage.retrive("todos.jason", from: .documents, as: [Todo].self) ?? []
         let lastId = todos.last?.id ?? 0
         TodoManager.lastId = lastId
@@ -152,8 +152,8 @@ class ReviewPlannerViewModel {
         manager.updateTodo(todo)
     }
     
-    func loadTasks(_ date: String) {
-        manager.retrieveTodo(date)
+    func loadTasks() {
+        manager.retrieveTodo()
     }
     
     func todayTodo(_ date: String) {

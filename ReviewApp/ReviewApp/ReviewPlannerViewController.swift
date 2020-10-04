@@ -7,7 +7,7 @@
 import FSCalendar
 import UIKit
 
-class ReviewPlannerViewController: UIViewController {
+class ReviewPlannerViewController: UIViewController, EditDelegate {
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
@@ -23,6 +23,7 @@ class ReviewPlannerViewController: UIViewController {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
+    var detail: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ class ReviewPlannerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         // 데이터 불러오기
-        reviewPlannerViewModel.loadTasks(dateFormatter.string(from: Date()))
+        reviewPlannerViewModel.loadTasks()
+        reviewPlannerViewModel.todayTodo(dateFormatter.string(from: Date()))
         dateLabel.text = dateFormatter.string(from: Date())
 //        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
 //        calendar.addGestureRecognizer(scopeGesture)
@@ -42,35 +44,33 @@ class ReviewPlannerViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-//    @IBAction func isTodayButtonTapped(_ sender: Any) {
-//        isTodayButton.isSelected = !isTodayButton.isSelected
-//    }
-    
     @IBAction func addTaskButton(_ sender: Any) {
-        performSegue(withIdentifier: "showAdd", sender: nil)
+        performSegue(withIdentifier: "showAdd", sender: nil )
     }
-    @IBAction func addTaskButtonTapped(_ sender: Any) {
-        guard let detail = inputTextField.text, detail.isEmpty == false else { return }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAdd" {
+            if let secondView = segue.destination as? AddViewController {
+                secondView.delegate = self
+            }
+        }
+    }
+    
+    func addTaskButtonTapped(_ detail: String) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let dateFormat = dateFormatter.date(from:date)
         let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
         interval.forEach {
-            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){       // 초단위
+            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
                 let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay))
                 reviewPlannerViewModel.addTodo(todo)
             }
         }
-        reviewPlannerViewModel.todayTodo(date)      // 이거 훔... 이렇게 써도 되나.
-        collectionView.reloadData()     // 날짜별로 어떻게 컬렉션 뷰 만들지 생각해보기
+        reviewPlannerViewModel.todayTodo(date)
+        collectionView.reloadData()
         calendar.reloadData()
         inputTextField.text = ""
-//        isTodayButton.isSelected = false
     }
-    
-    // BG 탭했을 때, 키보드 내려오게 하기
-//    @IBAction func tapBG(_ sender: Any) {
-//        inputTextField.resignFirstResponder()
-//    }
 }
 
 extension ReviewPlannerViewController: UICollectionViewDataSource {

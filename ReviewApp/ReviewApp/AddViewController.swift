@@ -7,8 +7,16 @@
 
 import UIKit
 
-class AddViewController: UIViewController {
+protocol EditDelegate{
+    func addTaskButtonTapped(_ detail: String)
+}
 
+class AddViewController: UIViewController {
+    
+    @IBOutlet weak var inputTextField: UITextField!
+    
+    var delegate: EditDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,8 +28,12 @@ class AddViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func done(_ sender: Any) {
+        if delegate != nil {
+            delegate?.addTaskButtonTapped(inputTextField.text!)
+        }
         dismiss(animated: true, completion: nil)
     }
+  
     /*
     // MARK: - Navigation
 
