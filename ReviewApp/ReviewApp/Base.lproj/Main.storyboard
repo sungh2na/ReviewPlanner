@@ -373,11 +373,10 @@
                                     <constraint firstAttribute="height" constant="1" id="l0U-jq-Avb"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="할 일 입력 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cU-M8-2Ci">
-                                <rect key="frame" x="28" y="103" width="358" height="25.5"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="할 일 입력하세요." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cU-M8-2Ci">
+                                <rect key="frame" x="28" y="103" width="358" height="22"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7LB-fZ-Sun">
                                 <rect key="frame" x="28" y="160" width="358" height="1"/>
