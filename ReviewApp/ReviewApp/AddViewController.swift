@@ -9,6 +9,7 @@ import UIKit
 
 protocol EditDelegate{
     func addTaskButtonTapped(_ detail: String, _ interval: [Int])
+    func modifyButtonTapped(_ detail: String, _ date: Date)
 }
 
 class AddViewController: UIViewController {

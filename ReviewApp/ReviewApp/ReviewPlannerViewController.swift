@@ -44,6 +44,10 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
             if let secondView = segue.destination as? AddViewController {
                 secondView.delegate = self
             }
+        } else if segue.identifier == "showModify" {
+            if let secondView = segue.destination as? ModifyViewController {
+                secondView.delegate = self
+            }
         }
     }
     
@@ -51,14 +55,40 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let dateFormat = dateFormatter.date(from:date)
         //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
-        
+        TodoManager.shared.nextReviewId()
         interval.forEach {
             if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
-                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay))
+                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay), reviewCount: interval.count)
                 reviewPlannerViewModel.addTodo(todo)
             }
         }
         reviewPlannerViewModel.todayTodo(date)
+        collectionView.reloadData()
+        calendar.reloadData()
+    }
+}
+
+extension ReviewPlannerViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var todayTodo: Todo
+        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
+        performSegue(withIdentifier: "showModify", sender: nil )
+    }
+    
+    func modifyButtonTapped(_ detail: String, _ date: Date) {
+//        guard let date = dateLabel.text, date.isEmpty == false else { return }
+//        let dateFormat = dateFormatter.date(from:date)
+//        //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
+//        TodoManager.shared.nextReviewId()
+//        interval.forEach {
+//            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
+//                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay), reviewCount: interval.count)
+//                reviewPlannerViewModel.addTodo(todo)
+//            }
+//        }
+//        reviewPlannerViewModel.todayTodo(date)
+        let dateString = dateFormatter.string(from:date)
         collectionView.reloadData()
         calendar.reloadData()
     }
@@ -87,12 +117,29 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         }
         
         cell.deleteButtonTapHandler = {
-            self.reviewPlannerViewModel.deleteTodo(todayTodo)
-            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-            self.collectionView.reloadData()
-            self.calendar.reloadData()
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
+                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
+                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+                self.collectionView.reloadData()
+                self.calendar.reloadData()
+            }
+            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
+                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
+                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+                self.collectionView.reloadData()
+                self.calendar.reloadData()
+            }
+            let cancel =  UIAlertAction(title: "취소", style: .cancel)
+            
+            alert.addAction(delete)
+            alert.addAction(deleteAll)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//            self.collectionView.reloadData()
+//            self.calendar.reloadData()
         }
-        
         cell.updateUI(todo: todayTodo)
         return cell
     }
@@ -188,7 +235,7 @@ class ReviewPlannerCell: UICollectionViewCell {
         doneButtonTapHandler?(isDone)
     }
     
-    @IBAction func deleteButtonTapped(_ sender: Any) {
+    @IBAction func deleteButtonTapHandler(_ sender: Any) {
         deleteButtonTapHandler?()
     }
 }

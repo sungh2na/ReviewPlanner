@@ -12,11 +12,14 @@ struct Todo: Codable, Equatable {
     var isDone: Bool
     var detail: String
     var date: String
+    var reviewCount : Int
+    let reviewId: Int
 
-    mutating func update(isDone: Bool, detail: String, date: String) {
+    mutating func update(isDone: Bool, detail: String, date: String, reviewCount: Int) {
         self.isDone = isDone
         self.detail = detail
         self.date = date
+        self.reviewCount = reviewCount
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -27,14 +30,20 @@ struct Todo: Codable, Equatable {
 class TodoManager {
     static let shared = TodoManager()
     static var lastId: Int = 0
+    static var reviewId: Int = 0
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
     var dateDic: Dictionary<String, Int> = [:]
     
-    func createTodo(detail: String, date: String) -> Todo {
+    func createTodo(detail: String, date: String, reviewCount: Int) -> Todo {
         let nextId = TodoManager.lastId + 1
+        let nextReviewId = TodoManager.reviewId
         TodoManager.lastId = nextId
-        return Todo(id: nextId, isDone: false, detail: detail, date: date)
+        return Todo(id: nextId, isDone: false, detail: detail, date: date, reviewCount: reviewCount, reviewId: nextReviewId)
+    }
+    
+    func nextReviewId() {
+        TodoManager.reviewId += 1
     }
     
     func addTodo(_ todo: Todo) {
@@ -61,9 +70,23 @@ class TodoManager {
         }
     }
     
+    func deleteAllTodo(_ todo: Todo) {
+        todos = todos.filter { existingTodo in
+            return existingTodo.reviewId != todo.reviewId
+        }
+        saveTodo()
+        
+        if let count = dateDic[todo.date], count > 1 {
+            dateDic.updateValue(count - 1, forKey: todo.date)
+        } else {
+            dateDic.removeValue(forKey: todo.date)
+        }
+        
+    }
+    
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
-        todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date)
+        todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date, reviewCount: todo.reviewCount)
         saveTodo()
     }
     
@@ -110,6 +133,10 @@ class ReviewPlannerViewModel {
     
     func deleteTodo(_ todo: Todo) {
         manager.deleteTodo(todo)
+    }
+    
+    func deleteAllTodo(_ todo: Todo) {
+        manager.deleteAllTodo(todo)
     }
     
     func updateTodo(_ todo: Todo) {
