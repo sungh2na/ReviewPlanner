@@ -47,10 +47,10 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
         }
     }
     
-    func addTaskButtonTapped(_ detail: String) {
+    func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let dateFormat = dateFormatter.date(from:date)
-        let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
+        //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
         
         interval.forEach {
             if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
