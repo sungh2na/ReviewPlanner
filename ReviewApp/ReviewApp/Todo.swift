@@ -7,19 +7,16 @@
 
 import UIKit
 
-
 struct Todo: Codable, Equatable {
     let id: Int
     var isDone: Bool
     var detail: String
     var date: String
-//    var isToday: Bool       // isToday 대신 날짜 받아와서 해당 날짜에 등록...? 훔...
 
     mutating func update(isDone: Bool, detail: String, date: String) {
         self.isDone = isDone
         self.detail = detail
         self.date = date
-//        self.isToday = isToday
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -28,11 +25,8 @@ struct Todo: Codable, Equatable {
 }
 
 class TodoManager {
-    
     static let shared = TodoManager()
-    
     static var lastId: Int = 0
-    
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
     var dateDic: Dictionary<String, Int> = [:]
@@ -45,7 +39,6 @@ class TodoManager {
     
     func addTodo(_ todo: Todo) {
         todos.append(todo)
-        todayTodo(todo.date)
         saveTodo()
         
         if let count = dateDic[todo.date] {
@@ -53,20 +46,14 @@ class TodoManager {
         } else {
             dateDic.updateValue(1, forKey: todo.date)
         }
-        
-//        guard let count = dateDic[todo.date] else {
-//            dateDic.updateValue(1, forKey: todo.date)
-//            return
-//        }
-//        dateDic.updateValue(count + 1, forKey: todo.date)
     }
     
     func deleteTodo(_ todo: Todo) {
         todos = todos.filter { existingTodo in           // 같은 계획 모두 삭제, 반복 계획만 삭제하는 코드 id != id , progress != progress
             return existingTodo.id != todo.id
         }
-        todayTodo(todo.date)
         saveTodo()
+        
         if let count = dateDic[todo.date], count > 1 {
             dateDic.updateValue(count - 1, forKey: todo.date)
         } else {
@@ -104,19 +91,8 @@ class TodoManager {
 }
 
 class ReviewPlannerViewModel {
-    
-//    enum Section: Int, CaseIterable {
-//        case today
-//        case upcoming  // 이걸 다른 날짜에 어떻게 넘겨줄까?
-//
-//        var title: String {
-//            switch self {
-//                case .today: return "Today"
-//                default: return "Upcoming"
-//            }
-//        }
-//    }
     private let manager = TodoManager.shared
+    
     var todos: [Todo] {
         return manager.todos
     }
@@ -127,18 +103,6 @@ class ReviewPlannerViewModel {
     var dateDic: Dictionary<String, Int> {
         return manager.dateDic
     }
-        //["2020-10-22":1, "2020-10-23":2, "2020-10-25":3]
-//    var todayTodos: [Todo] {                        // 해당 날짜에 해당하는 todo를 필터링 하도록 만들기...
-//        return todos.filter { $0.isToday == true }
-//    }
-    
-//    var upcomingTodos: [Todo] {
-//        return todos.filter { $0.isToday == false }
-//    }
-    
-//    var numOfSection: Int {
-//        return Section.allCases.count
-//    }
     
     func addTodo(_ todo: Todo) {
         manager.addTodo(todo)
@@ -159,5 +123,4 @@ class ReviewPlannerViewModel {
     func todayTodo(_ date: String) {
         manager.todayTodo(date)
     }
-   
 }

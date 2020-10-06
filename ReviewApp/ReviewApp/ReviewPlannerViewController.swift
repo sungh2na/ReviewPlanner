@@ -25,16 +25,10 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
-//        calendar.select(Date())
-        // 키보드 디렉션
-//        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.todayTodo(dateFormatter.string(from: Date()))
         dateLabel.text = dateFormatter.string(from: Date())
-//        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
-//        calendar.addGestureRecognizer(scopeGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +51,7 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let dateFormat = dateFormatter.date(from:date)
         let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
+        
         interval.forEach {
             if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
                 let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay))
@@ -70,33 +65,10 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
 }
 
 extension ReviewPlannerViewController: UICollectionViewDataSource {
-    
-//    @objc private func adjustInputView(noti: Notification) {
-//        guard let userInfo = noti.userInfo else { return }
-//        // 키보드 높이에 따른 인풋뷰 위치 변경
-//        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-//
-//        if noti.name == UIResponder.keyboardWillShowNotification {
-//            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
-//            inputViewBottom.constant = adjustmentHeight
-//        } else {
-//            inputViewBottom.constant = 0
-//        }
-//    }
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // 섹션 몇개
-//        return 1
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 섹션별 아이템 몇개
         return reviewPlannerViewModel.todayTodos.count
-//        if section == 0 {       // Today
-//            return reviewPlannerViewModel.todayTodos.count
-//        } else {                // upcoming
-//            return reviewPlannerViewModel.upcomingTodos.count
-//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,17 +78,7 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
         }
         var todayTodo: Todo
         todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
-//        if indexPath.section == 0 {
-//            todo = reviewPlannerViewModel.todayTodos[indexPath.item]
-//        } else {
-//            todo = reviewPlannerViewModel.upcomingTodos[indexPath.item]
-//        }
-        
-        
-    //    var todayTodos: [Todo] {                        // 해당 날짜에 해당하는 todo를 필터링 하도록 만들기...
-    //        return todos.filter { $0.isToday == true }
-    //    }
-        
+
         cell.doneButtonTapHandler = { isDone in
             todayTodo.isDone = isDone
             self.reviewPlannerViewModel.updateTodo(todayTodo)
@@ -146,31 +108,8 @@ extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
-    
-
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        dateFormatter.dateFormat = "EEE MM.dd"
-        var date = dateFormatter.string(from: date)
-//        let dateArr = date.components(separatedBy: " ")
-//
-//        switch dateArr[0] {
-//        case "Mon":
-//            date = dateArr[1] + " 월"
-//        case "Tue":
-//            date = dateArr[1] + " 화"
-//        case "Wed":
-//            date = dateArr[1] + " 수"
-//        case "Thu":
-//            date = dateArr[1] + " 목"
-//        case "Fri":
-//            date = dateArr[1] + " 금"
-//        case "Sat":
-//            date = dateArr[1] + " 토"
-//        case "Sun":
-//            date = dateArr[1] + " 일"
-//        default:
-//            date = date + ""
-//        }
+        let date = dateFormatter.string(from: date)
         // 날짜 선택시 발생하는 이벤트!
         dateLabel.text = date
         // 해당 날짜로 필터링
@@ -190,22 +129,6 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
         }
         return 0
     }
-//       func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//        switch dateFormatter.string(from: date) {
-//        case dateFormatter.string(from: Date()):
-//            return "오늘"
-//        case "2020-09-10":
-//            return "출근"
-//        case "2020-09-11":
-//            return "지각"
-//        case "2020-09-12":
-//            return "결근"
-//        default:
-//            return nil
-//        }
-//    }
 }
 
 
@@ -216,9 +139,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     @IBOutlet weak var progressLabel: UILabel!  // 이것도 받아야함. 나중에 추가
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var strikeThroughView: UIView! // 할일 미뤘을 때.
-    
     @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
-    
     @IBOutlet weak var modifyButton: UIButton!
     
     var doneButtonTapHandler: ((Bool) -> Void)?
@@ -236,13 +157,11 @@ class ReviewPlannerCell: UICollectionViewCell {
     
     func updateUI(todo: Todo) {
         // 셀 업데이트 하기
-        
         checkButton.isSelected = todo.isDone
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1
         deleteButton.isHidden = todo.isDone  == false
         showStrikeThrough(todo.isDone)      // 수정하기
-        
     }
     
     private func showStrikeThrough(_ show: Bool) {
@@ -265,10 +184,8 @@ class ReviewPlannerCell: UICollectionViewCell {
         showStrikeThrough(isDone)                       // 수정하기
         descriptionLabel.alpha = isDone ? 0.2 : 1
         deleteButton.isHidden = !isDone
-        
         // 데이터 업데이트
         doneButtonTapHandler?(isDone)
-        
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
