@@ -33,7 +33,6 @@ class TodoManager {
     static var reviewId: Int = 0
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
-    var dateDic: Dictionary<String, Int> = [:]
     
     func createTodo(detail: String, date: String, reviewCount: Int) -> Todo {
         let nextId = TodoManager.lastId + 1
@@ -49,12 +48,6 @@ class TodoManager {
     func addTodo(_ todo: Todo) {
         todos.append(todo)
         saveTodo()
-        
-        if let count = dateDic[todo.date] {
-            dateDic.updateValue(count + 1, forKey: todo.date)
-        } else {
-            dateDic.updateValue(1, forKey: todo.date)
-        }
     }
     
     func deleteTodo(_ todo: Todo) {
@@ -62,12 +55,6 @@ class TodoManager {
             return existingTodo.id != todo.id
         }
         saveTodo()
-        
-        if let count = dateDic[todo.date], count > 1 {
-            dateDic.updateValue(count - 1, forKey: todo.date)
-        } else {
-            dateDic.removeValue(forKey: todo.date)
-        }
     }
     
     func deleteAllTodo(_ todo: Todo) {
@@ -75,13 +62,6 @@ class TodoManager {
             return existingTodo.reviewId != todo.reviewId
         }
         saveTodo()
-        
-        if let count = dateDic[todo.date], count > 1 {
-            dateDic.updateValue(count - 1, forKey: todo.date)
-        } else {
-            dateDic.removeValue(forKey: todo.date)
-        }
-        
     }
     
     func updateTodo(_ todo: Todo) {
@@ -90,26 +70,39 @@ class TodoManager {
         saveTodo()
     }
     
+    func updateAllTodo(_ todo: Todo) {      // 고치고 싶다 ㅠㅠ
+        for index in 0 ..< todos.count {
+            if todos[index].reviewCount == todo.reviewCount {
+                todos[index].update(isDone: todos[index].isDone, detail: todo.detail, date: todos[index].date, reviewCount: todos[index].reviewCount)
+            }
+        }
+        saveTodo()
+    }
+    func getProgress(_ todo: Todo) -> String {
+        var progress = ""
+        let SameIdTodos = todos.filter { return $0.reviewId == todo.reviewId }
+        guard let index = SameIdTodos.firstIndex(of: todo) else { return "" }
+        progress = "\(index + 1)/\(SameIdTodos.count)"
+        return progress
+    }
+    
     func saveTodo() {
         Storage.store(todos, to: .documents, as: "todos.jason")
-       
     }
     
     func retrieveTodo() {
         todos = Storage.retrive("todos.jason", from: .documents, as: [Todo].self) ?? []
         let lastId = todos.last?.id ?? 0
         TodoManager.lastId = lastId
-        todos.forEach {
-            if let count = dateDic[$0.date] {
-                dateDic.updateValue(count + 1, forKey: $0.date)
-            } else {
-                dateDic.updateValue(1, forKey: $0.date)
-            }
-        }
     }
     
     func todayTodo(_ date: String) {
         todayTodos = todos.filter { $0.date == date }
+    }
+    
+    func getAllDate() -> [String] {
+        let dates = todos.map{ $0.date }
+        return dates
     }
 }
 
@@ -122,9 +115,6 @@ class ReviewPlannerViewModel {
     
     var todayTodos: [Todo] {
         return manager.todayTodos
-    }
-    var dateDic: Dictionary<String, Int> {
-        return manager.dateDic
     }
     
     func addTodo(_ todo: Todo) {
@@ -143,11 +133,22 @@ class ReviewPlannerViewModel {
         manager.updateTodo(todo)
     }
     
+    func updateAllTodo(_ todo: Todo) {
+        manager.updateAllTodo(todo)
+    }
+    
     func loadTasks() {
         manager.retrieveTodo()
     }
     
     func todayTodo(_ date: String) {
         manager.todayTodo(date)
+    }
+    
+    func getAllDate() -> [String] {
+        return manager.getAllDate()
+    }
+    func getProgress(_ todo: Todo) -> String {
+        return manager.getProgress(todo)
     }
 }

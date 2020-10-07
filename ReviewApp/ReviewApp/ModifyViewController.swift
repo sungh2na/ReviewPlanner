@@ -8,7 +8,7 @@
 import UIKit
 
 protocol Edit_2_Delegate{
-    func modifyButtonTapped(_ detail: String, _ date: Date)
+    func modifytodo(_ todo: Todo)
 }
 
 class ModifyViewController: UIViewController {
@@ -16,8 +16,12 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var inputTextField: UITextField!
     var delegate: Edit_2_Delegate?
-    var detail: String?
-    var date: Date?
+    var todo: Todo?
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +30,9 @@ class ModifyViewController: UIViewController {
     }
     
     func updateUI() {
-        if let detail = self.detail, let date = self.date {
-            inputTextField.text = detail
-            datePicker.date = date
+        if let todo = self.todo {
+            inputTextField.text = todo.detail
+            datePicker.date = dateFormatter.date(from: todo.date)!
         }
     }
     
@@ -40,8 +44,15 @@ class ModifyViewController: UIViewController {
     }
     
     @IBAction func done(_ sender: Any) {
+        var todayTodo: Todo
         if delegate != nil {
-            delegate?.modifyButtonTapped(inputTextField.text!, datePicker.date)
+            if let todo = self.todo {
+                todayTodo = todo
+                todayTodo.detail = inputTextField.text!
+                todayTodo.date = dateFormatter.string(from: datePicker.date)
+                
+                delegate?.modifytodo(todayTodo)
+            }
         }
         dismiss(animated: true, completion: nil)
     }

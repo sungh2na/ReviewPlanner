@@ -20,8 +20,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
-    var detail: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
@@ -50,8 +49,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
                 if let index = sender as? Int {
                     var todayTodo: Todo
                     todayTodo = reviewPlannerViewModel.todayTodos[index]
-                    secondView.detail = todayTodo.detail
-                    secondView.date = dateFormatter.date(from: todayTodo.date)
+                    secondView.todo = todayTodo
                 }
                 
             }
@@ -76,14 +74,17 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
 }
 
 extension ReviewPlannerViewController: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showModify", sender: indexPath.row) // indexPath.item??
     }
-    
-    func modifyButtonTapped(_ detail: String, _ date: Date) {
-        collectionView.reloadData()
-        calendar.reloadData()
+
+    func modifytodo(_ todo: Todo) {
+        guard let date = dateLabel.text, date.isEmpty == false else { return }
+        let todayTodo = todo
+        self.reviewPlannerViewModel.updateAllTodo(todayTodo)
+        self.reviewPlannerViewModel.todayTodo(date)
+        self.collectionView.reloadData()
+        self.calendar.reloadData()
     }
 }
 
@@ -160,13 +161,20 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
-        let datedic = reviewPlannerViewModel.dateDic
-        for (dicDate, count) in datedic {
-            guard let eventDate = dateFormatter.date(from: dicDate) else { return 0 }
+        let dates = reviewPlannerViewModel.getAllDate()
+        for getDate in dates {
+            guard let eventDate = dateFormatter.date(from: getDate) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
-                return count
+                return 1
             }
         }
+//        let datedic = reviewPlannerViewModel.dateDic
+//        for (dicDate, count) in datedic {
+//            guard let eventDate = dateFormatter.date(from: dicDate) else { return 0 }
+//            if date.compare(eventDate) == .orderedSame {
+//                return count
+//            }
+//        }
         return 0
     }
 }
@@ -180,7 +188,6 @@ class ReviewPlannerCell: UICollectionViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var strikeThroughView: UIView! // 할일 미뤘을 때.
     @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
-    @IBOutlet weak var modifyButton: UIButton!
     
     var doneButtonTapHandler: ((Bool) -> Void)?
     var deleteButtonTapHandler: (() -> Void)?
@@ -198,6 +205,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     func updateUI(todo: Todo) {
         // 셀 업데이트 하기
         checkButton.isSelected = todo.isDone
+        progressLabel.text = ""
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1
         deleteButton.isHidden = todo.isDone  == false
