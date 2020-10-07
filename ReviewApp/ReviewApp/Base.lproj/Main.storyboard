@@ -538,7 +538,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="bza-cv-9nw">
-                                <rect key="frame" x="0.0" y="189" width="414" height="170"/>
+                                <rect key="frame" x="28" y="189" width="358" height="172"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <locale key="locale" localeIdentifier="ko_KR"/>
                                 <connections>

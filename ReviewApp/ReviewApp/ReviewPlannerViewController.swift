@@ -7,7 +7,7 @@
 import FSCalendar
 import UIKit
 
-class ReviewPlannerViewController: UIViewController, EditDelegate {
+class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate {
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
@@ -47,6 +47,13 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
         } else if segue.identifier == "showModify" {
             if let secondView = segue.destination as? ModifyViewController {
                 secondView.delegate = self
+                if let index = sender as? Int {
+                    var todayTodo: Todo
+                    todayTodo = reviewPlannerViewModel.todayTodos[index]
+                    secondView.detail = todayTodo.detail
+                    secondView.date = dateFormatter.date(from: todayTodo.date)
+                }
+                
             }
         }
     }
@@ -71,24 +78,10 @@ class ReviewPlannerViewController: UIViewController, EditDelegate {
 extension ReviewPlannerViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var todayTodo: Todo
-        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
-        performSegue(withIdentifier: "showModify", sender: nil )
+        performSegue(withIdentifier: "showModify", sender: indexPath.row) // indexPath.item??
     }
     
     func modifyButtonTapped(_ detail: String, _ date: Date) {
-//        guard let date = dateLabel.text, date.isEmpty == false else { return }
-//        let dateFormat = dateFormatter.date(from:date)
-//        //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
-//        TodoManager.shared.nextReviewId()
-//        interval.forEach {
-//            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
-//                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay), reviewCount: interval.count)
-//                reviewPlannerViewModel.addTodo(todo)
-//            }
-//        }
-//        reviewPlannerViewModel.todayTodo(date)
-        let dateString = dateFormatter.string(from:date)
         collectionView.reloadData()
         calendar.reloadData()
     }

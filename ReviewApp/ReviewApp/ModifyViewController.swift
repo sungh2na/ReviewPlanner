@@ -7,22 +7,36 @@
 
 import UIKit
 
+protocol Edit_2_Delegate{
+    func modifyButtonTapped(_ detail: String, _ date: Date)
+}
+
 class ModifyViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var inputTextField: UITextField!
-    var delegate: EditDelegate?
+    var delegate: Edit_2_Delegate?
+    var detail: String?
+    var date: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        datePicker.preferredDatePickerStyle = .wheels
+        updateUI()
+    }
+    
+    func updateUI() {
+        if let detail = self.detail, let date = self.date {
+            inputTextField.text = detail
+            datePicker.date = date
+        }
     }
     
     @IBAction func date(_ sender: Any) {
     }
+    
     @IBAction func close(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion:  nil)
     }
     
     @IBAction func done(_ sender: Any) {
@@ -31,14 +45,4 @@ class ModifyViewController: UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

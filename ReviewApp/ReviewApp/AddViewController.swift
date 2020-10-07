@@ -7,16 +7,15 @@
 
 import UIKit
 
-protocol EditDelegate{
+protocol Edit_1_Delegate{
     func addTaskButtonTapped(_ detail: String, _ interval: [Int])
-    func modifyButtonTapped(_ detail: String, _ date: Date)
 }
 
 class AddViewController: UIViewController {
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
-    var delegate: EditDelegate?
+    var delegate: Edit_1_Delegate?
     var interval = [0, 1, 5, 10, 30]
     
     override func viewDidLoad() {
