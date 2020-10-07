@@ -59,12 +59,14 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let dateFormat = dateFormatter.date(from:date)
+        var index = 0
         //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
         TodoManager.shared.nextReviewId()
         interval.forEach {
             if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
-                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay), reviewCount: interval.count)
+                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay), reviewNum: index + 1, reviewTotal: interval.count)
                 reviewPlannerViewModel.addTodo(todo)
+                index += 1
             }
         }
         reviewPlannerViewModel.todayTodo(date)
@@ -205,7 +207,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     func updateUI(todo: Todo) {
         // 셀 업데이트 하기
         checkButton.isSelected = todo.isDone
-        progressLabel.text = ""
+        progressLabel.text = "\(todo.reviewNum)/\(todo.reviewTotal)"
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1
         deleteButton.isHidden = todo.isDone  == false

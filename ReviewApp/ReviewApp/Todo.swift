@@ -12,14 +12,16 @@ struct Todo: Codable, Equatable {
     var isDone: Bool
     var detail: String
     var date: String
-    var reviewCount : Int
     let reviewId: Int
+    var reviewNum: Int
+    var reviewTotal: Int
 
-    mutating func update(isDone: Bool, detail: String, date: String, reviewCount: Int) {
+    mutating func update(isDone: Bool, detail: String, date: String, reviewNum: Int, reviewTotal: Int) {
         self.isDone = isDone
         self.detail = detail
         self.date = date
-        self.reviewCount = reviewCount
+        self.reviewNum = reviewNum
+        self.reviewTotal = reviewTotal
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -34,11 +36,11 @@ class TodoManager {
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
     
-    func createTodo(detail: String, date: String, reviewCount: Int) -> Todo {
+    func createTodo(detail: String, date: String, reviewNum: Int, reviewTotal: Int) -> Todo {
         let nextId = TodoManager.lastId + 1
         let nextReviewId = TodoManager.reviewId
         TodoManager.lastId = nextId
-        return Todo(id: nextId, isDone: false, detail: detail, date: date, reviewCount: reviewCount, reviewId: nextReviewId)
+        return Todo(id: nextId, isDone: false, detail: detail, date: date, reviewId: nextReviewId, reviewNum: reviewNum, reviewTotal: reviewTotal)
     }
     
     func nextReviewId() {
@@ -54,6 +56,7 @@ class TodoManager {
         todos = todos.filter { existingTodo in           // 같은 계획 모두 삭제, 반복 계획만 삭제하는 코드 id != id , progress != progress
             return existingTodo.id != todo.id
         }
+        setProgress(todo)
         saveTodo()
     }
     
@@ -66,24 +69,28 @@ class TodoManager {
     
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
-        todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date, reviewCount: todo.reviewCount)
+        todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date, reviewNum: todo.reviewNum, reviewTotal: todo.reviewTotal)
         saveTodo()
     }
     
-    func updateAllTodo(_ todo: Todo) {      // 고치고 싶다 ㅠㅠ
+    func updateAllTodo(_ todo: Todo) {      // 고치고 싶다 ㅠㅠ, 같은 계획 모두 수정
         for index in 0 ..< todos.count {
-            if todos[index].reviewCount == todo.reviewCount {
-                todos[index].update(isDone: todos[index].isDone, detail: todo.detail, date: todos[index].date, reviewCount: todos[index].reviewCount)
+            if todos[index].reviewId == todo.reviewId {
+                todos[index].update(isDone: todos[index].isDone, detail: todo.detail, date: todos[index].date, reviewNum: todos[index].reviewNum, reviewTotal: todos[index].reviewTotal)
             }
         }
         saveTodo()
     }
-    func getProgress(_ todo: Todo) -> String {
-        var progress = ""
-        let SameIdTodos = todos.filter { return $0.reviewId == todo.reviewId }
-        guard let index = SameIdTodos.firstIndex(of: todo) else { return "" }
-        progress = "\(index + 1)/\(SameIdTodos.count)"
-        return progress
+    func setProgress(_ todo: Todo) {        // 흐으으음... ㅠㅠ
+        for index in 0 ..< todos.count {
+            if todos[index].reviewId == todo.reviewId {
+                if todos[index].id < todo.id {
+                    todos[index].update(isDone: todos[index].isDone, detail: todos[index].detail, date: todos[index].date, reviewNum: todos[index].reviewNum, reviewTotal: todos[index].reviewTotal - 1)
+                } else {
+                    todos[index].update(isDone: todos[index].isDone, detail: todos[index].detail, date: todos[index].date, reviewNum: todos[index].reviewNum - 1, reviewTotal: todos[index].reviewTotal - 1)
+                }
+            }
+        }
     }
     
     func saveTodo() {
@@ -147,8 +154,5 @@ class ReviewPlannerViewModel {
     
     func getAllDate() -> [String] {
         return manager.getAllDate()
-    }
-    func getProgress(_ todo: Todo) -> String {
-        return manager.getProgress(todo)
     }
 }
