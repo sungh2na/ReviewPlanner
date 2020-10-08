@@ -191,6 +191,7 @@ class ReviewPlannerCell: UICollectionViewCell {
     @IBOutlet weak var strikeThroughView: UIView! // 할일 미뤘을 때.
     @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
     
+    @IBOutlet weak var memoButton: UIButton!
     var doneButtonTapHandler: ((Bool) -> Void)?
     var deleteButtonTapHandler: (() -> Void)?
     
