@@ -13,6 +13,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var switchScope: UIButton!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     let dateFormatter: DateFormatter = {
@@ -28,6 +29,10 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.todayTodo(dateFormatter.string(from: Date()))
         dateLabel.text = dateFormatter.string(from: Date())
+        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
+        
+//        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
+//        calendar.addGestureRecognizer(scopeGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,6 +41,18 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     
     @IBAction func addTaskButton(_ sender: Any) {
         performSegue(withIdentifier: "showAdd", sender: nil )
+    }
+    
+    @IBAction func switchCalendarScope() {
+        if self.calendar.scope == FSCalendarScope.month {
+            switchScope.isSelected = true
+            switchScope.alpha = 0.5
+            self.calendar.scope = .week
+        } else {
+            switchScope.isSelected = false
+            switchScope.alpha = 1
+            self.calendar.scope = .month
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

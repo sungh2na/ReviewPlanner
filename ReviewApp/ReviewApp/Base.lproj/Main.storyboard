@@ -174,6 +174,20 @@
                                     <action selector="addTaskButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ZB-1H-Bbb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ6-JQ-h3C">
+                                <rect key="frame" x="369" y="62" width="27" height="23"/>
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <state key="normal" image="calendar.badge.plus" catalog="system">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                </state>
+                                <state key="selected" image="calendar.badge.minus" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchCalendarScope" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucx-vh-zTY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -181,11 +195,13 @@
                         <constraints>
                             <constraint firstItem="KJi-ej-hj9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="16c-Sg-bRH"/>
                             <constraint firstItem="kkf-l8-YF9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="21k-pP-ih7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GQ6-JQ-h3C" secondAttribute="trailing" constant="18" id="4C6-8c-2JC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Liz-2o-28L" secondAttribute="trailing" constant="20" id="4gZ-yo-QiE"/>
                             <constraint firstItem="kkf-l8-YF9" firstAttribute="top" secondItem="KJi-ej-hj9" secondAttribute="bottom" constant="8" id="ArR-9C-xJE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kkf-l8-YF9" secondAttribute="trailing" symbolic="YES" id="Dvp-vv-QcL"/>
                             <constraint firstItem="KJi-ej-hj9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Jeg-Gy-2Tp"/>
                             <constraint firstItem="iwy-h9-M3E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="VKo-CU-yAX"/>
+                            <constraint firstItem="GQ6-JQ-h3C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="VjA-bO-QGj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KJi-ej-hj9" secondAttribute="trailing" id="Vuo-Ny-kdo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iwy-h9-M3E" secondAttribute="trailing" constant="5" id="c9q-sf-HMM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iwy-h9-M3E" secondAttribute="bottom" constant="10" id="fVD-UD-Me2"/>
@@ -200,6 +216,7 @@
                         <outlet property="addButton" destination="Liz-2o-28L" id="dFj-eR-VEV"/>
                         <outlet property="calendar" destination="KJi-ej-hj9" id="hfz-XB-gUz"/>
                         <outlet property="dateLabel" destination="kkf-l8-YF9" id="FJX-dj-zy8"/>
+                        <outlet property="switchScope" destination="GQ6-JQ-h3C" id="dRL-2r-xKh"/>
                         <outlet property="tableView" destination="iwy-h9-M3E" id="fXL-7k-mS7"/>
                         <segue destination="XHs-lr-7NH" kind="presentation" identifier="showAdd" id="rKQ-ge-Olg"/>
                         <segue destination="Ofl-EL-hcA" kind="presentation" identifier="showModify" id="fUb-YJ-zdJ"/>
@@ -594,6 +611,8 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="calendar.badge.minus" catalog="system" width="128" height="108"/>
+        <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="circle" catalog="system" width="128" height="121"/>
