@@ -56,4 +56,7 @@ class ModifyViewController: UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func tapBG(_ sender: Any) {
+        inputTextField.resignFirstResponder()
+    }
 }

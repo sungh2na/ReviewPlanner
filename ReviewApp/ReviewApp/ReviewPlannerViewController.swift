@@ -113,7 +113,8 @@ extension ReviewPlannerViewController: UITableViewDelegate {
             alert.addAction(cancel)
             self.present(alert, animated: true, completion: nil)
 //            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
+        } else if editingStyle == .none {
+            print("")
         }
     }
 }
