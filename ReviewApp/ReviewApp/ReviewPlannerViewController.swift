@@ -11,7 +11,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
@@ -70,37 +70,49 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
             }
         }
         reviewPlannerViewModel.todayTodo(date)
-        collectionView.reloadData()
+        tableView.reloadData()
         calendar.reloadData()
     }
 }
 
-extension ReviewPlannerViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showModify", sender: indexPath.row) // indexPath.item??
-    }
+//extension ReviewPlannerViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "showModify", sender: indexPath.row) // indexPath.item??
+//    }
+//
+//    func modifytodo(_ todo: Todo) {
+//        guard let date = dateLabel.text, date.isEmpty == false else { return }
+//        let todayTodo = todo
+//        self.reviewPlannerViewModel.updateAllTodo(todayTodo)
+//        self.reviewPlannerViewModel.todayTodo(date)
+//        self.collectionView.reloadData()
+//        self.calendar.reloadData()
+//    }
+//}
 
+extension ReviewPlannerViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showModify", sender: indexPath.row)
+    }
+    
     func modifytodo(_ todo: Todo) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let todayTodo = todo
         self.reviewPlannerViewModel.updateAllTodo(todayTodo)
         self.reviewPlannerViewModel.todayTodo(date)
-        self.collectionView.reloadData()
+        tableView.reloadData()
         self.calendar.reloadData()
     }
 }
 
-extension ReviewPlannerViewController: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // 섹션별 아이템 몇개
+extension ReviewPlannerViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviewPlannerViewModel.todayTodos.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // 커스텀 셀
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
-            return UICollectionViewCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
+            return UITableViewCell()
         }
         var todayTodo: Todo
         todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
@@ -109,7 +121,7 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
             todayTodo.isDone = isDone
             self.reviewPlannerViewModel.updateTodo(todayTodo)
             self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-            self.collectionView.reloadData()
+            tableView.reloadData()
         }
         
         cell.deleteButtonTapHandler = {
@@ -117,13 +129,13 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
             let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
                 self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                self.collectionView.reloadData()
+                tableView.reloadData()
                 self.calendar.reloadData()
             }
             let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
                 self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                self.collectionView.reloadData()
+                tableView.reloadData()
                 self.calendar.reloadData()
             }
             let cancel =  UIAlertAction(title: "취소", style: .cancel)
@@ -141,14 +153,65 @@ extension ReviewPlannerViewController: UICollectionViewDataSource {
     }
 }
 
-extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 사이즈 계산하기
-        let width:CGFloat = collectionView.bounds.width
-        let height:CGFloat = 40
-        return CGSize(width: width, height: height)
-    }
-}
+//extension ReviewPlannerViewController: UICollectionViewDataSource {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        // 섹션별 아이템 몇개
+//        return reviewPlannerViewModel.todayTodos.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        // 커스텀 셀
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
+//            return UICollectionViewCell()
+//        }
+//        var todayTodo: Todo
+//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
+//
+//        cell.doneButtonTapHandler = { isDone in
+//            todayTodo.isDone = isDone
+//            self.reviewPlannerViewModel.updateTodo(todayTodo)
+//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//            self.collectionView.reloadData()
+//        }
+//
+//        cell.deleteButtonTapHandler = {
+//            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
+//                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
+//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//                self.collectionView.reloadData()
+//                self.calendar.reloadData()
+//            }
+//            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
+//                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
+//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//                self.collectionView.reloadData()
+//                self.calendar.reloadData()
+//            }
+//            let cancel =  UIAlertAction(title: "취소", style: .cancel)
+//
+//            alert.addAction(delete)
+//            alert.addAction(deleteAll)
+//            alert.addAction(cancel)
+//            self.present(alert, animated: true, completion: nil)
+////            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+////            self.collectionView.reloadData()
+////            self.calendar.reloadData()
+//        }
+//        cell.updateUI(todo: todayTodo)
+//        return cell
+//    }
+//}
+
+//extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        // 사이즈 계산하기
+//        let width:CGFloat = collectionView.bounds.width
+//        let height:CGFloat = 40
+//        return CGSize(width: width, height: height)
+//    }
+//}
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -157,7 +220,7 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
         dateLabel.text = date
         // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
-        collectionView.reloadData()
+        tableView.reloadData()
     }
 }
 
@@ -182,15 +245,14 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
 }
 
 
-class ReviewPlannerCell: UICollectionViewCell {
+class ReviewPlannerCell: UITableViewCell {
     
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var progressLabel: UILabel!  // 이것도 받아야함. 나중에 추가
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var strikeThroughView: UIView! // 할일 미뤘을 때.
+    @IBOutlet weak var strikeThroughView: UIView!
     @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
-    
     @IBOutlet weak var memoButton: UIButton!
     var doneButtonTapHandler: ((Bool) -> Void)?
     var deleteButtonTapHandler: (() -> Void)?
