@@ -84,7 +84,7 @@ class TodoManager {
     func setProgress(_ todo: Todo) {        // 흐으으음... ㅠㅠ
         for index in 0 ..< todos.count {
             if todos[index].reviewId == todo.reviewId {
-                if todos[index].id < todo.id {
+                if todos[index].reviewNum < todo.reviewNum {
                     todos[index].update(isDone: todos[index].isDone, detail: todos[index].detail, date: todos[index].date, reviewNum: todos[index].reviewNum, reviewTotal: todos[index].reviewTotal - 1)
                 } else {
                     todos[index].update(isDone: todos[index].isDone, detail: todos[index].detail, date: todos[index].date, reviewNum: todos[index].reviewNum - 1, reviewTotal: todos[index].reviewTotal - 1)
@@ -100,7 +100,9 @@ class TodoManager {
     func retrieveTodo() {
         todos = Storage.retrive("todos.jason", from: .documents, as: [Todo].self) ?? []
         let lastId = todos.last?.id ?? 0
+        let reviewId = todos.last?.reviewId ?? 0
         TodoManager.lastId = lastId
+        TodoManager.reviewId = reviewId
     }
     
     func todayTodo(_ date: String) {

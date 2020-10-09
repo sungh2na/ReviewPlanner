@@ -75,21 +75,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     }
 }
 
-//extension ReviewPlannerViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "showModify", sender: indexPath.row) // indexPath.item??
-//    }
-//
-//    func modifytodo(_ todo: Todo) {
-//        guard let date = dateLabel.text, date.isEmpty == false else { return }
-//        let todayTodo = todo
-//        self.reviewPlannerViewModel.updateAllTodo(todayTodo)
-//        self.reviewPlannerViewModel.todayTodo(date)
-//        self.collectionView.reloadData()
-//        self.calendar.reloadData()
-//    }
-//}
-
 extension ReviewPlannerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showModify", sender: indexPath.row)
@@ -102,6 +87,34 @@ extension ReviewPlannerViewController: UITableViewDelegate {
         self.reviewPlannerViewModel.todayTodo(date)
         tableView.reloadData()
         self.calendar.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        var todayTodo: Todo
+        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
+        if editingStyle == .delete {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
+                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
+                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+                tableView.reloadData()
+                self.calendar.reloadData()
+            }
+            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
+                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
+                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+                tableView.reloadData()
+                self.calendar.reloadData()
+            }
+            let cancel =  UIAlertAction(title: "취소", style: .cancel)
+            
+            alert.addAction(delete)
+            alert.addAction(deleteAll)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+        }
     }
 }
 
@@ -124,94 +137,10 @@ extension ReviewPlannerViewController: UITableViewDataSource {
             tableView.reloadData()
         }
         
-        cell.deleteButtonTapHandler = {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
-                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
-                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                tableView.reloadData()
-                self.calendar.reloadData()
-            }
-            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
-                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
-                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                tableView.reloadData()
-                self.calendar.reloadData()
-            }
-            let cancel =  UIAlertAction(title: "취소", style: .cancel)
-            
-            alert.addAction(delete)
-            alert.addAction(deleteAll)
-            alert.addAction(cancel)
-            self.present(alert, animated: true, completion: nil)
-//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//            self.collectionView.reloadData()
-//            self.calendar.reloadData()
-        }
         cell.updateUI(todo: todayTodo)
         return cell
     }
 }
-
-//extension ReviewPlannerViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        // 섹션별 아이템 몇개
-//        return reviewPlannerViewModel.todayTodos.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        // 커스텀 셀
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
-//            return UICollectionViewCell()
-//        }
-//        var todayTodo: Todo
-//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
-//
-//        cell.doneButtonTapHandler = { isDone in
-//            todayTodo.isDone = isDone
-//            self.reviewPlannerViewModel.updateTodo(todayTodo)
-//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//            self.collectionView.reloadData()
-//        }
-//
-//        cell.deleteButtonTapHandler = {
-//            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
-//                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
-//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//                self.collectionView.reloadData()
-//                self.calendar.reloadData()
-//            }
-//            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
-//                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
-//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//                self.collectionView.reloadData()
-//                self.calendar.reloadData()
-//            }
-//            let cancel =  UIAlertAction(title: "취소", style: .cancel)
-//
-//            alert.addAction(delete)
-//            alert.addAction(deleteAll)
-//            alert.addAction(cancel)
-//            self.present(alert, animated: true, completion: nil)
-////            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-////            self.collectionView.reloadData()
-////            self.calendar.reloadData()
-//        }
-//        cell.updateUI(todo: todayTodo)
-//        return cell
-//    }
-//}
-
-//extension ReviewPlannerViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        // 사이즈 계산하기
-//        let width:CGFloat = collectionView.bounds.width
-//        let height:CGFloat = 40
-//        return CGSize(width: width, height: height)
-//    }
-//}
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -244,18 +173,15 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
     }
 }
 
-
 class ReviewPlannerCell: UITableViewCell {
     
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var strikeThroughView: UIView!
     @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
     @IBOutlet weak var memoButton: UIButton!
     var doneButtonTapHandler: ((Bool) -> Void)?
-    var deleteButtonTapHandler: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -273,7 +199,6 @@ class ReviewPlannerCell: UITableViewCell {
         progressLabel.text = "\(todo.reviewNum)/\(todo.reviewTotal)"
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1
-        deleteButton.isHidden = todo.isDone  == false
         showStrikeThrough(todo.isDone)      // 수정하기
     }
     
@@ -287,7 +212,6 @@ class ReviewPlannerCell: UITableViewCell {
     
     func reset() {
         descriptionLabel.alpha = 1
-        deleteButton.isHidden = true
     }
     
     @IBAction func checkButtonTapped(_ sender: Any) {
@@ -296,12 +220,7 @@ class ReviewPlannerCell: UITableViewCell {
         let isDone = checkButton.isSelected
         showStrikeThrough(isDone)                       // 수정하기
         descriptionLabel.alpha = isDone ? 0.2 : 1
-        deleteButton.isHidden = !isDone
         // 데이터 업데이트
         doneButtonTapHandler?(isDone)
-    }
-    
-    @IBAction func deleteButtonTapHandler(_ sender: Any) {
-        deleteButtonTapHandler?()
     }
 }
