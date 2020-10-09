@@ -63,24 +63,24 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09.23 수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkf-l8-YF9">
-                                <rect key="frame" x="25" y="466" width="64" height="21"/>
+                                <rect key="frame" x="25" y="468" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iwy-h9-M3E">
-                                <rect key="frame" x="5" y="497" width="404" height="306"/>
+                                <rect key="frame" x="5" y="494" width="404" height="309"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewPlannerCell" rowHeight="50" id="yDZ-fp-y1H" customClass="ReviewPlannerCell" customModule="ReviewApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="404" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewPlannerCell" rowHeight="43.5" id="yDZ-fp-y1H" customClass="ReviewPlannerCell" customModule="ReviewApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="404" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yDZ-fp-y1H" id="Zcc-sh-t3l">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mW4-lK-rap">
-                                                    <rect key="frame" x="25" y="12.5" width="25" height="25"/>
+                                                    <rect key="frame" x="25" y="9.5" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="GKa-Ui-5sM"/>
                                                         <constraint firstAttribute="height" constant="25" id="bBe-1R-xVp"/>
@@ -96,7 +96,7 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXH-7N-rlo">
-                                                    <rect key="frame" x="60" y="24.5" width="250" height="1"/>
+                                                    <rect key="frame" x="60" y="21.5" width="250" height="1"/>
                                                     <color key="backgroundColor" systemColor="systemGray4Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="RLc-aN-zg8"/>
@@ -104,7 +104,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영어빈출어휘 Day1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLw-k0-tah">
-                                                    <rect key="frame" x="60" y="12.5" width="244" height="25"/>
+                                                    <rect key="frame" x="60" y="9.5" width="244" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="ke7-uC-jgR"/>
                                                     </constraints>
@@ -113,7 +113,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCa-6Z-i0r">
-                                                    <rect key="frame" x="314" y="12.5" width="25" height="25"/>
+                                                    <rect key="frame" x="314" y="9.5" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="L8S-qa-pDy"/>
                                                         <constraint firstAttribute="height" constant="25" id="mCB-eV-b7p"/>
@@ -125,7 +125,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zz4-C1-6Ty">
-                                                    <rect key="frame" x="344" y="12.5" width="30" height="25"/>
+                                                    <rect key="frame" x="344" y="9.5" width="30" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="jrI-5t-jXl"/>
                                                         <constraint firstAttribute="width" constant="30" id="qYM-zS-Rwa"/>
@@ -197,7 +197,6 @@
                             <constraint firstItem="kkf-l8-YF9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="21k-pP-ih7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GQ6-JQ-h3C" secondAttribute="trailing" constant="18" id="4C6-8c-2JC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Liz-2o-28L" secondAttribute="trailing" constant="20" id="4gZ-yo-QiE"/>
-                            <constraint firstItem="kkf-l8-YF9" firstAttribute="top" secondItem="KJi-ej-hj9" secondAttribute="bottom" constant="8" id="ArR-9C-xJE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kkf-l8-YF9" secondAttribute="trailing" symbolic="YES" id="Dvp-vv-QcL"/>
                             <constraint firstItem="KJi-ej-hj9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Jeg-Gy-2Tp"/>
                             <constraint firstItem="iwy-h9-M3E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="VKo-CU-yAX"/>
@@ -205,7 +204,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KJi-ej-hj9" secondAttribute="trailing" id="Vuo-Ny-kdo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iwy-h9-M3E" secondAttribute="trailing" constant="5" id="c9q-sf-HMM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iwy-h9-M3E" secondAttribute="bottom" constant="10" id="fVD-UD-Me2"/>
-                            <constraint firstItem="iwy-h9-M3E" firstAttribute="top" secondItem="kkf-l8-YF9" secondAttribute="bottom" constant="10" id="iW8-h8-tzk"/>
+                            <constraint firstItem="iwy-h9-M3E" firstAttribute="top" secondItem="kkf-l8-YF9" secondAttribute="bottom" constant="5" id="iW8-h8-tzk"/>
+                            <constraint firstItem="kkf-l8-YF9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="424" id="jdh-FW-DqY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Liz-2o-28L" secondAttribute="bottom" constant="20" id="kN8-AI-xY9"/>
                         </constraints>
                     </view>
@@ -215,6 +215,7 @@
                     <connections>
                         <outlet property="addButton" destination="Liz-2o-28L" id="dFj-eR-VEV"/>
                         <outlet property="calendar" destination="KJi-ej-hj9" id="hfz-XB-gUz"/>
+                        <outlet property="dataLabelTop" destination="jdh-FW-DqY" id="gMz-ZC-1j1"/>
                         <outlet property="dateLabel" destination="kkf-l8-YF9" id="FJX-dj-zy8"/>
                         <outlet property="switchScope" destination="GQ6-JQ-h3C" id="dRL-2r-xKh"/>
                         <outlet property="tableView" destination="iwy-h9-M3E" id="fXL-7k-mS7"/>

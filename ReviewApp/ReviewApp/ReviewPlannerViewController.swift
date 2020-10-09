@@ -14,6 +14,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var switchScope: UIButton!
+    @IBOutlet weak var dataLabelTop: NSLayoutConstraint!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     let dateFormatter: DateFormatter = {
@@ -47,11 +48,13 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         if self.calendar.scope == FSCalendarScope.month {
             switchScope.isSelected = true
             switchScope.alpha = 0.5
+            dataLabelTop.constant = 156
             self.calendar.scope = .week
         } else {
             switchScope.isSelected = false
             switchScope.alpha = 1
             self.calendar.scope = .month
+            dataLabelTop.constant = 424
         }
     }
     
