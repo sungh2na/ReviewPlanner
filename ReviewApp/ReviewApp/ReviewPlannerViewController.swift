@@ -96,6 +96,9 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
 }
 
 extension ReviewPlannerViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showModify", sender: indexPath.row)
     }
