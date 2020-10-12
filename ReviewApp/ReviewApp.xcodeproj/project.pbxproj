@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1852E77C25334465000D417D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852E77B25334465000D417D /* SettingViewController.swift */; };
+		1852E77F25349825000D417D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852E77E25349825000D417D /* Setting.swift */; };
 		186A75AC251A307D009CE14B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A75AB251A307D009CE14B /* AppDelegate.swift */; };
 		186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A75AD251A307D009CE14B /* SceneDelegate.swift */; };
 		186A75B0251A307D009CE14B /* ReviewPlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A75AF251A307D009CE14B /* ReviewPlannerViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		1852E77B25334465000D417D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		1852E77E25349825000D417D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		186A75A8251A307D009CE14B /* ReviewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReviewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		186A75AB251A307D009CE14B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		186A75AD251A307D009CE14B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				18B225712528AC42001DFAC5 /* AddViewController.swift */,
 				18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */,
 				1852E77B25334465000D417D /* SettingViewController.swift */,
+				1852E77E25349825000D417D /* Setting.swift */,
 			);
 			path = ReviewApp;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */,
 				18B22562251B805B001DFAC5 /* Todo.swift in Sources */,
 				18B22565251DDF64001DFAC5 /* Storage.swift in Sources */,
+				1852E77F25349825000D417D /* Setting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
