@@ -520,7 +520,6 @@
         <!--Navigation Controller-->
         <scene sceneID="lu6-7j-Yzm">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GuZ-Li-9EJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jjO-yY-zyZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="9ox-dI-cpV">
                         <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
@@ -535,6 +534,7 @@
                         <segue destination="DAv-FV-9mE" kind="relationship" relationship="rootViewController" id="bU5-Il-4bp"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GuZ-Li-9EJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-146.37681159420291" y="873.88392857142856"/>
         </scene>
@@ -550,13 +550,29 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="s9Q-OK-Rmt" customClass="SettingCell" customModule="ReviewApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" id="s9Q-OK-Rmt" customClass="SettingCell" customModule="ReviewApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s9Q-OK-Rmt" id="b59-ht-2NQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="알림 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMV-yg-m59">
+                                                    <rect key="frame" x="20" y="11" width="362" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IMV-yg-m59" firstAttribute="centerY" secondItem="b59-ht-2NQ" secondAttribute="centerY" id="9dB-aI-ilF"/>
+                                                <constraint firstAttribute="trailing" secondItem="IMV-yg-m59" secondAttribute="trailing" constant="32" id="Frl-RL-U0b"/>
+                                                <constraint firstItem="IMV-yg-m59" firstAttribute="leading" secondItem="b59-ht-2NQ" secondAttribute="leading" constant="20" symbolic="YES" id="h8D-5T-8pu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingData" destination="IMV-yg-m59" id="pY5-vK-Vhu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -575,13 +591,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CNM-fC-JdV"/>
-                    <connections>
-                        <outlet property="tableView" destination="KKT-Df-5qn" id="CUR-um-4KS"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkP-Hj-ZGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682" y="867"/>
+            <point key="canvasLocation" x="681.15942028985512" y="866.51785714285711"/>
         </scene>
     </scenes>
     <resources>
