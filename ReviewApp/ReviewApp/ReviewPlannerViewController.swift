@@ -78,19 +78,19 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     
     func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
-        guard let dateFormat = dateFormatter.date(from:date) else { return }
+        let dateFormat = dateFormatter.date(from:date)
         var index = 0
         //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
         TodoManager.shared.nextReviewId()
         interval.forEach {
-            if let dDay = dateFormat.addingTimeInterval(Double($0 * 86400)){
+            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
                 let todo = TodoManager.shared.createTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
                 reviewPlannerViewModel.addTodo(todo)
                 index += 1
             }
         }
-//        guard let dateform = dateFormat else { return } // 다시
-        reviewPlannerViewModel.todayTodo(dateFormat)
+        guard let dateform = dateFormat else { return } // 다시
+        reviewPlannerViewModel.todayTodo(dateform)
         tableView.reloadData()
         calendar.reloadData()
     }
@@ -170,9 +170,9 @@ extension ReviewPlannerViewController: UITableViewDataSource {
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
+        let dateString = dateFormatter.string(from: date)
         // 날짜 선택시 발생하는 이벤트!
-        dateLabel.text = dateFormatter.string(from: date)
+        dateLabel.text = dateString
         // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
         tableView.reloadData()
@@ -183,18 +183,12 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
         let dates = reviewPlannerViewModel.getAllDate()
         for getDate in dates {
-            guard let eventDate = dateFormatter.date(from: getDate) else { return 0 }
+            let dateString = dateFormatter.string(from: getDate)
+            guard let eventDate = dateFormatter.date(from: dateString) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
                 return 1
             }
         }
-//        let datedic = reviewPlannerViewModel.dateDic
-//        for (dicDate, count) in datedic {
-//            guard let eventDate = dateFormatter.date(from: dicDate) else { return 0 }
-//            if date.compare(eventDate) == .orderedSame {
-//                return count
-//            }
-//        }
         return 0
     }
 }

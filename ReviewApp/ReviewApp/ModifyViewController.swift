@@ -32,7 +32,7 @@ class ModifyViewController: UIViewController {
     func updateUI() {
         if let todo = self.todo {
             inputTextField.text = todo.detail
-            datePicker.date = dateFormatter.date(from: todo.date)!
+            datePicker.date = todo.date
         }
     }
     
@@ -49,7 +49,7 @@ class ModifyViewController: UIViewController {
             if let todo = self.todo {
                 todayTodo = todo
                 todayTodo.detail = inputTextField.text!
-                todayTodo.date = dateFormatter.string(from: datePicker.date)
+                todayTodo.date = datePicker.date
                 
                 delegate?.modifytodo(todayTodo)
             }
