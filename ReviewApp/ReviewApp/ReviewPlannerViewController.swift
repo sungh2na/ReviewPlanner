@@ -28,7 +28,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         calendar.locale = Locale(identifier: "ko_KR")
         // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
-        reviewPlannerViewModel.todayTodo(dateFormatter.string(from: Date()))
+        reviewPlannerViewModel.todayTodo(Date())
         dateLabel.text = dateFormatter.string(from: Date())
         calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
         
@@ -78,18 +78,19 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     
     func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
-        let dateFormat = dateFormatter.date(from:date)
+        guard let dateFormat = dateFormatter.date(from:date) else { return }
         var index = 0
         //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
         TodoManager.shared.nextReviewId()
         interval.forEach {
-            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
-                let todo = TodoManager.shared.createTodo(detail: detail, date: dateFormatter.string(from: dDay), reviewNum: index + 1, reviewTotal: interval.count)
+            if let dDay = dateFormat.addingTimeInterval(Double($0 * 86400)){
+                let todo = TodoManager.shared.createTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
                 reviewPlannerViewModel.addTodo(todo)
                 index += 1
             }
         }
-        reviewPlannerViewModel.todayTodo(date)
+//        guard let dateform = dateFormat else { return } // 다시
+        reviewPlannerViewModel.todayTodo(dateFormat)
         tableView.reloadData()
         calendar.reloadData()
     }
@@ -105,9 +106,10 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     
     func modifytodo(_ todo: Todo) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
+        guard let dateFormat = dateFormatter.date(from:date) else { return }
         let todayTodo = todo
         self.reviewPlannerViewModel.updateAllTodo(todayTodo)
-        self.reviewPlannerViewModel.todayTodo(date)
+        self.reviewPlannerViewModel.todayTodo(dateFormat)
         tableView.reloadData()
         self.calendar.reloadData()
     }
@@ -168,9 +170,9 @@ extension ReviewPlannerViewController: UITableViewDataSource {
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let date = dateFormatter.string(from: date)
+        
         // 날짜 선택시 발생하는 이벤트!
-        dateLabel.text = date
+        dateLabel.text = dateFormatter.string(from: date)
         // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
         tableView.reloadData()

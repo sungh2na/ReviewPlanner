@@ -11,12 +11,12 @@ struct Todo: Codable, Equatable {
     let id: Int
     var isDone: Bool
     var detail: String
-    var date: String
+    var date: Date
     let reviewId: Int
     var reviewNum: Int
     var reviewTotal: Int
 
-    mutating func update(isDone: Bool, detail: String, date: String, reviewNum: Int, reviewTotal: Int) {
+    mutating func update(isDone: Bool, detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
         self.isDone = isDone
         self.detail = detail
         self.date = date
@@ -36,7 +36,7 @@ class TodoManager {
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
     
-    func createTodo(detail: String, date: String, reviewNum: Int, reviewTotal: Int) -> Todo {
+    func createTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) -> Todo {
         let nextId = TodoManager.lastId + 1
         let nextReviewId = TodoManager.reviewId
         TodoManager.lastId = nextId
@@ -105,11 +105,11 @@ class TodoManager {
         TodoManager.reviewId = reviewId
     }
     
-    func todayTodo(_ date: String) {
+    func todayTodo(_ date: Date) {
         todayTodos = todos.filter { $0.date == date }
     }
     
-    func getAllDate() -> [String] {
+    func getAllDate() -> [Date] {
         let dates = todos.map{ $0.date }
         return dates
     }
@@ -150,11 +150,11 @@ class ReviewPlannerViewModel {
         manager.retrieveTodo()
     }
     
-    func todayTodo(_ date: String) {
+    func todayTodo(_ date: Date) {
         manager.todayTodo(date)
     }
     
-    func getAllDate() -> [String] {
+    func getAllDate() -> [Date] {
         return manager.getAllDate()
     }
 }
