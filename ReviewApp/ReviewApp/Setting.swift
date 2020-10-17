@@ -23,18 +23,19 @@ class SettingViewModel {
         SettingInfo(section: 1, data: "오픈소스"),
         SettingInfo(section: 1, data: "문의")
     ]
-//
-//    enum Section: Int, CaseIterable {
-//        case general
-//        case etc
-//        var title: String {
-//            switch self {
-//            case .general: return "일반"
-//            default: return "기타"
-//            }
-//        }
-//    }
-//
+
+    enum Section: Int, CaseIterable {
+        case general
+        case etc
+        
+        var title: String {
+            switch self {
+            case .general: return "일반"
+            default: return "기타"
+            }
+        }
+    }
+
     var generalDatas: [SettingInfo] {
         return settingInfos.filter { $0.section == 0 }
     }
