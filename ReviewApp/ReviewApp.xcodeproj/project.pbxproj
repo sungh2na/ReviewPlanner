@@ -19,6 +19,7 @@
 		18B22565251DDF64001DFAC5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22564251DDF64001DFAC5 /* Storage.swift */; };
 		18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B225712528AC42001DFAC5 /* AddViewController.swift */; };
 		18B2257F252CDF7E001DFAC5 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */; };
+		18C26420253C876E00B9F1A0 /* DaysController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C2641F253C876E00B9F1A0 /* DaysController.swift */; };
 		1CC8DF47B144193663573CCE /* Pods_ReviewApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7AA7A0ED498DB94937282 /* Pods_ReviewApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		18B22564251DDF64001DFAC5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		18B225712528AC42001DFAC5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
+		18C2641F253C876E00B9F1A0 /* DaysController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysController.swift; sourceTree = "<group>"; };
 		22B7AA7A0ED498DB94937282 /* Pods_ReviewApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReviewApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		654774B3E87B16A454773E56 /* Pods-ReviewApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewApp.release.xcconfig"; path = "Target Support Files/Pods-ReviewApp/Pods-ReviewApp.release.xcconfig"; sourceTree = "<group>"; };
 		AC86418E41C23173E81BB7E5 /* Pods-ReviewApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewApp.debug.xcconfig"; path = "Target Support Files/Pods-ReviewApp/Pods-ReviewApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				18B225712528AC42001DFAC5 /* AddViewController.swift */,
 				18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */,
 				1852E77B25334465000D417D /* SettingViewController.swift */,
+				18C2641F253C876E00B9F1A0 /* DaysController.swift */,
 				1852E77E25349825000D417D /* Setting.swift */,
 			);
 			path = ReviewApp;
@@ -227,6 +230,7 @@
 				186A75B0251A307D009CE14B /* ReviewPlannerViewController.swift in Sources */,
 				186A75AC251A307D009CE14B /* AppDelegate.swift in Sources */,
 				1852E77C25334465000D417D /* SettingViewController.swift in Sources */,
+				18C26420253C876E00B9F1A0 /* DaysController.swift in Sources */,
 				18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */,
 				186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */,
 				18B22562251B805B001DFAC5 /* Todo.swift in Sources */,

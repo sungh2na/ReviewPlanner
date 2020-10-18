@@ -67,6 +67,18 @@ extension SettingViewController: UITableViewDataSource {
 extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("---> \(indexPath.row)")
+        switch settingViewModel.generalDatas[indexPath.row].data {
+        case "알림 설정" : return
+        case "스터디day 설정" : return
+        case "오픈소스": return
+        case "문의": return
+        default: return
+        }
+        
+//        SettingInfo(section: 0, data: "알림 설정"),
+//        SettingInfo(section: 0, data: "스터디day 설정"),
+//        SettingInfo(section: 1, data: "오픈소스"),
+//        SettingInfo(section: 1, data: "문의")
     }
 }
 
