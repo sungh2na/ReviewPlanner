@@ -19,9 +19,9 @@ struct SettingInfo {
 class SettingViewModel {
     var settingInfos: [SettingInfo] = [
         SettingInfo(section: 0, data: "알림 설정"),
-        SettingInfo(section: 0, data: "스터디day 설정"),
+        SettingInfo(section: 0, data: "복습day 설정"),
         SettingInfo(section: 1, data: "오픈소스"),
-        SettingInfo(section: 1, data: "문의")
+        SettingInfo(section: 1, data: "버전 정보")
     ]
 
     enum Section: Int, CaseIterable {

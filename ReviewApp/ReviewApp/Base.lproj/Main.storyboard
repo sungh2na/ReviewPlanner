@@ -562,14 +562,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cw-D8-dNQ">
+                                                    <rect key="frame" x="379.5" y="11" width="14.5" height="22"/>
+                                                    <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="chevron.forward" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IMV-yg-m59" firstAttribute="centerY" secondItem="b59-ht-2NQ" secondAttribute="centerY" id="9dB-aI-ilF"/>
-                                                <constraint firstAttribute="trailing" secondItem="IMV-yg-m59" secondAttribute="trailing" constant="32" id="Frl-RL-U0b"/>
+                                                <constraint firstAttribute="trailing" secondItem="IMV-yg-m59" secondAttribute="trailing" constant="20" id="Frl-RL-U0b"/>
                                                 <constraint firstItem="IMV-yg-m59" firstAttribute="leading" secondItem="b59-ht-2NQ" secondAttribute="leading" constant="20" symbolic="YES" id="h8D-5T-8pu"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Cw-D8-dNQ" secondAttribute="trailing" constant="20" id="h8j-mU-dBA"/>
+                                                <constraint firstItem="1Cw-D8-dNQ" firstAttribute="centerY" secondItem="b59-ht-2NQ" secondAttribute="centerY" id="sx6-a1-oxo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="forward" destination="1Cw-D8-dNQ" id="f6m-B3-XGf"/>
                                             <outlet property="settingData" destination="IMV-yg-m59" id="pY5-vK-Vhu"/>
                                         </connections>
                                     </tableViewCell>
@@ -620,6 +630,7 @@
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="chevron.forward" catalog="system" width="96" height="128"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="note.text" catalog="system" width="128" height="106"/>

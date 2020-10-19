@@ -69,26 +69,21 @@ extension SettingViewController: UITableViewDelegate {
         print("---> \(indexPath.row)")
         switch settingViewModel.generalDatas[indexPath.row].data {
         case "알림 설정" : return
-        case "스터디day 설정" :
+        case "복습day 설정" :
             // 옵셔널 바인딩
             if let controller = self.storyboard?.instantiateViewController(withIdentifier: "DaysController") {
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         case "오픈소스": return
-        case "문의": return
+        case "버전 정보": return
         default: return
         }
-        
-//        SettingInfo(section: 0, data: "알림 설정"),
-//        SettingInfo(section: 0, data: "스터디day 설정"),
-//        SettingInfo(section: 1, data: "오픈소스"),
-//        SettingInfo(section: 1, data: "문의")
     }
 }
 
 class SettingCell: UITableViewCell {
     @IBOutlet weak var settingData: UILabel!
-
+    @IBOutlet weak var forward: UIButton!
     func updateUI(settingInfo: SettingInfo) {
         settingData.text = settingInfo.data
     }
