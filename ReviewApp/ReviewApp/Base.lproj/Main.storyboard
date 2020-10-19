@@ -601,7 +601,7 @@
         <!--Days Contoller-->
         <scene sceneID="zEu-Cb-eos">
             <objects>
-                <viewController storyboardIdentifier="DaysView" id="XJ0-Xn-THv" customClass="DaysContoller" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DaysController" id="XJ0-Xn-THv" customClass="DaysContoller" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U5A-Pw-K41">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
