@@ -74,7 +74,10 @@ extension SettingViewController: UITableViewDelegate {
             if let controller = self.storyboard?.instantiateViewController(withIdentifier: "DaysController") {
                 self.navigationController?.pushViewController(controller, animated: true)
             }
-        case "오픈소스": return
+        case "오픈소스":
+            if let controller = self.storyboard?.instantiateViewController(withIdentifier: "OpenSourceView") {
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
         case "버전 정보": return
         default: return
         }
