@@ -592,14 +592,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeh-VL-kLM">
-                                                    <rect key="frame" x="359" y="11" width="35" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeh-VL-kLM">
+                                                    <rect key="frame" x="359" y="11.5" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="oeh-VL-kLM" secondAttribute="trailing" constant="20" symbolic="YES" id="JpJ-Nn-ECF"/>
+                                                <constraint firstItem="oeh-VL-kLM" firstAttribute="centerY" secondItem="G8O-gZ-aPj" secondAttribute="centerY" id="e0T-CY-tKt"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="qku-Zm-JOy">
@@ -663,203 +666,144 @@
                         <sections>
                             <tableViewSection id="j9p-Xh-wuC">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="15Z-Jf-ecA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="15Z-Jf-ecA">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="15Z-Jf-ecA" id="1nW-Ii-zOa">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ziw-9O-pkj">
-                                                    <rect key="frame" x="54" y="11.5" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ziw-9O-pkj">
+                                                    <rect key="frame" x="30" y="11.5" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvC-5D-jex">
-                                                    <rect key="frame" x="20" y="11" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Ziw-9O-pkj" firstAttribute="leading" secondItem="XvC-5D-jex" secondAttribute="trailing" constant="14" id="EpO-cY-Och"/>
-                                                <constraint firstItem="XvC-5D-jex" firstAttribute="centerY" secondItem="1nW-Ii-zOa" secondAttribute="centerY" id="Ome-a4-A53"/>
                                                 <constraint firstItem="Ziw-9O-pkj" firstAttribute="centerY" secondItem="1nW-Ii-zOa" secondAttribute="centerY" id="Xtu-Fx-wEA"/>
-                                                <constraint firstItem="XvC-5D-jex" firstAttribute="leading" secondItem="1nW-Ii-zOa" secondAttribute="leading" constant="20" symbolic="YES" id="kE7-pC-bbD"/>
+                                                <constraint firstItem="Ziw-9O-pkj" firstAttribute="leading" secondItem="1nW-Ii-zOa" secondAttribute="leading" constant="30" id="pSN-Ud-lIr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Iei-my-fSU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="Iei-my-fSU">
                                         <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iei-my-fSU" id="GuZ-3l-inI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZl-ke-Dhm">
-                                                    <rect key="frame" x="54" y="11.5" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZl-ke-Dhm">
+                                                    <rect key="frame" x="30" y="11.5" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ems-j0-8og">
-                                                    <rect key="frame" x="20" y="11" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ems-j0-8og" firstAttribute="centerY" secondItem="GuZ-3l-inI" secondAttribute="centerY" id="0lS-Uw-NPx"/>
-                                                <constraint firstItem="ems-j0-8og" firstAttribute="leading" secondItem="GuZ-3l-inI" secondAttribute="leading" constant="20" symbolic="YES" id="3Oy-MA-IPe"/>
-                                                <constraint firstItem="jZl-ke-Dhm" firstAttribute="leading" secondItem="ems-j0-8og" secondAttribute="trailing" constant="14" id="AIh-HA-ZFk"/>
+                                                <constraint firstItem="jZl-ke-Dhm" firstAttribute="leading" secondItem="GuZ-3l-inI" secondAttribute="leading" constant="30" id="Ths-gD-mO1"/>
                                                 <constraint firstItem="jZl-ke-Dhm" firstAttribute="centerY" secondItem="GuZ-3l-inI" secondAttribute="centerY" id="f1m-0Q-cXG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="484-wD-fjo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="484-wD-fjo">
                                         <rect key="frame" x="0.0" y="115" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="484-wD-fjo" id="j6l-Oc-D76">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ral-us-RfV">
-                                                    <rect key="frame" x="54" y="11.5" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ral-us-RfV">
+                                                    <rect key="frame" x="30" y="11.5" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3y-cL-7Zd">
-                                                    <rect key="frame" x="20" y="11" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="w3y-cL-7Zd" firstAttribute="centerY" secondItem="j6l-Oc-D76" secondAttribute="centerY" id="FNN-q3-MU3"/>
+                                                <constraint firstItem="ral-us-RfV" firstAttribute="leading" secondItem="j6l-Oc-D76" secondAttribute="leading" constant="30" id="BmN-04-LUQ"/>
                                                 <constraint firstItem="ral-us-RfV" firstAttribute="centerY" secondItem="j6l-Oc-D76" secondAttribute="centerY" id="WBS-vc-cI1"/>
-                                                <constraint firstItem="w3y-cL-7Zd" firstAttribute="leading" secondItem="j6l-Oc-D76" secondAttribute="leading" constant="20" symbolic="YES" id="cjA-co-WtP"/>
-                                                <constraint firstItem="ral-us-RfV" firstAttribute="leading" secondItem="w3y-cL-7Zd" secondAttribute="trailing" constant="14" id="eEE-xh-VYx"/>
-                                                <constraint firstItem="ral-us-RfV" firstAttribute="leading" secondItem="w3y-cL-7Zd" secondAttribute="trailing" constant="14" id="vdp-6o-eaj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Y5A-76-mce">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="Y5A-76-mce">
                                         <rect key="frame" x="0.0" y="158.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y5A-76-mce" id="n7y-Ey-6eE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOX-u6-z1z">
-                                                    <rect key="frame" x="54" y="11.5" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOX-u6-z1z">
+                                                    <rect key="frame" x="30" y="11.5" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hx-7c-13c">
-                                                    <rect key="frame" x="20" y="11" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1hx-7c-13c" firstAttribute="leading" secondItem="n7y-Ey-6eE" secondAttribute="leading" constant="20" symbolic="YES" id="4ul-M4-OPA"/>
+                                                <constraint firstItem="JOX-u6-z1z" firstAttribute="leading" secondItem="n7y-Ey-6eE" secondAttribute="leading" constant="30" id="Icb-Cj-ggZ"/>
                                                 <constraint firstItem="JOX-u6-z1z" firstAttribute="centerY" secondItem="n7y-Ey-6eE" secondAttribute="centerY" id="JYU-x4-Aes"/>
-                                                <constraint firstItem="JOX-u6-z1z" firstAttribute="leading" secondItem="1hx-7c-13c" secondAttribute="trailing" constant="14" id="Pdt-kk-Nx2"/>
-                                                <constraint firstItem="1hx-7c-13c" firstAttribute="centerY" secondItem="n7y-Ey-6eE" secondAttribute="centerY" id="Zu4-oY-Gxc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GmD-mm-OOB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="GmD-mm-OOB">
                                         <rect key="frame" x="0.0" y="202" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GmD-mm-OOB" id="CV3-0u-nqt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-4K-Szt">
-                                                    <rect key="frame" x="54" y="11.5" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-4K-Szt">
+                                                    <rect key="frame" x="30" y="11.5" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJw-HO-EhN">
-                                                    <rect key="frame" x="20" y="11" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="FaT-4K-Szt" firstAttribute="leading" secondItem="AJw-HO-EhN" secondAttribute="trailing" constant="14" id="DFb-LS-jQx"/>
-                                                <constraint firstItem="AJw-HO-EhN" firstAttribute="centerY" secondItem="CV3-0u-nqt" secondAttribute="centerY" id="emk-zu-JFC"/>
-                                                <constraint firstItem="AJw-HO-EhN" firstAttribute="leading" secondItem="CV3-0u-nqt" secondAttribute="leading" constant="20" symbolic="YES" id="jWL-5k-04q"/>
+                                                <constraint firstItem="FaT-4K-Szt" firstAttribute="leading" secondItem="CV3-0u-nqt" secondAttribute="leading" constant="30" id="FUo-id-qCA"/>
                                                 <constraint firstItem="FaT-4K-Szt" firstAttribute="centerY" secondItem="CV3-0u-nqt" secondAttribute="centerY" id="scF-vT-PKN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="huA-p0-vnK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="huA-p0-vnK">
                                         <rect key="frame" x="0.0" y="245.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huA-p0-vnK" id="zqG-ds-cTt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="토" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiG-rT-QNW">
-                                                    <rect key="frame" x="54" y="11" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="토요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiG-rT-QNW">
+                                                    <rect key="frame" x="30" y="11" width="44.5" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWZ-JC-IhB">
-                                                    <rect key="frame" x="20" y="10.5" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="YiG-rT-QNW" firstAttribute="baseline" secondItem="cWZ-JC-IhB" secondAttribute="firstBaseline" id="B3U-1l-Fy6"/>
-                                                <constraint firstItem="cWZ-JC-IhB" firstAttribute="centerY" secondItem="zqG-ds-cTt" secondAttribute="centerY" id="Fb2-3s-QjW"/>
-                                                <constraint firstItem="cWZ-JC-IhB" firstAttribute="baseline" secondItem="YiG-rT-QNW" secondAttribute="baseline" id="L06-mb-WnC"/>
                                                 <constraint firstItem="YiG-rT-QNW" firstAttribute="centerY" secondItem="zqG-ds-cTt" secondAttribute="centerY" id="Ywv-yj-g1E"/>
-                                                <constraint firstItem="YiG-rT-QNW" firstAttribute="leading" secondItem="cWZ-JC-IhB" secondAttribute="trailing" constant="14" id="f0x-Hd-Tkr"/>
                                                 <constraint firstItem="YiG-rT-QNW" firstAttribute="bottom" secondItem="zqG-ds-cTt" secondAttribute="bottomMargin" id="hQ6-aV-6D0"/>
-                                                <constraint firstItem="cWZ-JC-IhB" firstAttribute="leading" secondItem="zqG-ds-cTt" secondAttribute="leadingMargin" id="qHb-8V-XAz"/>
+                                                <constraint firstItem="YiG-rT-QNW" firstAttribute="leading" secondItem="zqG-ds-cTt" secondAttribute="leading" constant="30" id="yPV-xy-NbS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WtJ-1o-w5n">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="WtJ-1o-w5n">
                                         <rect key="frame" x="0.0" y="289" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WtJ-1o-w5n" id="nXH-EC-ZWx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-bW-O4P">
-                                                    <rect key="frame" x="54" y="11.5" width="15" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-bW-O4P">
+                                                    <rect key="frame" x="30" y="11.5" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wgk-ZI-9HF">
-                                                    <rect key="frame" x="20" y="11" width="20" height="22"/>
-                                                    <color key="tintColor" systemColor="systemPinkColor"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
-                                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GJo-bW-O4P" firstAttribute="centerY" secondItem="nXH-EC-ZWx" secondAttribute="centerY" id="7c8-C2-XWY"/>
-                                                <constraint firstItem="Wgk-ZI-9HF" firstAttribute="centerY" secondItem="nXH-EC-ZWx" secondAttribute="centerY" id="NDX-x3-jo1"/>
-                                                <constraint firstItem="Wgk-ZI-9HF" firstAttribute="leading" secondItem="nXH-EC-ZWx" secondAttribute="leading" constant="20" symbolic="YES" id="ZgS-Uz-rYr"/>
-                                                <constraint firstItem="GJo-bW-O4P" firstAttribute="leading" secondItem="Wgk-ZI-9HF" secondAttribute="trailing" constant="14" id="vz5-7q-bfE"/>
+                                                <constraint firstItem="GJo-bW-O4P" firstAttribute="leading" secondItem="nXH-EC-ZWx" secondAttribute="leading" constant="30" id="OPh-NJ-Czd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -956,92 +900,6 @@
             </objects>
             <point key="canvasLocation" x="-146.37681159420291" y="873.88392857142856"/>
         </scene>
-        <!--Setting View Controller-->
-        <scene sceneID="yo6-6K-aFh">
-            <objects>
-                <viewController id="DAv-FV-9mE" customClass="SettingViewController" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gjq-z0-xRJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KKT-Df-5qn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" id="s9Q-OK-Rmt" customClass="SettingCell" customModule="ReviewApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s9Q-OK-Rmt" id="b59-ht-2NQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="알림 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMV-yg-m59">
-                                                    <rect key="frame" x="20" y="11" width="362" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cw-D8-dNQ">
-                                                    <rect key="frame" x="379.5" y="11" width="14.5" height="22"/>
-                                                    <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" image="chevron.forward" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="IMV-yg-m59" firstAttribute="centerY" secondItem="b59-ht-2NQ" secondAttribute="centerY" id="9dB-aI-ilF"/>
-                                                <constraint firstAttribute="trailing" secondItem="IMV-yg-m59" secondAttribute="trailing" constant="20" id="Frl-RL-U0b"/>
-                                                <constraint firstItem="IMV-yg-m59" firstAttribute="leading" secondItem="b59-ht-2NQ" secondAttribute="leading" constant="20" symbolic="YES" id="h8D-5T-8pu"/>
-                                                <constraint firstAttribute="trailing" secondItem="1Cw-D8-dNQ" secondAttribute="trailing" constant="20" id="h8j-mU-dBA"/>
-                                                <constraint firstItem="1Cw-D8-dNQ" firstAttribute="centerY" secondItem="b59-ht-2NQ" secondAttribute="centerY" id="sx6-a1-oxo"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="forward" destination="1Cw-D8-dNQ" id="f6m-B3-XGf"/>
-                                            <outlet property="settingData" destination="IMV-yg-m59" id="pY5-vK-Vhu"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="DAv-FV-9mE" id="pGc-fW-0x9"/>
-                                    <outlet property="delegate" destination="DAv-FV-9mE" id="jOb-zl-ZQb"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Svl-7c-Czb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Svl-7c-Czb" firstAttribute="trailing" secondItem="KKT-Df-5qn" secondAttribute="trailing" id="0Ew-JF-vrp"/>
-                            <constraint firstItem="KKT-Df-5qn" firstAttribute="top" secondItem="Svl-7c-Czb" secondAttribute="top" id="X3X-ph-iPg"/>
-                            <constraint firstItem="KKT-Df-5qn" firstAttribute="leading" secondItem="Svl-7c-Czb" secondAttribute="leading" id="dI3-gj-yXj"/>
-                            <constraint firstItem="Svl-7c-Czb" firstAttribute="bottom" secondItem="KKT-Df-5qn" secondAttribute="bottom" id="gFe-Bx-lNG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="CNM-fC-JdV"/>
-                    <connections>
-                        <outlet property="tableView" destination="KKT-Df-5qn" id="wH3-0j-w3h"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GkP-Hj-ZGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="675" y="867"/>
-        </scene>
-        <!--Days Contoller-->
-        <scene sceneID="zEu-Cb-eos">
-            <objects>
-                <viewController storyboardIdentifier="DaysController" id="XJ0-Xn-THv" customClass="DaysContoller" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U5A-Pw-K41">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="J56-PY-WZw"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R3t-pv-xGx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1410" y="867"/>
-        </scene>
         <!--Table View Controller-->
         <scene sceneID="AYd-Sj-07t">
             <objects>
@@ -1109,7 +967,6 @@
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="chevron.forward" catalog="system" width="96" height="128"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
