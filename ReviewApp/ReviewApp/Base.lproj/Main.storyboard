@@ -658,7 +658,7 @@
         <!--복습 요일 설정-->
         <scene sceneID="TZh-8P-A6x">
             <objects>
-                <tableViewController id="UGa-jk-GO7" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DaysController" id="UGa-jk-GO7" customClass="DaysContoller" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wMT-aY-lRc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
