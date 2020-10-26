@@ -543,9 +543,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="JyZ-uv-0U9" kind="show" id="e83-yz-Jki"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="65" id="UIs-Ub-Oxd">
                                         <rect key="frame" x="0.0" y="99" width="414" height="65"/>
@@ -570,9 +567,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="UGa-jk-GO7" kind="show" id="fwb-dw-4LK"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -621,9 +615,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="dIR-P4-7yy" kind="show" id="lau-2t-ToW"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -642,7 +633,7 @@
         <!--알림 설정-->
         <scene sceneID="sRd-ED-cTh">
             <objects>
-                <viewController id="JyZ-uv-0U9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoticeController" id="JyZ-uv-0U9" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r5D-8z-mZy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -824,7 +815,7 @@
         <!--오픈소스-->
         <scene sceneID="9gc-8E-CPJ">
             <objects>
-                <tableViewController id="dIR-P4-7yy" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OpensourceController" id="dIR-P4-7yy" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="buK-5u-KtZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
