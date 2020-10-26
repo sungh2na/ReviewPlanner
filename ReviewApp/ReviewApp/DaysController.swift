@@ -8,9 +8,14 @@
 import Foundation
 import UIKit
 
-class DaysContoller : UITableViewController {
+protocol Edit_3_Delegate{
+    func storedDays(_ days: [Int])
+}
+
+class DaysController : UITableViewController {
     var storedDays: [Int]?
     var days: [Int] = [0]
+    var delegate: Edit_3_Delegate?
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //    }
@@ -33,8 +38,7 @@ class DaysContoller : UITableViewController {
         } else {
             days.append(indexPath.row)
         }
+        delegate?.storedDays(days)
         tableView.reloadData()
     }
-    
-
 }
