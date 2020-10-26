@@ -174,7 +174,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ6-JQ-h3C">
-                                <rect key="frame" x="369" y="62" width="27" height="23"/>
+                                <rect key="frame" x="369.5" y="62" width="26.5" height="23"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" image="calendar.badge.plus" catalog="system">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,7 +184,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
                                 </state>
                                 <connections>
-                                    <action selector="switchCalendarScope" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucx-vh-zTY"/>
+                                    <action selector="toggleClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WJc-Cn-eT4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -204,8 +204,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iwy-h9-M3E" secondAttribute="trailing" id="c9q-sf-HMM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iwy-h9-M3E" secondAttribute="bottom" constant="10" id="fVD-UD-Me2"/>
                             <constraint firstItem="iwy-h9-M3E" firstAttribute="top" secondItem="kkf-l8-YF9" secondAttribute="bottom" constant="5" id="iW8-h8-tzk"/>
-                            <constraint firstItem="kkf-l8-YF9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="424" id="jdh-FW-DqY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Liz-2o-28L" secondAttribute="bottom" constant="20" id="kN8-AI-xY9"/>
+                            <constraint firstItem="kkf-l8-YF9" firstAttribute="top" secondItem="KJi-ej-hj9" secondAttribute="bottom" constant="10" id="oXp-N8-eWu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="QNf-F7-2au">
@@ -214,10 +214,10 @@
                     <connections>
                         <outlet property="addButton" destination="Liz-2o-28L" id="dFj-eR-VEV"/>
                         <outlet property="calendar" destination="KJi-ej-hj9" id="hfz-XB-gUz"/>
-                        <outlet property="dataLabelTop" destination="jdh-FW-DqY" id="gMz-ZC-1j1"/>
+                        <outlet property="calendarHeightConstraint" destination="DSt-Ro-1to" id="FdC-Fu-Whh"/>
                         <outlet property="dateLabel" destination="kkf-l8-YF9" id="FJX-dj-zy8"/>
-                        <outlet property="switchScope" destination="GQ6-JQ-h3C" id="dRL-2r-xKh"/>
                         <outlet property="tableView" destination="iwy-h9-M3E" id="fXL-7k-mS7"/>
+                        <outlet property="toggle" destination="GQ6-JQ-h3C" id="pcL-xc-b7H"/>
                         <segue destination="XHs-lr-7NH" kind="presentation" identifier="showAdd" id="rKQ-ge-Olg"/>
                         <segue destination="Ofl-EL-hcA" kind="presentation" identifier="showModify" id="fUb-YJ-zdJ"/>
                     </connections>

@@ -7,14 +7,14 @@
 import FSCalendar
 import UIKit
 
-class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate {
+class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var switchScope: UIButton!
-    @IBOutlet weak var dataLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var toggle: UIButton!
+    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     let dateFormatter: DateFormatter = {
@@ -30,10 +30,11 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.todayTodo(Date())
         dateLabel.text = dateFormatter.string(from: Date())
-        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
         
-//        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
-//        calendar.addGestureRecognizer(scopeGesture)
+        self.view.addGestureRecognizer(self.scopeGesture)
+        self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
+        self.calendar.scope = .month
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,30 +45,43 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         performSegue(withIdentifier: "showAdd", sender: nil )
     }
     
-    @IBAction func switchCalendarScope() {
-        if self.calendar.scope == FSCalendarScope.month {
-            switchScope.isSelected = true
-            switchScope.alpha = 0.5
-            weekAnimation()
-        } else {
-            switchScope.isSelected = false
-            switchScope.alpha = 1
-            monthAnimation()
+    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
+        [unowned self] in
+        let panGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture(_:)))
+        panGesture.delegate = self
+        panGesture.minimumNumberOfTouches = 1
+        panGesture.maximumNumberOfTouches = 2
+        return panGesture
+    }()
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let shouldBegin = self.tableView.contentOffset.y <= -self.tableView.contentInset.top
+        if shouldBegin {
+            let velocity = self.scopeGesture.velocity(in: self.view)
+            switch self.calendar.scope {
+            case .month:
+                return velocity.y < 0
+            case .week:
+                return velocity.y > 0
+            }
         }
+        return shouldBegin
     }
     
-    private func weekAnimation() {      // 왜 안돼
-        self.calendar.scope = .week
-        dataLabelTop.constant = 156
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        self.calendarHeightConstraint.constant = bounds.height
+        self.view.layoutIfNeeded()
     }
-    private func monthAnimation() {
-        self.calendar.scope = .month
-        dataLabelTop.constant = 424
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
+    
+    @IBAction func toggleClicked(_ sender: Any) {
+        if self.calendar.scope == .month {
+            self.calendar.setScope(.week, animated: true)
+            toggle.isSelected = true
+            toggle.alpha = 0.6
+        } else {
+            self.calendar.setScope(.month, animated: true)
+            toggle.isSelected = false
+            toggle.alpha = 1
         }
     }
     
