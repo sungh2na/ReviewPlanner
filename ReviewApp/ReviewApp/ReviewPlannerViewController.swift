@@ -48,13 +48,26 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         if self.calendar.scope == FSCalendarScope.month {
             switchScope.isSelected = true
             switchScope.alpha = 0.5
-            dataLabelTop.constant = 156
-            self.calendar.scope = .week
+            weekAnimation()
         } else {
             switchScope.isSelected = false
             switchScope.alpha = 1
-            self.calendar.scope = .month
-            dataLabelTop.constant = 424
+            monthAnimation()
+        }
+    }
+    
+    private func weekAnimation() {      // 왜 안돼
+        self.calendar.scope = .week
+        dataLabelTop.constant = 156
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    private func monthAnimation() {
+        self.calendar.scope = .month
+        dataLabelTop.constant = 424
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
     
