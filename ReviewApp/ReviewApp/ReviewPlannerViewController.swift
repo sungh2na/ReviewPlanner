@@ -74,15 +74,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     }
     
     @IBAction func toggleClicked(_ sender: Any) {
-        if self.calendar.scope == .month {
-            self.calendar.setScope(.week, animated: true)
-            toggle.isSelected = true
-            toggle.alpha = 0.6
-        } else {
-            self.calendar.setScope(.month, animated: true)
-            toggle.isSelected = false
-            toggle.alpha = 1
-        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

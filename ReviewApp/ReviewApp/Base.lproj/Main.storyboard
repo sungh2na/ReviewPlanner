@@ -389,6 +389,7 @@
                     <connections>
                         <outlet property="inputTextField" destination="1cU-M8-2Ci" id="gaZ-H1-zcf"/>
                         <outlet property="intervalLabel" destination="ooo-vK-dLv" id="Qq1-cb-X14"/>
+                        <segue destination="rLm-i4-Yz0" kind="presentation" identifier="showUserInput" id="5MK-6j-q8e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeM-Wz-rjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -398,7 +399,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2132" y="1695"/>
+            <point key="canvasLocation" x="-2422" y="1708"/>
         </scene>
         <!--Modify View Controller-->
         <scene sceneID="BRt-G3-soZ">
@@ -903,6 +904,147 @@
             </objects>
             <point key="canvasLocation" x="-146.37681159420291" y="873.88392857142856"/>
         </scene>
+        <!--User Input Controller-->
+        <scene sceneID="g27-oT-UoJ">
+            <objects>
+                <viewController id="rLm-i4-Yz0" customClass="UserInputController" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="woK-xi-R2b">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOL-Mq-RV6">
+                                <rect key="frame" x="351" y="17" width="35" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="저장">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="rLm-i4-Yz0" eventType="touchUpInside" id="TEH-Yn-Jdd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60B-fc-Adk">
+                                <rect key="frame" x="168.5" y="20" width="77.5" height="26"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-Rl-zb7">
+                                <rect key="frame" x="28" y="20" width="18" height="25"/>
+                                <state key="normal" image="chevron.backward" catalog="system">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" weight="bold"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="rLm-i4-Yz0" eventType="touchUpInside" id="hDn-iD-dqw"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiK-oD-xCL">
+                                <rect key="frame" x="0.0" y="70" width="414" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="rqh-3P-WQW"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="복습 간격" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjE-Ab-qeu">
+                                <rect key="frame" x="28" y="103" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XM-yp-Lz6">
+                                <rect key="frame" x="28" y="132" width="326" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-mb-usM">
+                                <rect key="frame" x="358" y="128" width="28" height="25"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="delete.left.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteClicked:" destination="rLm-i4-Yz0" eventType="touchUpInside" id="dcz-a0-RTd"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0T-44-mP9">
+                                <rect key="frame" x="28" y="163" width="358" height="1"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="0q3-6i-pBu"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="숫자입력" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-Dp-uka">
+                                <rect key="frame" x="28" y="224" width="75" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="gmf-a5-TKK"/>
+                                </constraints>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="send" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이전 숫자보다 큰 숫자가 오도록 입력해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIQ-Zz-4mc">
+                                <rect key="frame" x="28" y="172" width="271" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9a-RT-nYV">
+                                <rect key="frame" x="113" y="229" width="23" height="24"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="plus" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" weight="semibold"/>
+                                </state>
+                                <connections>
+                                    <action selector="addClicked:" destination="rLm-i4-Yz0" eventType="touchUpInside" id="aEA-lL-Pko"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cLl-Ts-56r"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="fjE-Ab-qeu" firstAttribute="top" secondItem="MiK-oD-xCL" secondAttribute="bottom" constant="32" id="2ei-XM-Mex"/>
+                            <constraint firstItem="h0T-44-mP9" firstAttribute="top" secondItem="wvE-mb-usM" secondAttribute="bottom" constant="10" id="5Mh-84-Oi5"/>
+                            <constraint firstItem="MiK-oD-xCL" firstAttribute="leading" secondItem="cLl-Ts-56r" secondAttribute="leading" id="66Y-5q-eAO"/>
+                            <constraint firstItem="3XM-yp-Lz6" firstAttribute="leading" secondItem="cLl-Ts-56r" secondAttribute="leading" constant="28" id="BL0-2J-k2T"/>
+                            <constraint firstItem="60B-fc-Adk" firstAttribute="centerX" secondItem="cLl-Ts-56r" secondAttribute="centerX" id="BpP-92-0Om"/>
+                            <constraint firstItem="g1d-Dp-uka" firstAttribute="top" secondItem="h0T-44-mP9" secondAttribute="bottom" constant="60" id="DOv-nr-FXg"/>
+                            <constraint firstItem="UIQ-Zz-4mc" firstAttribute="leading" secondItem="cLl-Ts-56r" secondAttribute="leading" constant="28" id="E3E-Mg-sIT"/>
+                            <constraint firstItem="FCo-Rl-zb7" firstAttribute="top" secondItem="cLl-Ts-56r" secondAttribute="top" constant="20" id="F7R-y9-5hj"/>
+                            <constraint firstItem="YOL-Mq-RV6" firstAttribute="top" secondItem="cLl-Ts-56r" secondAttribute="top" constant="17" id="FEc-5r-aIn"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fjE-Ab-qeu" secondAttribute="trailing" symbolic="YES" id="FGL-yi-vnh"/>
+                            <constraint firstItem="fjE-Ab-qeu" firstAttribute="leading" secondItem="woK-xi-R2b" secondAttribute="leading" constant="28" id="IXF-XU-rkq"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="3XM-yp-Lz6" secondAttribute="trailing" constant="60" id="IxV-Yd-2m0"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3XM-yp-Lz6" secondAttribute="trailing" symbolic="YES" id="O9s-vI-W2I"/>
+                            <constraint firstItem="3XM-yp-Lz6" firstAttribute="top" secondItem="fjE-Ab-qeu" secondAttribute="bottom" constant="8" symbolic="YES" id="TAN-uG-VVx"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="h0T-44-mP9" secondAttribute="trailing" constant="28" id="U6f-Dv-SCt"/>
+                            <constraint firstItem="YOL-Mq-RV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="60B-fc-Adk" secondAttribute="trailing" constant="8" symbolic="YES" id="USf-Rk-RK6"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="wvE-mb-usM" secondAttribute="trailing" constant="28" id="YEE-Sb-ETM"/>
+                            <constraint firstItem="e9a-RT-nYV" firstAttribute="leading" secondItem="g1d-Dp-uka" secondAttribute="trailing" constant="10" id="a6o-qR-H8D"/>
+                            <constraint firstItem="h0T-44-mP9" firstAttribute="leading" secondItem="cLl-Ts-56r" secondAttribute="leading" constant="28" id="bRT-iY-R86"/>
+                            <constraint firstItem="MiK-oD-xCL" firstAttribute="top" secondItem="cLl-Ts-56r" secondAttribute="top" constant="70" id="chB-2v-6Z2"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="YOL-Mq-RV6" secondAttribute="trailing" constant="28" id="cpx-X9-rWD"/>
+                            <constraint firstItem="FCo-Rl-zb7" firstAttribute="leading" secondItem="cLl-Ts-56r" secondAttribute="leading" constant="28" id="eC0-ux-vZj"/>
+                            <constraint firstItem="g1d-Dp-uka" firstAttribute="leading" secondItem="woK-xi-R2b" secondAttribute="leading" constant="28" id="fOd-rP-AP0"/>
+                            <constraint firstItem="UIQ-Zz-4mc" firstAttribute="top" secondItem="h0T-44-mP9" secondAttribute="bottom" constant="8" symbolic="YES" id="gGF-uS-sbx"/>
+                            <constraint firstItem="h0T-44-mP9" firstAttribute="top" secondItem="3XM-yp-Lz6" secondAttribute="bottom" constant="10" id="hZK-1W-mAA"/>
+                            <constraint firstItem="60B-fc-Adk" firstAttribute="top" secondItem="cLl-Ts-56r" secondAttribute="top" constant="20" id="hwl-zi-rrP"/>
+                            <constraint firstItem="e9a-RT-nYV" firstAttribute="top" secondItem="h0T-44-mP9" secondAttribute="bottom" constant="65" id="m0b-Zp-FMW"/>
+                            <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="MiK-oD-xCL" secondAttribute="trailing" id="nDF-IW-2WR"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="addButton" destination="e9a-RT-nYV" id="GK3-Bs-uKA"/>
+                        <outlet property="deleteButton" destination="wvE-mb-usM" id="Ule-sS-COC"/>
+                        <outlet property="inputNumberField" destination="g1d-Dp-uka" id="qQK-oL-I26"/>
+                        <outlet property="intervalLabel" destination="3XM-yp-Lz6" id="880-Zn-lyg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="euF-F4-Rkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="J4g-fc-bjx"/>
+            </objects>
+            <point key="canvasLocation" x="-1694.2028985507247" y="1707.5892857142856"/>
+        </scene>
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
@@ -911,8 +1053,10 @@
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="delete.left.fill" catalog="system" width="128" height="104"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">

@@ -13,6 +13,7 @@
 		186A75B3251A307D009CE14B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B1251A307D009CE14B /* Main.storyboard */; };
 		186A75B5251A3080009CE14B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B4251A3080009CE14B /* Assets.xcassets */; };
 		186A75B8251A3080009CE14B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B6251A3080009CE14B /* LaunchScreen.storyboard */; };
+		18AF72002548257E0037D88E /* UserInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputController.swift */; };
 		18B22562251B805B001DFAC5 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22561251B805B001DFAC5 /* Todo.swift */; };
 		18B22565251DDF64001DFAC5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22564251DDF64001DFAC5 /* Storage.swift */; };
 		18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B225712528AC42001DFAC5 /* AddViewController.swift */; };
@@ -31,6 +32,7 @@
 		186A75B4251A3080009CE14B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		186A75B7251A3080009CE14B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186A75B9251A3080009CE14B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18AF71FF2548257E0037D88E /* UserInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputController.swift; sourceTree = "<group>"; };
 		18B22561251B805B001DFAC5 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		18B22564251DDF64001DFAC5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		18B225712528AC42001DFAC5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */,
 				18C2641F253C876E00B9F1A0 /* DaysController.swift */,
 				18C16B3C2541D26900814240 /* TableViewController.swift */,
+				18AF71FF2548257E0037D88E /* UserInputController.swift */,
 			);
 			path = ReviewApp;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */,
 				18C16B3D2541D26900814240 /* TableViewController.swift in Sources */,
 				186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */,
+				18AF72002548257E0037D88E /* UserInputController.swift in Sources */,
 				18B22562251B805B001DFAC5 /* Todo.swift in Sources */,
 				18B22565251DDF64001DFAC5 /* Storage.swift in Sources */,
 			);

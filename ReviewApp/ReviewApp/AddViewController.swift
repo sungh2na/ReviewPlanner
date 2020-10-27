@@ -11,7 +11,7 @@ protocol Edit_1_Delegate{
     func addTaskButtonTapped(_ detail: String, _ interval: [Int])
 }
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, Edit_4_Delegate {
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
@@ -21,7 +21,13 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showUserInput" {
+            if let secondView = segue.destination as? UserInputController {
+                secondView.delegate = self
+            }
+        }
+    }
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -49,7 +55,7 @@ class AddViewController: UIViewController {
             self.interval = [0, 1, 7, 15, 30]
         }
         let interval_4 =  UIAlertAction(title: "직접입력", style: .default) {
-            (action) in
+            (action) in self.performSegue(withIdentifier: "showUserInput", sender: nil)
         }
         let cancel =  UIAlertAction(title: "취소", style: .cancel)
         
@@ -59,6 +65,17 @@ class AddViewController: UIViewController {
         alert.addAction(interval_4)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func userInputButtonTapped(_ interval: [Int]) {
+        self.interval = interval
+        self.intervalLabel.text = interval.map {
+            if $0 == 0 {
+                return "오늘"
+            } else {
+                return ", \($0)일"
+            }
+        }.joined()
     }
     
     @IBAction func tapBG(_ sender: Any) {
