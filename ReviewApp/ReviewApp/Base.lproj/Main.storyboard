@@ -103,7 +103,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영어빈출어휘 Day1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLw-k0-tah">
-                                                    <rect key="frame" x="60" y="9.5" width="254" height="25"/>
+                                                    <rect key="frame" x="60" y="9.5" width="243" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="ke7-uC-jgR"/>
                                                     </constraints>
@@ -112,7 +112,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCa-6Z-i0r">
-                                                    <rect key="frame" x="324" y="9.5" width="25" height="25"/>
+                                                    <rect key="frame" x="313" y="9.5" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="L8S-qa-pDy"/>
                                                         <constraint firstAttribute="height" constant="25" id="mCB-eV-b7p"/>
@@ -124,10 +124,10 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zz4-C1-6Ty">
-                                                    <rect key="frame" x="354" y="9.5" width="30" height="25"/>
+                                                    <rect key="frame" x="344" y="9.5" width="50" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="jrI-5t-jXl"/>
-                                                        <constraint firstAttribute="width" constant="30" id="qYM-zS-Rwa"/>
+                                                        <constraint firstAttribute="width" constant="50" id="qYM-zS-Rwa"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.4810126582" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,15 +137,15 @@
                                             <constraints>
                                                 <constraint firstItem="zz4-C1-6Ty" firstAttribute="centerY" secondItem="zLw-k0-tah" secondAttribute="centerY" id="9ZD-r7-mqB"/>
                                                 <constraint firstItem="mW4-lK-rap" firstAttribute="leading" secondItem="Zcc-sh-t3l" secondAttribute="leading" constant="25" id="EZv-pS-xJW"/>
-                                                <constraint firstItem="zz4-C1-6Ty" firstAttribute="leading" secondItem="PCa-6Z-i0r" secondAttribute="trailing" constant="5" id="FFK-wP-mRQ"/>
+                                                <constraint firstItem="zz4-C1-6Ty" firstAttribute="leading" secondItem="PCa-6Z-i0r" secondAttribute="trailing" constant="6" id="FFK-wP-mRQ"/>
                                                 <constraint firstItem="zLw-k0-tah" firstAttribute="leading" secondItem="mW4-lK-rap" secondAttribute="trailing" constant="10" id="QYa-L5-l6S"/>
                                                 <constraint firstItem="YXH-7N-rlo" firstAttribute="leading" secondItem="mW4-lK-rap" secondAttribute="trailing" constant="10" id="RHs-e2-yWa"/>
                                                 <constraint firstItem="mW4-lK-rap" firstAttribute="centerY" secondItem="Zcc-sh-t3l" secondAttribute="centerY" id="RNL-tN-X07"/>
+                                                <constraint firstAttribute="trailing" secondItem="zz4-C1-6Ty" secondAttribute="trailing" constant="20" id="YlZ-ZX-D2n"/>
                                                 <constraint firstItem="YXH-7N-rlo" firstAttribute="centerY" secondItem="Zcc-sh-t3l" secondAttribute="centerY" id="afU-GQ-5Cn"/>
                                                 <constraint firstItem="zLw-k0-tah" firstAttribute="centerY" secondItem="mW4-lK-rap" secondAttribute="centerY" id="bjM-it-bGf"/>
                                                 <constraint firstItem="PCa-6Z-i0r" firstAttribute="centerY" secondItem="Zcc-sh-t3l" secondAttribute="centerY" id="fkb-Pu-OGa"/>
                                                 <constraint firstItem="PCa-6Z-i0r" firstAttribute="leading" secondItem="zLw-k0-tah" secondAttribute="trailing" constant="10" id="nvi-eY-6zH"/>
-                                                <constraint firstAttribute="trailing" secondItem="PCa-6Z-i0r" secondAttribute="trailing" constant="65" id="uKH-RY-PRV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
