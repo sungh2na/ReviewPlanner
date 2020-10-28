@@ -15,6 +15,8 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     var delegate: Edit_1_Delegate?
     var interval = [0, 1, 5, 10, 30]
     
@@ -80,6 +82,50 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     
     @IBAction func tapBG(_ sender: Any) {
         inputTextField.resignFirstResponder()
+    }
+    
+}
+
+extension AddViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return reviewPlannerViewModel.todayTodos.count
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCell else {
+            return UITableViewCell()
+        }
+//        var todayTodo: Todo
+//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
+//
+//        cell.doneButtonTapHandler = { isDone in
+//            todayTodo.isDone = isDone
+//            self.reviewPlannerViewModel.updateTodo(todayTodo)
+//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//            tableView.reloadData()
+//        }
+//
+//        cell.updateUI(todo: todayTodo)
+        return cell
+    }
+    
+}
+
+class ScheduleCell: UITableViewCell {
+    
+    @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var memoButton: UIButton!
+    @IBOutlet weak var progressLabel: UILabel!
+    
+    func updateUI(todo: Todo) {
+        // 셀 업데이트 하기
+//        checkButton.isSelected = todo.isDone
+//        progressLabel.text = "\(todo.reviewNum)/\(todo.reviewTotal)"
+//        descriptionLabel.text = todo.detail
+//        descriptionLabel.alpha = todo.isDone ? 0.2 : 1
+//        showStrikeThrough(todo.isDone)      // 수정하기
     }
     
 }

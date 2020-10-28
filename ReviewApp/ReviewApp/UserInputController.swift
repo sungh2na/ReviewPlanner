@@ -16,8 +16,8 @@ class UserInputController: UIViewController {
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    var delegate: Edit_4_Delegate?
-    
+
+    var delegate: Edit_4_Delegate?    
     var interval = [0]
     override func viewDidLoad() {
         super.viewDidLoad()
