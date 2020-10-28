@@ -17,11 +17,20 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    var today: Date?
     var delegate: Edit_1_Delegate?
     var interval = [0, 1, 5, 10, 30]
+    var schedules: [Schedule] = []
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy. MM. dd. E"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createSchedule()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showUserInput" {
@@ -45,16 +54,16 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         interval = [0, 1, 5, 10, 30]
         let alert = UIAlertController(title:"복습 간격 선택", message: "원하는 복습 간격이 없을 경우 직접 입력", preferredStyle: .actionSheet)
         let interval_1 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일", style: .default) {
-            (action) in self.intervalLabel.text = "오늘, 1일, 3일, 7일, 15일"
-            self.interval = [0, 1, 3, 7, 15]
+            (action) in self.interval = [0, 1, 3, 7, 15]
+            self.userInputButtonTapped(self.interval)
         }
         let interval_2 =  UIAlertAction(title: "오늘, 1일, 5일, 10일, 20일", style: .default) {
-            (action) in self.intervalLabel.text = "오늘, 1일, 5일, 10일, 30일"
-            self.interval = [0, 1, 5, 10, 30]
+            (action) in self.interval = [0, 1, 5, 10, 20]
+            self.userInputButtonTapped(self.interval)
         }
         let interval_3 =  UIAlertAction(title: "오늘, 1일, 7일, 15일, 30일", style: .default) {
-            (action) in self.intervalLabel.text = "오늘, 1일, 7일, 15일, 30일"
-            self.interval = [0, 1, 7, 15, 30]
+            (action) in self.interval = [0, 1, 7, 15, 30]
+            self.userInputButtonTapped(self.interval)
         }
         let interval_4 =  UIAlertAction(title: "직접입력", style: .default) {
             (action) in self.performSegue(withIdentifier: "showUserInput", sender: nil)
@@ -78,6 +87,31 @@ class AddViewController: UIViewController, Edit_4_Delegate {
                 return ", \($0)일"
             }
         }.joined()
+        self.createSchedule()
+        self.tableView.reloadData()
+    }
+    
+    func createSchedule() {
+        schedules.removeAll()
+        var intervalString = ""
+        var dateString = ""
+        var progressString = ""
+        var index = 0
+        interval.forEach {
+            if $0 == 0 {
+                intervalString = "오늘"
+            } else {
+                intervalString = "\($0)일"
+            }
+            
+            if let dDay = today?.addingTimeInterval(Double($0 * 86400)){
+                dateString = dateFormatter.string(from: dDay)
+            }
+            progressString = "\(index + 1)/\(interval.count)"
+            index += 1
+            let schedule = Schedule(interval: intervalString, date: dateString, progress: progressString)
+            schedules.append(schedule)
+        }
     }
     
     @IBAction func tapBG(_ sender: Any) {
@@ -89,28 +123,24 @@ class AddViewController: UIViewController, Edit_4_Delegate {
 extension AddViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return reviewPlannerViewModel.todayTodos.count
-        return 1
+        return interval.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCell else {
             return UITableViewCell()
         }
-//        var todayTodo: Todo
-//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
-//
-//        cell.doneButtonTapHandler = { isDone in
-//            todayTodo.isDone = isDone
-//            self.reviewPlannerViewModel.updateTodo(todayTodo)
-//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//            tableView.reloadData()
-//        }
-//
-//        cell.updateUI(todo: todayTodo)
+        cell.updateUI(schedule: schedules[indexPath.row])
         return cell
     }
-    
 }
+
+struct Schedule {
+    var interval: String
+    var date: String
+    var progress: String
+}
+
 
 class ScheduleCell: UITableViewCell {
     
@@ -119,13 +149,11 @@ class ScheduleCell: UITableViewCell {
     @IBOutlet weak var memoButton: UIButton!
     @IBOutlet weak var progressLabel: UILabel!
     
-    func updateUI(todo: Todo) {
-        // 셀 업데이트 하기
-//        checkButton.isSelected = todo.isDone
-//        progressLabel.text = "\(todo.reviewNum)/\(todo.reviewTotal)"
-//        descriptionLabel.text = todo.detail
-//        descriptionLabel.alpha = todo.isDone ? 0.2 : 1
-//        showStrikeThrough(todo.isDone)      // 수정하기
+    func updateUI(schedule: Schedule) {
+        intervalLabel.text = schedule.interval
+        dateLabel.text = schedule.date
+        progressLabel.text = schedule.progress
     }
     
 }
+

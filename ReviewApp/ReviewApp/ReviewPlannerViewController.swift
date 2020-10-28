@@ -19,7 +19,8 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy. MM. dd. E"
+        formatter.locale = Locale(identifier: "ko_KR")
         return formatter
     }()
 
@@ -63,6 +64,8 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
                 return velocity.y < 0
             case .week:
                 return velocity.y > 0
+            default:
+                return velocity.y < 0       // 수정
             }
         }
         return shouldBegin
@@ -80,7 +83,10 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAdd" {
             if let secondView = segue.destination as? AddViewController {
+                guard let date = dateLabel.text, date.isEmpty == false else { return }
+                guard let dateFormat = dateFormatter.date(from:date) else { return }
                 secondView.delegate = self
+                secondView.today = dateFormat
             }
         } else if segue.identifier == "showModify" {
             if let secondView = segue.destination as? ModifyViewController {
