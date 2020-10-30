@@ -101,7 +101,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         }
     }
     
-    func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
+    func addTaskButtonTapped(_ date: Date, _ detail: String, _ interval: [Int]) {
         guard let date = dateLabel.text, date.isEmpty == false else { return }
         let dateFormat = dateFormatter.date(from:date)
         var index = 0

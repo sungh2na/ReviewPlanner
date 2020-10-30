@@ -8,7 +8,7 @@
 import UIKit
 
 protocol Edit_1_Delegate{
-    func addTaskButtonTapped(_ detail: String, _ interval: [Int])
+    func addTaskButtonTapped(_ date: Date, _ detail: String, _ interval: [Int])
 }
 
 class AddViewController: UIViewController, Edit_4_Delegate {
@@ -29,6 +29,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     var today: Date?
     var delegate: Edit_1_Delegate?
     var interval = [0, 1, 5, 10, 30]
+    var newInterval: [Int] = []
     var holidays: Set<String> = []
     var schedules: [Schedule] = []
     let dateFormatter: DateFormatter = {
@@ -54,8 +55,10 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     }
     
     @IBAction func done(_ sender: Any) {
-        if delegate != nil {
-            delegate?.addTaskButtonTapped(inputTextField.text!, interval)
+        if let date = today?.addingTimeInterval(Double(newInterval[0] * 86400)) {
+            if delegate != nil {
+                delegate?.addTaskButtonTapped(date, inputTextField.text!, newInterval)
+            }
         }
         dismiss(animated: true, completion: nil)
     }
@@ -106,9 +109,29 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         var intervalString = ""
         var dateString = ""
         var progressString = ""
+        let week = ["일", "월", "화", "수", "목", "금", "토"]
         var index = 0
-        interval = interval.map
-        interval.forEach {
+        var delay = 0
+        newInterval = interval
+        for index in 0 ..< newInterval.count {
+            var count = 0
+            newInterval[index] += delay
+            if let dDay = today?.addingTimeInterval(Double(newInterval[index] * 86400)){
+                dateFormatter.dateFormat = "E"
+                dateString = dateFormatter.string(from: dDay)
+                while holidays.contains(dateString) {       // 모든 요일을 휴일로 선택하면 에러 발생
+                    count += 1
+                    if let weekIndex = week.firstIndex(of: dateString) {
+                        dateString = week[(weekIndex + 1) % week.count]
+                    }
+                }
+            }
+            newInterval[index] += count
+            delay += count
+        }
+        
+        dateFormatter.dateFormat = "yyyy. MM. dd. E"
+        newInterval.forEach {
             if $0 == 0 {
                 intervalString = "오늘"
             } else {
@@ -126,69 +149,38 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     }
     
     @IBAction func sunButtonTapped(_ sender: Any) {
-        if sunButton.isSelected {
-            sunButton.isSelected = false
-            holidays.remove("일")
-        } else {
-            sunButton.isSelected = true
-            holidays.insert("일")
-        }
+        holidayButtonTapped(sunButton)
     }
     @IBAction func monButtonTapped(_ sender: Any) {
-        if monButton.isSelected {
-            monButton.isSelected = false
-            holidays.remove("월")
-        } else {
-            monButton.isSelected = true
-            holidays.insert("월")
-        }
+        holidayButtonTapped(monButton)
     }
     @IBAction func tueButtonTapped(_ sender: Any) {
-        if tueButton.isSelected {
-            tueButton.isSelected = false
-            holidays.remove("화")
-        } else {
-            tueButton.isSelected = true
-            holidays.insert("화")
-        }
+        holidayButtonTapped(tueButton)
     }
     @IBAction func wedButtonTapped(_ sender: Any) {
-        if wedButton.isSelected {
-            wedButton.isSelected = false
-            holidays.remove("수")
-        } else {
-            wedButton.isSelected = true
-            holidays.insert("수")
-        }
+        holidayButtonTapped(wedButton)
     }
     @IBAction func thuButtonTapped(_ sender: Any) {
-        if thuButton.isSelected {
-            thuButton.isSelected = false
-            holidays.remove("목")
-        } else {
-            thuButton.isSelected = true
-            holidays.insert("목")
-        }
+        holidayButtonTapped(thuButton)
     }
     @IBAction func friButtonTapped(_ sender: Any) {
-        if friButton.isSelected {
-            friButton.isSelected = false
-            holidays.remove("금")
-        } else {
-            friButton.isSelected = true
-            holidays.insert("금")
-        }
+        holidayButtonTapped(friButton)
     }
     @IBAction func satButtonTapped(_ sender: Any) {
-        if satButton.isSelected {
-            satButton.isSelected = false
-            holidays.remove("토")
-        } else {
-            satButton.isSelected = true
-            holidays.insert("토")
-        }
+        holidayButtonTapped(satButton)
     }
     
+    func holidayButtonTapped(_ button: UIButton) {
+        if button.isSelected {
+            button.isSelected = false
+            holidays.remove(button.titleLabel!.text!)
+        } else {
+            button.isSelected = true
+            holidays.insert(button.titleLabel!.text!)
+        }
+        self.createSchedule()
+        self.tableView.reloadData()
+    }
     
     
     @IBAction func tapBG(_ sender: Any) {
