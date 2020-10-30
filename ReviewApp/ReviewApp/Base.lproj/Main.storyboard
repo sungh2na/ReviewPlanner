@@ -394,51 +394,79 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALt-YL-j7Y">
                                 <rect key="frame" x="28" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="일">
-                                    <color key="titleColor" systemColor="systemPinkColor"/>
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="sunButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="9vQ-im-GUS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiY-jC-YOI">
                                 <rect key="frame" x="78" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="월">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="monButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="rng-Iv-Sn2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fno-If-yZM">
                                 <rect key="frame" x="128" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="화">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="tueButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="iNA-W3-720"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zL9-Eh-fD8">
                                 <rect key="frame" x="178" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="수">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="wedButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="yTq-VM-9Am"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrW-lr-lVe">
                                 <rect key="frame" x="228" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="목">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="thuButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="Cee-vs-biF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVm-Am-maw">
                                 <rect key="frame" x="278" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="금">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="friButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="UZc-fh-Ow7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKb-ex-dfy">
                                 <rect key="frame" x="328" y="254" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="토">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="satButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="6jL-3L-3Gb"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="복습 일정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFP-rS-4c3">
                                 <rect key="frame" x="28" y="317" width="64" height="21"/>
@@ -499,9 +527,16 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
+                        <outlet property="friButton" destination="YVm-Am-maw" id="vsU-ya-pNF"/>
                         <outlet property="inputTextField" destination="1cU-M8-2Ci" id="gaZ-H1-zcf"/>
                         <outlet property="intervalLabel" destination="ooo-vK-dLv" id="Qq1-cb-X14"/>
+                        <outlet property="monButton" destination="qiY-jC-YOI" id="ayb-bo-DIg"/>
+                        <outlet property="satButton" destination="KKb-ex-dfy" id="lkN-Cp-kIf"/>
+                        <outlet property="sunButton" destination="ALt-YL-j7Y" id="462-DA-YTV"/>
                         <outlet property="tableView" destination="4Ja-Vq-UcL" id="V8p-Fk-7sb"/>
+                        <outlet property="thuButton" destination="DrW-lr-lVe" id="uHU-Zx-YbP"/>
+                        <outlet property="tueButton" destination="fno-If-yZM" id="yOc-jK-1QL"/>
+                        <outlet property="wedButton" destination="zL9-Eh-fD8" id="zzp-Kp-u0g"/>
                         <segue destination="rLm-i4-Yz0" kind="presentation" identifier="showUserInput" id="5MK-6j-q8e"/>
                     </connections>
                 </viewController>

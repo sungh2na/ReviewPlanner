@@ -16,10 +16,20 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sunButton: UIButton!
+    @IBOutlet weak var monButton: UIButton!
+    @IBOutlet weak var tueButton: UIButton!
+    @IBOutlet weak var wedButton: UIButton!
+    @IBOutlet weak var thuButton: UIButton!
+    @IBOutlet weak var friButton: UIButton!
+    @IBOutlet weak var satButton: UIButton!
+    
+    
     
     var today: Date?
     var delegate: Edit_1_Delegate?
     var interval = [0, 1, 5, 10, 30]
+    var holidays: Set<String> = []
     var schedules: [Schedule] = []
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -97,6 +107,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         var dateString = ""
         var progressString = ""
         var index = 0
+        interval = interval.map
         interval.forEach {
             if $0 == 0 {
                 intervalString = "오늘"
@@ -113,6 +124,72 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             schedules.append(schedule)
         }
     }
+    
+    @IBAction func sunButtonTapped(_ sender: Any) {
+        if sunButton.isSelected {
+            sunButton.isSelected = false
+            holidays.remove("일")
+        } else {
+            sunButton.isSelected = true
+            holidays.insert("일")
+        }
+    }
+    @IBAction func monButtonTapped(_ sender: Any) {
+        if monButton.isSelected {
+            monButton.isSelected = false
+            holidays.remove("월")
+        } else {
+            monButton.isSelected = true
+            holidays.insert("월")
+        }
+    }
+    @IBAction func tueButtonTapped(_ sender: Any) {
+        if tueButton.isSelected {
+            tueButton.isSelected = false
+            holidays.remove("화")
+        } else {
+            tueButton.isSelected = true
+            holidays.insert("화")
+        }
+    }
+    @IBAction func wedButtonTapped(_ sender: Any) {
+        if wedButton.isSelected {
+            wedButton.isSelected = false
+            holidays.remove("수")
+        } else {
+            wedButton.isSelected = true
+            holidays.insert("수")
+        }
+    }
+    @IBAction func thuButtonTapped(_ sender: Any) {
+        if thuButton.isSelected {
+            thuButton.isSelected = false
+            holidays.remove("목")
+        } else {
+            thuButton.isSelected = true
+            holidays.insert("목")
+        }
+    }
+    @IBAction func friButtonTapped(_ sender: Any) {
+        if friButton.isSelected {
+            friButton.isSelected = false
+            holidays.remove("금")
+        } else {
+            friButton.isSelected = true
+            holidays.insert("금")
+        }
+    }
+    @IBAction func satButtonTapped(_ sender: Any) {
+        if satButton.isSelected {
+            satButton.isSelected = false
+            holidays.remove("토")
+        } else {
+            satButton.isSelected = true
+            holidays.insert("토")
+        }
+    }
+    
+    
     
     @IBAction func tapBG(_ sender: Any) {
         inputTextField.resignFirstResponder()
@@ -154,6 +231,5 @@ class ScheduleCell: UITableViewCell {
         dateLabel.text = schedule.date
         progressLabel.text = schedule.progress
     }
-    
 }
 
