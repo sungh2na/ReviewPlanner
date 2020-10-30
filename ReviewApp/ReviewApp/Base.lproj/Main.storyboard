@@ -392,7 +392,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="sunButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="9vQ-im-GUS"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="Oh6-lH-zZ8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiY-jC-YOI">
@@ -403,7 +403,7 @@
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="monButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="rng-Iv-Sn2"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="Hg2-NG-ScK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fno-If-yZM">
@@ -414,7 +414,7 @@
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="tueButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="iNA-W3-720"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="Zc3-5k-CaP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zL9-Eh-fD8">
@@ -425,7 +425,7 @@
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="wedButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="yTq-VM-9Am"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="zik-X7-VWC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrW-lr-lVe">
@@ -436,7 +436,7 @@
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="thuButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="Cee-vs-biF"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="85K-zA-GfL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVm-Am-maw">
@@ -447,7 +447,7 @@
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="friButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="UZc-fh-Ow7"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="PPJ-98-jvi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKb-ex-dfy">
@@ -458,7 +458,7 @@
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="satButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="6jL-3L-3Gb"/>
+                                    <action selector="holidayButtonTapped:" destination="XHs-lr-7NH" eventType="touchUpInside" id="vSw-sw-zv5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="복습 일정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFP-rS-4c3">
@@ -527,16 +527,16 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
-                        <outlet property="friButton" destination="YVm-Am-maw" id="vsU-ya-pNF"/>
                         <outlet property="inputTextField" destination="1cU-M8-2Ci" id="gaZ-H1-zcf"/>
                         <outlet property="intervalLabel" destination="ooo-vK-dLv" id="Qq1-cb-X14"/>
-                        <outlet property="monButton" destination="qiY-jC-YOI" id="ayb-bo-DIg"/>
-                        <outlet property="satButton" destination="KKb-ex-dfy" id="lkN-Cp-kIf"/>
-                        <outlet property="sunButton" destination="ALt-YL-j7Y" id="462-DA-YTV"/>
                         <outlet property="tableView" destination="4Ja-Vq-UcL" id="V8p-Fk-7sb"/>
-                        <outlet property="thuButton" destination="DrW-lr-lVe" id="uHU-Zx-YbP"/>
-                        <outlet property="tueButton" destination="fno-If-yZM" id="yOc-jK-1QL"/>
-                        <outlet property="wedButton" destination="zL9-Eh-fD8" id="zzp-Kp-u0g"/>
+                        <outletCollection property="holidayButton" destination="ALt-YL-j7Y" collectionClass="NSMutableArray" id="HpJ-4L-4df"/>
+                        <outletCollection property="holidayButton" destination="qiY-jC-YOI" collectionClass="NSMutableArray" id="htb-vI-EiX"/>
+                        <outletCollection property="holidayButton" destination="fno-If-yZM" collectionClass="NSMutableArray" id="lxU-Tb-qE1"/>
+                        <outletCollection property="holidayButton" destination="zL9-Eh-fD8" collectionClass="NSMutableArray" id="rmZ-Pc-cTo"/>
+                        <outletCollection property="holidayButton" destination="DrW-lr-lVe" collectionClass="NSMutableArray" id="vr7-Yb-ZQ4"/>
+                        <outletCollection property="holidayButton" destination="YVm-Am-maw" collectionClass="NSMutableArray" id="Crr-6k-DBP"/>
+                        <outletCollection property="holidayButton" destination="KKb-ex-dfy" collectionClass="NSMutableArray" id="LF4-jD-6hY"/>
                         <segue destination="rLm-i4-Yz0" kind="presentation" identifier="showUserInput" id="5MK-6j-q8e"/>
                     </connections>
                 </viewController>

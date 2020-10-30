@@ -16,14 +16,8 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var sunButton: UIButton!
-    @IBOutlet weak var monButton: UIButton!
-    @IBOutlet weak var tueButton: UIButton!
-    @IBOutlet weak var wedButton: UIButton!
-    @IBOutlet weak var thuButton: UIButton!
-    @IBOutlet weak var friButton: UIButton!
-    @IBOutlet weak var satButton: UIButton!
-    
+
+    @IBOutlet var holidayButton: [UIButton]!
     
     
     var today: Date?
@@ -148,40 +142,26 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         }
     }
     
-    @IBAction func sunButtonTapped(_ sender: Any) {
-        holidayButtonTapped(sunButton)
-    }
-    @IBAction func monButtonTapped(_ sender: Any) {
-        holidayButtonTapped(monButton)
-    }
-    @IBAction func tueButtonTapped(_ sender: Any) {
-        holidayButtonTapped(tueButton)
-    }
-    @IBAction func wedButtonTapped(_ sender: Any) {
-        holidayButtonTapped(wedButton)
-    }
-    @IBAction func thuButtonTapped(_ sender: Any) {
-        holidayButtonTapped(thuButton)
-    }
-    @IBAction func friButtonTapped(_ sender: Any) {
-        holidayButtonTapped(friButton)
-    }
-    @IBAction func satButtonTapped(_ sender: Any) {
-        holidayButtonTapped(satButton)
-    }
-    
-    func holidayButtonTapped(_ button: UIButton) {
-        if button.isSelected {
-            button.isSelected = false
-            holidays.remove(button.titleLabel!.text!)
+
+    @IBAction func holidayButtonTapped(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            holidays.remove(sender.titleLabel!.text!)
         } else {
-            button.isSelected = true
-            holidays.insert(button.titleLabel!.text!)
+            if holidays.count < 6 {
+                sender.isSelected = true
+                holidays.insert(sender.titleLabel!.text!)
+            } else { // 다 휴일
+                let alert = UIAlertController(title: " ", message: "휴일을 지정할 수 없습니다.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            }
+            
         }
         self.createSchedule()
         self.tableView.reloadData()
     }
-    
     
     @IBAction func tapBG(_ sender: Any) {
         inputTextField.resignFirstResponder()
