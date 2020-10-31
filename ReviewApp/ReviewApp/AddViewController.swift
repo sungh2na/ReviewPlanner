@@ -8,7 +8,7 @@
 import UIKit
 
 protocol Edit_1_Delegate{
-    func addTaskButtonTapped(_ date: Date, _ detail: String, _ interval: [Int])
+    func addTaskButtonTapped(_ detail: String, _ interval: [Int])
 }
 
 class AddViewController: UIViewController, Edit_4_Delegate {
@@ -49,10 +49,8 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     }
     
     @IBAction func done(_ sender: Any) {
-        if let date = today?.addingTimeInterval(Double(newInterval[0] * 86400)) {
-            if delegate != nil {
-                delegate?.addTaskButtonTapped(date, inputTextField.text!, newInterval)
-            }
+        if delegate != nil {
+            delegate?.addTaskButtonTapped(inputTextField.text!, newInterval)
         }
         dismiss(animated: true, completion: nil)
     }

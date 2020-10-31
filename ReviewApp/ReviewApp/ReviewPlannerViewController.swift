@@ -23,14 +23,15 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter
     }()
+    var selectedDate: Date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
         // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
-        reviewPlannerViewModel.todayTodo(Date())
-        dateLabel.text = dateFormatter.string(from: Date())
+        reviewPlannerViewModel.todayTodo(selectedDate)
+        dateLabel.text = dateFormatter.string(from: selectedDate)
         
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
@@ -83,10 +84,8 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAdd" {
             if let secondView = segue.destination as? AddViewController {
-                guard let date = dateLabel.text, date.isEmpty == false else { return }
-                guard let dateFormat = dateFormatter.date(from:date) else { return }
                 secondView.delegate = self
-                secondView.today = dateFormat
+                secondView.today = selectedDate
             }
         } else if segue.identifier == "showModify" {
             if let secondView = segue.destination as? ModifyViewController {
@@ -101,21 +100,17 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         }
     }
     
-    func addTaskButtonTapped(_ date: Date, _ detail: String, _ interval: [Int]) {
-        guard let date = dateLabel.text, date.isEmpty == false else { return }
-        let dateFormat = dateFormatter.date(from:date)
+    func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         var index = 0
         //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
         TodoManager.shared.nextReviewId()
         interval.forEach {
-            if let dDay = dateFormat?.addingTimeInterval(Double($0 * 86400)){
-                let todo = TodoManager.shared.createTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
-                reviewPlannerViewModel.addTodo(todo)
-                index += 1
-            }
+            let dDay = selectedDate.addingTimeInterval(Double($0 * 86400))
+            let todo = TodoManager.shared.createTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
+            reviewPlannerViewModel.addTodo(todo)
+            index += 1
         }
-        guard let dateform = dateFormat else { return } // 다시
-        reviewPlannerViewModel.todayTodo(dateform)
+        reviewPlannerViewModel.todayTodo(selectedDate)
         tableView.reloadData()
         calendar.reloadData()
     }
@@ -130,11 +125,9 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     }
     
     func modifytodo(_ todo: Todo) {
-        guard let date = dateLabel.text, date.isEmpty == false else { return }
-        guard let dateFormat = dateFormatter.date(from:date) else { return }
         let todayTodo = todo
         self.reviewPlannerViewModel.updateAllTodo(todayTodo)
-        self.reviewPlannerViewModel.todayTodo(dateFormat)
+        self.reviewPlannerViewModel.todayTodo(selectedDate)
         tableView.reloadData()
         self.calendar.reloadData()
     }
@@ -202,9 +195,8 @@ extension ReviewPlannerViewController: UITableViewDataSource {
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let dateString = dateFormatter.string(from: date)
-        // 날짜 선택시 발생하는 이벤트!
-        dateLabel.text = dateString
+        selectedDate = date
+        dateLabel.text = dateFormatter.string(from: selectedDate)
         // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
         tableView.reloadData()
