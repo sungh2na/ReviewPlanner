@@ -144,6 +144,12 @@ extension ReviewPlannerViewController: UITableViewDelegate {
         todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
         if editingStyle == .delete {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let delay = UIAlertAction(title: "미루기", style: .default) {
+                (action) in self.reviewPlannerViewModel.delayTodo(todayTodo)
+                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+                tableView.reloadData()
+                self.calendar.reloadData()
+            }
             let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
                 self.reviewPlannerViewModel.todayTodo(todayTodo.date)
@@ -158,6 +164,7 @@ extension ReviewPlannerViewController: UITableViewDelegate {
             }
             let cancel =  UIAlertAction(title: "취소", style: .cancel)
             
+            alert.addAction(delay)
             alert.addAction(delete)
             alert.addAction(deleteAll)
             alert.addAction(cancel)
@@ -269,3 +276,4 @@ class ReviewPlannerCell: UITableViewCell {
         doneButtonTapHandler?(isDone)
     }
 }
+

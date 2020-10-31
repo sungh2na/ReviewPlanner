@@ -67,6 +67,14 @@ class TodoManager {
         saveTodo()
     }
     
+    func delayTodo(_ todo: Todo) {
+        guard let index = todos.firstIndex(of: todo) else { return }
+        let today = todo.date
+        let tomorrow = today.addingTimeInterval(Double(86400))
+        todos[index].update(isDone: todo.isDone, detail: todo.detail, date: tomorrow, reviewNum: todo.reviewNum, reviewTotal: todo.reviewTotal)
+        saveTodo()
+    }
+    
     func updateTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
         todos[index].update(isDone: todo.isDone, detail: todo.detail, date: todo.date, reviewNum: todo.reviewNum, reviewTotal: todo.reviewTotal)
@@ -136,6 +144,10 @@ class ReviewPlannerViewModel {
     
     func deleteAllTodo(_ todo: Todo) {
         manager.deleteAllTodo(todo)
+    }
+    
+    func delayTodo(_ todo: Todo) {
+        manager.delayTodo(todo)
     }
     
     func updateTodo(_ todo: Todo) {
