@@ -132,41 +132,81 @@ extension ReviewPlannerViewController: UITableViewDelegate {
         self.calendar.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        var todayTodo: Todo
-        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
-        if editingStyle == .delete {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delay = delayAction(at: indexPath)
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete, delay])
+    }
+    
+    func delayAction(at indexPath: IndexPath) -> UIContextualAction {
+        let todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: "Delay") { (action, view, completion) in
+            self.reviewPlannerViewModel.delayTodo(todayTodo)
+            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+            self.tableView.reloadData()
+            self.calendar.reloadData()
+            completion(true)
+        }
+        action.image = UIImage(systemName: "arrow.right")
+        action.backgroundColor = .gray
+        return action
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let delay = UIAlertAction(title: "미루기", style: .default) {
-                (action) in self.reviewPlannerViewModel.delayTodo(todayTodo)
-                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                tableView.reloadData()
-                self.calendar.reloadData()
-            }
             let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
                 self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                tableView.reloadData()
+                self.tableView.reloadData()
                 self.calendar.reloadData()
             }
             let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
                 self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-                tableView.reloadData()
+                self.tableView.reloadData()
                 self.calendar.reloadData()
             }
             let cancel =  UIAlertAction(title: "취소", style: .cancel)
-            
-            alert.addAction(delay)
+
             alert.addAction(delete)
             alert.addAction(deleteAll)
             alert.addAction(cancel)
             self.present(alert, animated: true, completion: nil)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .none {
-            print("")
         }
+        action.image = UIImage(systemName: "trash")
+        action.backgroundColor = .systemPink
+        return action
     }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        var todayTodo: Todo
+//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
+//        if editingStyle == .delete {
+//            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
+//                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
+//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//                tableView.reloadData()
+//                self.calendar.reloadData()
+//            }
+//            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
+//                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
+//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//                tableView.reloadData()
+//                self.calendar.reloadData()
+//            }
+//            let cancel =  UIAlertAction(title: "취소", style: .cancel)
+//
+//            alert.addAction(delete)
+//            alert.addAction(deleteAll)
+//            alert.addAction(cancel)
+//            self.present(alert, animated: true, completion: nil)
+////            tableView.deleteRows(at: [indexPath], with: .fade)
+//        } else if editingStyle == .none {
+//            print("")
+//        }
+//    }
 }
 
 extension ReviewPlannerViewController: UITableViewDataSource {
