@@ -6,6 +6,8 @@
 //
 import FSCalendar
 import UIKit
+import UserNotifications
+
 
 class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate, UIGestureRecognizerDelegate {
 
@@ -37,7 +39,33 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.calendar.scope = .month
         
+        // Step 1: Ask for permission
+        let center = UNUserNotificationCenter.current()
+
+        // Step 2: Create the notification content
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = "This is a local notification"
+        content.sound = .default
+        
+        // Step 3: Create the notification trigger
+//        let date = Date().addingTimeInterval(5)
+//
+//        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
+        
+        // Step 4: Create the request
+        let request = UNNotificationRequest(identifier: "reminder" , content: content, trigger: trigger)
+        
+        // Step 5: Register the request
+        center.add(request) { (error) in
+            if error != nil {
+                print("Error = \(error?.localizedDescription ?? "error local notification")")
+            }
+        }
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -113,6 +141,20 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         reviewPlannerViewModel.todayTodo(selectedDate)
         tableView.reloadData()
         calendar.reloadData()
+    }
+}
+
+extension ReviewPlannerViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
 }
 
