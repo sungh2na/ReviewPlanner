@@ -41,19 +41,23 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         
         // Step 1: Ask for permission
         let center = UNUserNotificationCenter.current()
-
+        
         // Step 2: Create the notification content
         let content = UNMutableNotificationContent()
-        content.title = "Reminder"
-        content.body = "This is a local notification"
+        content.title = "Notification on a certain date"
+        content.body = "This is a local notification on certain date"
         content.sound = .default
+        content.userInfo = ["value": "Data with local notification"]
         
         // Step 3: Create the notification trigger
-//        let date = Date().addingTimeInterval(5)
+//        let date = Date().addingTimeInterval(86400)
 //
-//        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date().addingTimeInterval(5))
+        dateComponents.hour = 2
+        dateComponents.minute = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
         
         // Step 4: Create the request
         let request = UNNotificationRequest(identifier: "reminder" , content: content, trigger: trigger)
