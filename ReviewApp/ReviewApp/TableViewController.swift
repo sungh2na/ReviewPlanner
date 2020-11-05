@@ -15,6 +15,7 @@ class TableViewController: UITableViewController, Edit_3_Delegate {
     override func viewDidLoad() {
         // days 수정
         super.viewDidLoad()
+
         daysLabel.text = storedDays.sorted().reduce("") { $0 + daysDic[$1,default: ""] + " " }
         
     }
