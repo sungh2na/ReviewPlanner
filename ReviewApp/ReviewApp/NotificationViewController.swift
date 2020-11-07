@@ -9,7 +9,8 @@ import UIKit
 
 class NotificationViewController: UITableViewController {
     @IBOutlet weak var dateTxt: UITextField!
-
+    @IBOutlet weak var notiSwitch: UISwitch!
+    
     let datePicker = UIDatePicker()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,5 +45,15 @@ class NotificationViewController: UITableViewController {
         
         self.view.endEditing(true)
     }
+    
+    @IBAction func switchDidChange(_ sender: UISwitch) {
+        if sender.isOn {
+            // 알림 on
+        }
+        else {
+            // 알림 off
+        }
+    }
+    
 }
 
