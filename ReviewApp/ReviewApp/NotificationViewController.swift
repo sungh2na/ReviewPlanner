@@ -47,13 +47,17 @@ class NotificationViewController: UITableViewController {
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
+        let manager = NotificationManager()
         if sender.isOn {
             // 알림 on
+            manager.requestPermission()
+            manager.addNotification(title: "This is a test reminder")
+            manager.schedule(second: 30)
         }
         else {
             // 알림 off
+            manager.cancelNotification()
         }
     }
-    
 }
 

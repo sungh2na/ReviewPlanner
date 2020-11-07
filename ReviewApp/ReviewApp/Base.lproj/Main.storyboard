@@ -810,21 +810,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="복습 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJq-rN-NWp">
-                                                    <rect key="frame" x="20" y="11" width="64" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="복습 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJq-rN-NWp">
+                                                    <rect key="frame" x="20" y="11" width="64" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5P-i5-3sf">
-                                                    <rect key="frame" x="347" y="6" width="49" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5P-i5-3sf">
+                                                    <rect key="frame" x="345" y="6" width="51" height="38"/>
                                                     <connections>
                                                         <action selector="switchDidChange:" destination="sNM-h3-6hp" eventType="valueChanged" id="9kD-GU-jt5"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oJq-rN-NWp" firstAttribute="leading" secondItem="8oE-l5-jm1" secondAttribute="leading" constant="20" symbolic="YES" id="5ST-62-BLr"/>
+                                                <constraint firstItem="i5P-i5-3sf" firstAttribute="top" secondItem="8oE-l5-jm1" secondAttribute="top" constant="6" id="5fm-FA-Te3"/>
+                                                <constraint firstAttribute="trailing" secondItem="i5P-i5-3sf" secondAttribute="trailing" constant="20" symbolic="YES" id="Dz1-I3-aFg"/>
+                                                <constraint firstItem="oJq-rN-NWp" firstAttribute="top" secondItem="8oE-l5-jm1" secondAttribute="top" constant="11" id="UHc-B4-jNU"/>
+                                                <constraint firstItem="oJq-rN-NWp" firstAttribute="centerY" secondItem="8oE-l5-jm1" secondAttribute="centerY" id="cot-X4-3Px"/>
+                                                <constraint firstItem="i5P-i5-3sf" firstAttribute="centerY" secondItem="8oE-l5-jm1" secondAttribute="centerY" id="euD-UY-lY7"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="e5G-9i-ZBF">
@@ -834,21 +840,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYc-f8-FXJ">
-                                                    <rect key="frame" x="20" y="11" width="64" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYc-f8-FXJ">
+                                                    <rect key="frame" x="20" y="11" width="64" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="오전 09:00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sgr-aJ-7mm">
+                                                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="오전 09:00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sgr-aJ-7mm">
                                                     <rect key="frame" x="298" y="9" width="96" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wYc-f8-FXJ" firstAttribute="top" secondItem="fTP-5L-5Y1" secondAttribute="top" constant="11" id="BeX-47-HkC"/>
+                                                <constraint firstItem="Sgr-aJ-7mm" firstAttribute="centerY" secondItem="fTP-5L-5Y1" secondAttribute="centerY" id="EY7-Uf-plo"/>
+                                                <constraint firstItem="Sgr-aJ-7mm" firstAttribute="top" secondItem="fTP-5L-5Y1" secondAttribute="top" constant="9" id="SOk-SS-GHz"/>
+                                                <constraint firstAttribute="trailing" secondItem="Sgr-aJ-7mm" secondAttribute="trailing" constant="20" symbolic="YES" id="lDj-Ne-km0"/>
+                                                <constraint firstItem="wYc-f8-FXJ" firstAttribute="leading" secondItem="fTP-5L-5Y1" secondAttribute="leading" constant="20" symbolic="YES" id="nYI-ru-and"/>
+                                                <constraint firstItem="wYc-f8-FXJ" firstAttribute="centerY" secondItem="fTP-5L-5Y1" secondAttribute="centerY" id="zR6-ge-0xc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

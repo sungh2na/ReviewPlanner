@@ -46,7 +46,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         let manager = NotificationManager()
         manager.requestPermission()
         manager.addNotification(title: "This is a test reminder")
-        manager.schedule(hour: 4, minute: 15)
+        manager.schedule(second: 00)
     }
 
     

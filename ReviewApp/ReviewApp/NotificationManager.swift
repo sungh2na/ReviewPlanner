@@ -28,20 +28,20 @@ class NotificationManager {
         notifications.append(Notification(id: UUID().uuidString, title: title))
     }
     
-    func schedule(hour: Int, minute: Int) -> Void {
+    func schedule(second: Int) -> Void {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .notDetermined:
                 self.requestPermission()
             case .authorized, .provisional:
-                self.scheduleNotifications(hour, minute)
+                self.scheduleNotifications(second)
             default:
                 break
             }
         }
     }
     
-    func scheduleNotifications(_ hour: Int, _ minute: Int) {
+    func scheduleNotifications(_ second: Int) {
         for notification in notifications {
             let content = UNMutableNotificationContent()
             content.title = "Noitification on a certain date"
@@ -53,7 +53,7 @@ class NotificationManager {
             var dateComponents = DateComponents()
 //            dateComponents.hour = hour
 //            dateComponents.minute = minute
-            dateComponents.second = 0
+            dateComponents.second = second
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id , content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request) { (error) in
