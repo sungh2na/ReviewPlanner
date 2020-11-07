@@ -38,36 +38,15 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.calendar.scope = .month
+        setNotification()
         
-        // Step 1: Ask for permission
-        let center = UNUserNotificationCenter.current()
-        
-        // Step 2: Create the notification content
-        let content = UNMutableNotificationContent()
-        content.title = "Notification on a certain date"
-        content.body = "This is a local notification on certain date"
-        content.sound = .default
-        content.userInfo = ["value": "Data with local notification"]
-        
-        // Step 3: Create the notification trigger
-//        let date = Date().addingTimeInterval(86400)
-//
-        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date().addingTimeInterval(5))
-        dateComponents.hour = 2
-        dateComponents.minute = 0
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
-        
-        // Step 4: Create the request
-        let request = UNNotificationRequest(identifier: "reminder" , content: content, trigger: trigger)
-        
-        // Step 5: Register the request
-        center.add(request) { (error) in
-            if error != nil {
-                print("Error = \(error?.localizedDescription ?? "error local notification")")
-            }
-        }
+    }
+    
+    func setNotification() {
+        let manager = NotificationManager()
+        manager.requestPermission()
+        manager.addNotification(title: "This is a test reminder")
+        manager.schedule(hour: 4, minute: 15)
     }
 
     

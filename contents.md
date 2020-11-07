@@ -41,3 +41,7 @@ center.add(request) { (error) in
         }
 
 ```
+
+
+- 참고
+    - https://www.vbflash.net/131?category=745068
