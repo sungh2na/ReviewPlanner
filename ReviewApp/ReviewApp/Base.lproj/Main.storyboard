@@ -256,8 +256,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oD9-vt-rX0">
-                                <rect key="frame" x="351" y="17" width="35" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="356" y="17" width="30" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="저장">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -266,16 +266,17 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 일정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tB5-hz-AJk">
-                                <rect key="frame" x="159" y="20" width="96" height="26"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <rect key="frame" x="168" y="20" width="78" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="max-D4-XSJ">
-                                <rect key="frame" x="28" y="20" width="18" height="25"/>
+                                <rect key="frame" x="28" y="20" width="13" height="22"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chevron.backward" catalog="system">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="bold"/>
                                 </state>
                                 <connections>
                                     <action selector="close:" destination="XHs-lr-7NH" eventType="touchUpInside" id="BdA-Xf-D6U"/>
@@ -501,7 +502,6 @@
                             <constraint firstItem="4Ja-Vq-UcL" firstAttribute="leading" secondItem="j8R-sV-cjt" secondAttribute="leading" constant="28" id="S4z-4h-M2j"/>
                             <constraint firstItem="1cU-M8-2Ci" firstAttribute="top" secondItem="ZsN-dl-99c" secondAttribute="bottom" constant="32" id="SFO-Jh-qWs"/>
                             <constraint firstItem="eFP-rS-4c3" firstAttribute="top" secondItem="ALt-YL-j7Y" secondAttribute="bottom" constant="30" id="T5B-d5-Zpp"/>
-                            <constraint firstItem="oD9-vt-rX0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tB5-hz-AJk" secondAttribute="trailing" constant="8" symbolic="YES" id="Tu0-W9-C6K"/>
                             <constraint firstItem="j8R-sV-cjt" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ooo-vK-dLv" secondAttribute="trailing" symbolic="YES" id="WBN-uA-hUF"/>
                             <constraint firstItem="V31-Mz-Akz" firstAttribute="leading" secondItem="j8R-sV-cjt" secondAttribute="leading" constant="30" id="X3n-d2-x0i"/>
                             <constraint firstItem="ZsN-dl-99c" firstAttribute="top" secondItem="j8R-sV-cjt" secondAttribute="top" constant="70" id="Ybr-gq-zjp"/>
@@ -531,6 +531,7 @@
                         <outlet property="inputTextField" destination="1cU-M8-2Ci" id="gaZ-H1-zcf"/>
                         <outlet property="intervalLabel" destination="ooo-vK-dLv" id="Qq1-cb-X14"/>
                         <outlet property="tableView" destination="4Ja-Vq-UcL" id="V8p-Fk-7sb"/>
+                        <outlet property="ㄹㄹㄹㄹ" destination="max-D4-XSJ" id="7Yb-G5-gSA"/>
                         <outletCollection property="holidayButton" destination="ALt-YL-j7Y" collectionClass="NSMutableArray" id="HpJ-4L-4df"/>
                         <outletCollection property="holidayButton" destination="qiY-jC-YOI" collectionClass="NSMutableArray" id="htb-vI-EiX"/>
                         <outletCollection property="holidayButton" destination="fno-If-yZM" collectionClass="NSMutableArray" id="lxU-Tb-qE1"/>
@@ -559,8 +560,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thN-9u-c4g">
-                                <rect key="frame" x="351" y="17" width="35" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="356" y="17" width="30" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="저장">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -568,17 +569,12 @@
                                     <action selector="done:" destination="Ofl-EL-hcA" eventType="touchUpInside" id="0Yt-ul-1BN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-fb-ECe">
-                                <rect key="frame" x="168.5" y="20" width="77" height="26"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-Co-mVX">
-                                <rect key="frame" x="28" y="20" width="18" height="25"/>
+                                <rect key="frame" x="28" y="20" width="13.5" height="22"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chevron.backward" catalog="system">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="bold"/>
                                 </state>
                                 <connections>
                                     <action selector="close:" destination="Ofl-EL-hcA" eventType="touchUpInside" id="b9n-hd-lFt"/>
@@ -595,26 +591,12 @@
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBh-Ev-0tj">
-                                <rect key="frame" x="28" y="160" width="358" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="D6L-mx-uz4"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOk-r0-DLc">
                                 <rect key="frame" x="28" y="170" width="29.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="bza-cv-9nw">
-                                <rect key="frame" x="28" y="189" width="358" height="172"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <locale key="locale" localeIdentifier="ko_KR"/>
-                                <connections>
-                                    <action selector="date:" destination="Ofl-EL-hcA" eventType="valueChanged" id="ML8-xn-rrS"/>
-                                </connections>
-                            </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pq-ar-R8I">
                                 <rect key="frame" x="351" y="754" width="24" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -623,18 +605,30 @@
                                     <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 수정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-fb-ECe">
+                                <rect key="frame" x="175.5" y="20" width="63" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="bza-cv-9nw">
+                                <rect key="frame" x="28" y="189" width="358" height="216"/>
+                                <locale key="locale" localeIdentifier="ko_KR"/>
+                                <connections>
+                                    <action selector="date:" destination="Ofl-EL-hcA" eventType="valueChanged" id="ML8-xn-rrS"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1TZ-hV-rEz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="thN-9u-c4g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="21M-fb-ECe" secondAttribute="trailing" constant="8" symbolic="YES" id="0Ki-fP-HlN"/>
-                            <constraint firstItem="1TZ-hV-rEz" firstAttribute="trailing" secondItem="cBh-Ev-0tj" secondAttribute="trailing" constant="28" id="1f2-3r-Vxd"/>
                             <constraint firstItem="21M-fb-ECe" firstAttribute="centerX" secondItem="1TZ-hV-rEz" secondAttribute="centerX" id="5ek-oW-vaG"/>
                             <constraint firstItem="21M-fb-ECe" firstAttribute="top" secondItem="1TZ-hV-rEz" secondAttribute="top" constant="20" id="ASM-fE-Zuu"/>
+                            <constraint firstItem="bza-cv-9nw" firstAttribute="top" secondItem="NOk-r0-DLc" secondAttribute="bottom" constant="-2" id="EFZ-j0-bpc"/>
                             <constraint firstItem="ctn-Co-mVX" firstAttribute="top" secondItem="1TZ-hV-rEz" secondAttribute="top" constant="20" id="FnS-yj-L21"/>
+                            <constraint firstItem="bza-cv-9nw" firstAttribute="leading" secondItem="1TZ-hV-rEz" secondAttribute="leading" constant="28" id="H6S-4T-HSk"/>
                             <constraint firstItem="1TZ-hV-rEz" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NOk-r0-DLc" secondAttribute="trailing" symbolic="YES" id="I54-Z2-QOE"/>
-                            <constraint firstItem="cBh-Ev-0tj" firstAttribute="leading" secondItem="1TZ-hV-rEz" secondAttribute="leading" constant="28" id="IlW-Y8-S0X"/>
                             <constraint firstItem="1TZ-hV-rEz" firstAttribute="trailing" secondItem="thN-9u-c4g" secondAttribute="trailing" constant="28" id="OE0-Kq-Woe"/>
                             <constraint firstItem="5wA-qA-x5a" firstAttribute="centerX" secondItem="Aea-Jw-LHj" secondAttribute="centerX" id="P5j-p4-TV7"/>
                             <constraint firstItem="5wA-qA-x5a" firstAttribute="top" secondItem="WMg-Uf-dOP" secondAttribute="bottom" constant="32" id="Qns-dV-11Q"/>
@@ -644,9 +638,9 @@
                             <constraint firstItem="1TZ-hV-rEz" firstAttribute="trailing" secondItem="WMg-Uf-dOP" secondAttribute="trailing" id="e2a-uB-6G1"/>
                             <constraint firstItem="ctn-Co-mVX" firstAttribute="leading" secondItem="1TZ-hV-rEz" secondAttribute="leading" constant="28" id="eiw-s6-bkv"/>
                             <constraint firstItem="thN-9u-c4g" firstAttribute="top" secondItem="1TZ-hV-rEz" secondAttribute="top" constant="17" id="f4x-aM-SD2"/>
-                            <constraint firstItem="NOk-r0-DLc" firstAttribute="top" secondItem="cBh-Ev-0tj" secondAttribute="bottom" constant="9" id="o5f-Di-eUL"/>
+                            <constraint firstItem="NOk-r0-DLc" firstAttribute="top" secondItem="5wA-qA-x5a" secondAttribute="bottom" constant="45" id="gPO-1d-VkF"/>
+                            <constraint firstItem="1TZ-hV-rEz" firstAttribute="trailing" secondItem="bza-cv-9nw" secondAttribute="trailing" constant="28" id="mT1-Uh-6eL"/>
                             <constraint firstItem="WMg-Uf-dOP" firstAttribute="top" secondItem="1TZ-hV-rEz" secondAttribute="top" constant="70" id="p2t-sj-oJq"/>
-                            <constraint firstItem="cBh-Ev-0tj" firstAttribute="top" secondItem="WMg-Uf-dOP" secondAttribute="top" constant="90" id="qdv-De-APS"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="ftg-g0-Bjm" appends="YES" id="wp0-UO-5KL"/>
@@ -664,7 +658,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-749.27536231884062" y="1694.8660714285713"/>
+            <point key="canvasLocation" x="-554" y="1620"/>
         </scene>
         <!--설정-->
         <scene sceneID="p1n-0j-zb7">
@@ -1135,8 +1129,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOL-Mq-RV6">
-                                <rect key="frame" x="351" y="17" width="35" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="356" y="17" width="30" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="저장">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1145,16 +1139,17 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60B-fc-Adk">
-                                <rect key="frame" x="168.5" y="20" width="77.5" height="26"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <rect key="frame" x="177.5" y="20" width="59.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-Rl-zb7">
-                                <rect key="frame" x="28" y="20" width="18" height="25"/>
+                                <rect key="frame" x="28" y="20" width="13" height="22"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chevron.backward" catalog="system">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="bold"/>
                                 </state>
                                 <connections>
                                     <action selector="close:" destination="rLm-i4-Yz0" eventType="touchUpInside" id="hDn-iD-dqw"/>
@@ -1239,7 +1234,6 @@
                             <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3XM-yp-Lz6" secondAttribute="trailing" symbolic="YES" id="O9s-vI-W2I"/>
                             <constraint firstItem="3XM-yp-Lz6" firstAttribute="top" secondItem="fjE-Ab-qeu" secondAttribute="bottom" constant="8" symbolic="YES" id="TAN-uG-VVx"/>
                             <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="h0T-44-mP9" secondAttribute="trailing" constant="28" id="U6f-Dv-SCt"/>
-                            <constraint firstItem="YOL-Mq-RV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="60B-fc-Adk" secondAttribute="trailing" constant="8" symbolic="YES" id="USf-Rk-RK6"/>
                             <constraint firstItem="cLl-Ts-56r" firstAttribute="trailing" secondItem="wvE-mb-usM" secondAttribute="trailing" constant="28" id="YEE-Sb-ETM"/>
                             <constraint firstItem="e9a-RT-nYV" firstAttribute="leading" secondItem="g1d-Dp-uka" secondAttribute="trailing" constant="10" id="a6o-qR-H8D"/>
                             <constraint firstItem="h0T-44-mP9" firstAttribute="leading" secondItem="cLl-Ts-56r" secondAttribute="leading" constant="28" id="bRT-iY-R86"/>

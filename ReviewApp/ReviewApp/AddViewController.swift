@@ -17,6 +17,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var ㄹㄹㄹㄹ: UIButton!
     @IBOutlet var holidayButton: [UIButton]!
     
     
