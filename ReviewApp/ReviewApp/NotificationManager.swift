@@ -14,6 +14,7 @@ struct Notification {
 }
 
 class NotificationManager {
+    
     var notifications = [Notification]()
     
     func requestPermission(){
@@ -42,6 +43,7 @@ class NotificationManager {
     }
     
     func scheduleNotifications(_ hour: Int, _ minute: Int) {
+        
         for notification in notifications {
             let content = UNMutableNotificationContent()
             content.title = "Noitification on a certain date"
@@ -67,6 +69,4 @@ class NotificationManager {
     func cancelNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
-    
-    
 }

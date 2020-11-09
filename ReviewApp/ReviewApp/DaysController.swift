@@ -16,9 +16,7 @@ class DaysController : UITableViewController {
     var storedDays: [Int]?
     var days: [Int] = [0]
     var delegate: Edit_3_Delegate?
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let storedDays = self.storedDays else { return }

@@ -12,6 +12,7 @@ protocol Edit_4_Delegate{
 }
 
 class UserInputController: UIViewController {
+    
     @IBOutlet weak var inputNumberField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
@@ -19,10 +20,11 @@ class UserInputController: UIViewController {
 
     var delegate: Edit_4_Delegate?    
     var interval = [0]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
+    
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion:  nil)
     }

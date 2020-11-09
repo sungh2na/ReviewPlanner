@@ -8,12 +8,14 @@
 import UIKit
 
 class NotificationViewController: UITableViewController {
+    
     @IBOutlet weak var dateTxt: UITextField!
     @IBOutlet weak var notiSwitch: UISwitch!
     
     let datePicker = UIDatePicker()
     var hour: Int = 9
     var minute: Int = 00
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
@@ -29,8 +31,9 @@ class NotificationViewController: UITableViewController {
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([flexSpace, doneButton], animated: true)
         
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+    
         dateTxt.inputAccessoryView = toolbar
         dateTxt.inputView = datePicker
         
@@ -50,17 +53,13 @@ class NotificationViewController: UITableViewController {
         formatter.dateFormat = "mm"
         minute = Int(formatter.string(from: datePicker.date))!
         setNotification()
-
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
         let manager = NotificationManager()
         if sender.isOn {
-            // 알림 on
             setNotification()
-        }
-        else {
-            // 알림 off
+        } else {
             manager.cancelNotification()
         }
     }
