@@ -28,20 +28,20 @@ class NotificationManager {
         notifications.append(Notification(id: UUID().uuidString, title: title))
     }
     
-    func schedule(second: Int) -> Void {
+    func schedule(hour: Int, minute: Int) -> Void {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .notDetermined:
                 self.requestPermission()
             case .authorized, .provisional:
-                self.scheduleNotifications(second)
+                self.scheduleNotifications(hour, minute)
             default:
                 break
             }
         }
     }
     
-    func scheduleNotifications(_ second: Int) {
+    func scheduleNotifications(_ hour: Int, _ minute: Int) {
         for notification in notifications {
             let content = UNMutableNotificationContent()
             content.title = "Noitification on a certain date"
@@ -51,9 +51,9 @@ class NotificationManager {
 //            content.summaryArgumentCount = 40
            
             var dateComponents = DateComponents()
-//            dateComponents.hour = hour
-//            dateComponents.minute = minute
-            dateComponents.second = second
+            dateComponents.hour = hour
+            dateComponents.minute = minute
+//            dateComponents.second = second
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id , content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request) { (error) in
@@ -67,4 +67,6 @@ class NotificationManager {
     func cancelNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
+    
+    
 }

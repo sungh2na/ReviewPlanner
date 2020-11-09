@@ -15,7 +15,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var toggle: UIButton!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
@@ -30,7 +29,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
-        // 데이터 불러오기
         reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.todayTodo(selectedDate)
         dateLabel.text = dateFormatter.string(from: selectedDate)
@@ -38,18 +36,17 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.calendar.scope = .month
-        setNotification()
         
+        setNotification()
     }
     
     func setNotification() {
         let manager = NotificationManager()
         manager.requestPermission()
         manager.addNotification(title: "This is a test reminder")
-        manager.schedule(second: 00)
+        manager.schedule(hour: 9, minute: 00)
     }
 
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -77,7 +74,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
             case .week:
                 return velocity.y > 0
             default:
-                return velocity.y < 0       // 수정
+                return velocity.y < 0
             }
         }
         return shouldBegin
@@ -86,10 +83,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         self.calendarHeightConstraint.constant = bounds.height
         self.view.layoutIfNeeded()
-    }
-    
-    @IBAction func toggleClicked(_ sender: Any) {
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,14 +99,13 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
                     todayTodo = reviewPlannerViewModel.todayTodos[index]
                     secondView.todo = todayTodo
                 }
-                
             }
         }
     }
     
     func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         var index = 0
-        //let interval = [0, 1, 5, 10, 30]        // interval 입력받기, 위치 수정해줘야 함(id같게)
+        //let interval = [0, 1, 5, 10, 30]
         TodoManager.shared.nextReviewId()
         interval.forEach {
             let dDay = selectedDate.addingTimeInterval(Double($0 * 86400))
@@ -127,24 +119,8 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     }
 }
 
-extension ReviewPlannerViewController: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
-    }
-}
-
 extension ReviewPlannerViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showModify", sender: indexPath.row)
     }
@@ -204,37 +180,10 @@ extension ReviewPlannerViewController: UITableViewDelegate {
         action.backgroundColor = .systemPink
         return action
     }
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        var todayTodo: Todo
-//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
-//        if editingStyle == .delete {
-//            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//            let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
-//                (action) in self.reviewPlannerViewModel.deleteTodo(todayTodo)
-//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//                tableView.reloadData()
-//                self.calendar.reloadData()
-//            }
-//            let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
-//                (action) in self.reviewPlannerViewModel.deleteAllTodo(todayTodo)
-//                self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-//                tableView.reloadData()
-//                self.calendar.reloadData()
-//            }
-//            let cancel =  UIAlertAction(title: "취소", style: .cancel)
-//
-//            alert.addAction(delete)
-//            alert.addAction(deleteAll)
-//            alert.addAction(cancel)
-//            self.present(alert, animated: true, completion: nil)
-////            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .none {
-//            print("")
-//        }
-//    }
 }
 
 extension ReviewPlannerViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviewPlannerViewModel.todayTodos.count
     }
@@ -244,7 +193,7 @@ extension ReviewPlannerViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         var todayTodo: Todo
-        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.item]
+        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
 
         cell.doneButtonTapHandler = { isDone in
             todayTodo.isDone = isDone
@@ -259,16 +208,17 @@ extension ReviewPlannerViewController: UITableViewDataSource {
 }
 
 extension ReviewPlannerViewController: FSCalendarDelegate {
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
         dateLabel.text = dateFormatter.string(from: selectedDate)
-        // 해당 날짜로 필터링
         reviewPlannerViewModel.todayTodo(date)
         tableView.reloadData()
     }
 }
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
+    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
         let dates = reviewPlannerViewModel.getAllDate()
         for getDate in dates {
@@ -290,6 +240,7 @@ class ReviewPlannerCell: UITableViewCell {
     @IBOutlet weak var strikeThroughView: UIView!
     @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
     @IBOutlet weak var memoButton: UIButton!
+    
     var doneButtonTapHandler: ((Bool) -> Void)?
     
     override func awakeFromNib() {
@@ -303,19 +254,18 @@ class ReviewPlannerCell: UITableViewCell {
     }
     
     func updateUI(todo: Todo) {
-        // 셀 업데이트 하기
         checkButton.isSelected = todo.isDone
         progressLabel.text = "\(todo.reviewNum)/\(todo.reviewTotal)"
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1
-        showStrikeThrough(todo.isDone)      // 수정하기
+        showStrikeThrough(todo.isDone)
     }
     
     private func showStrikeThrough(_ show: Bool) {
         if show {
-            strikeThroughWidth.constant = descriptionLabel.bounds.width     // 줄 보여줘야 할 때
+            strikeThroughWidth.constant = descriptionLabel.bounds.width
         } else {
-            strikeThroughWidth.constant = 0                                 // 줄 감출 때
+            strikeThroughWidth.constant = 0
         }
     }
     
@@ -324,12 +274,10 @@ class ReviewPlannerCell: UITableViewCell {
     }
     
     @IBAction func checkButtonTapped(_ sender: Any) {
-        // checkButton 처리
         checkButton.isSelected = !checkButton.isSelected
         let isDone = checkButton.isSelected
-        showStrikeThrough(isDone)                       // 수정하기
+        showStrikeThrough(isDone)
         descriptionLabel.alpha = isDone ? 0.2 : 1
-        // 데이터 업데이트
         doneButtonTapHandler?(isDone)
     }
 }

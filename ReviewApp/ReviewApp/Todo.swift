@@ -81,7 +81,7 @@ class TodoManager {
         saveTodo()
     }
     
-    func updateAllTodo(_ todo: Todo) {      // 고치고 싶다 ㅠㅠ, 같은 계획 모두 수정
+    func updateAllTodo(_ todo: Todo) {      // 코드 수정하기
         for index in 0 ..< todos.count {
             if todos[index].reviewId == todo.reviewId {
                 todos[index].update(isDone: todos[index].isDone, detail: todo.detail, date: todos[index].date, reviewNum: todos[index].reviewNum, reviewTotal: todos[index].reviewTotal)
@@ -89,7 +89,7 @@ class TodoManager {
         }
         saveTodo()
     }
-    func setProgress(_ todo: Todo) {        // 흐으으음... ㅠㅠ
+    func setProgress(_ todo: Todo) {        // 코드 수정하기
         for index in 0 ..< todos.count {
             if todos[index].reviewId == todo.reviewId {
                 if todos[index].reviewNum < todo.reviewNum {
