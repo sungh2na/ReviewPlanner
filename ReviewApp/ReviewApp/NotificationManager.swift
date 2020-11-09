@@ -14,7 +14,7 @@ struct Notification {
 }
 
 class NotificationManager {
-    
+    static let shared = NotificationManager()
     var notifications = [Notification]()
     
     func requestPermission(){

@@ -19,6 +19,7 @@ class NotificationViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+        notiSwitch.isOn = false
         dateTxt.textAlignment = .right
         dateTxt.text = "오전 9:00"
         // Do any additional setup after loading the view.
@@ -49,26 +50,19 @@ class NotificationViewController: UITableViewController {
         dateTxt.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
         formatter.dateFormat = "hh"
-        hour = Int(formatter.string(from: datePicker.date))!
+        hour = Int(formatter.string(from: datePicker.date))!        // 수정
         formatter.dateFormat = "mm"
-        minute = Int(formatter.string(from: datePicker.date))!
-        setNotification()
+        minute = Int(formatter.string(from: datePicker.date))!      // 수정
+        switchDidChange(notiSwitch)
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
-        let manager = NotificationManager()
+        let notificationManager = NotificationManager.shared
         if sender.isOn {
-            setNotification()
+            notificationManager.schedule(hour: hour, minute: minute)
         } else {
-            manager.cancelNotification()
+            notificationManager.cancelNotification()
         }
-    }
-    
-    func setNotification() {
-        let manager = NotificationManager()
-        manager.requestPermission()
-        manager.addNotification(title: "This is a test reminder")
-        manager.schedule(hour: hour, minute: minute)
     }
 }
 

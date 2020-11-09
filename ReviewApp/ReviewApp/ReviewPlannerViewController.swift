@@ -41,10 +41,10 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     }
     
     func setNotification() {
-        let manager = NotificationManager()
-        manager.requestPermission()
-        manager.addNotification(title: "This is a test reminder")
-        manager.schedule(hour: 9, minute: 00)
+        let notificationManager = NotificationManager.shared
+        notificationManager.requestPermission()
+        notificationManager.addNotification(title: "This is a test reminder")
+//        notificationManager.schedule(hour: 9, minute: 00)
     }
 
     override func viewDidAppear(_ animated: Bool) {
