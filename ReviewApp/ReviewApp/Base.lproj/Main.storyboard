@@ -596,9 +596,6 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="bza-cv-9nw">
                                 <rect key="frame" x="28" y="189" width="358" height="216"/>
                                 <locale key="locale" localeIdentifier="ko_KR"/>
-                                <connections>
-                                    <action selector="date:" destination="Ofl-EL-hcA" eventType="valueChanged" id="ML8-xn-rrS"/>
-                                </connections>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1TZ-hV-rEz"/>

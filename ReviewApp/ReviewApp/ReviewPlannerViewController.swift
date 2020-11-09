@@ -126,8 +126,8 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     }
     
     func modifytodo(_ todo: Todo) {
-        let todayTodo = todo
-        self.reviewPlannerViewModel.updateAllTodo(todayTodo)
+        self.reviewPlannerViewModel.updateTodo(todo)
+        self.reviewPlannerViewModel.updateAllTodo(todo)
         self.reviewPlannerViewModel.todayTodo(selectedDate)
         tableView.reloadData()
         self.calendar.reloadData()

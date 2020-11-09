@@ -15,6 +15,7 @@ class ModifyViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var inputTextField: UITextField!
+    
     var delegate: Edit_2_Delegate?
     var todo: Todo?
     let dateFormatter: DateFormatter = {
@@ -36,9 +37,6 @@ class ModifyViewController: UIViewController {
         }
     }
     
-    @IBAction func date(_ sender: Any) {
-    }
-    
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion:  nil)
     }
@@ -48,9 +46,8 @@ class ModifyViewController: UIViewController {
         if delegate != nil {
             if let todo = self.todo {
                 todayTodo = todo
-                todayTodo.detail = inputTextField.text!
+                todayTodo.detail = inputTextField.text! // 수정
                 todayTodo.date = datePicker.date
-                
                 delegate?.modifytodo(todayTodo)
             }
         }
