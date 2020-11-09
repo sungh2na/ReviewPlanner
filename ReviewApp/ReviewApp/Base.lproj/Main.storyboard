@@ -514,7 +514,6 @@
                         <outlet property="inputTextField" destination="1cU-M8-2Ci" id="gaZ-H1-zcf"/>
                         <outlet property="intervalLabel" destination="ooo-vK-dLv" id="Qq1-cb-X14"/>
                         <outlet property="tableView" destination="4Ja-Vq-UcL" id="V8p-Fk-7sb"/>
-                        <outlet property="ㄹㄹㄹㄹ" destination="max-D4-XSJ" id="7Yb-G5-gSA"/>
                         <outletCollection property="holidayButton" destination="ALt-YL-j7Y" collectionClass="NSMutableArray" id="HpJ-4L-4df"/>
                         <outletCollection property="holidayButton" destination="qiY-jC-YOI" collectionClass="NSMutableArray" id="htb-vI-EiX"/>
                         <outletCollection property="holidayButton" destination="fno-If-yZM" collectionClass="NSMutableArray" id="lxU-Tb-qE1"/>

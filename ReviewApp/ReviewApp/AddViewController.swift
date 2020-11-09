@@ -16,10 +16,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-
-    @IBOutlet weak var ㄹㄹㄹㄹ: UIButton!
     @IBOutlet var holidayButton: [UIButton]!
-    
     
     var today: Date?
     var delegate: Edit_1_Delegate?
@@ -45,6 +42,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             }
         }
     }
+    
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -57,7 +55,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     }
 
     @IBAction func setInterval(_ sender: Any) {
-        interval = [0, 1, 5, 10, 30]
+//        interval = [0, 1, 5, 10, 30]
         let alert = UIAlertController(title:"복습 간격 선택", message: "원하는 복습 간격이 없을 경우 직접 입력", preferredStyle: .actionSheet)
         let interval_1 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일", style: .default) {
             (action) in self.interval = [0, 1, 3, 7, 15]
@@ -97,15 +95,17 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         self.tableView.reloadData()
     }
     
-    func createSchedule() {
-        schedules.removeAll()
+    func createSchedule() {     // 코드 수정
         var intervalString = ""
         var dateString = ""
         var progressString = ""
         let week = ["일", "월", "화", "수", "목", "금", "토"]
         var index = 0
         var delay = 0
+        
+        schedules.removeAll()
         newInterval = interval
+        
         for index in 0 ..< newInterval.count {
             var count = 0
             newInterval[index] += delay
@@ -124,6 +124,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         }
         
         dateFormatter.dateFormat = "yyyy. MM. dd. E"
+        
         newInterval.forEach {
             if $0 == 0 {
                 intervalString = "오늘"
@@ -140,7 +141,6 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             schedules.append(schedule)
         }
     }
-    
 
     @IBAction func holidayButtonTapped(_ sender: UIButton) {
         if sender.isSelected {
@@ -149,15 +149,15 @@ class AddViewController: UIViewController, Edit_4_Delegate {
         } else {
             if holidays.count < 6 {
                 sender.isSelected = true
-                holidays.insert(sender.titleLabel!.text!)
-            } else { // 다 휴일
+                holidays.insert(sender.titleLabel!.text!)   // 수정
+            } else { // 모두 휴일로 지정
                 let alert = UIAlertController(title: " ", message: "휴일을 지정할 수 없습니다.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                 alert.addAction(action)
                 present(alert, animated: true, completion: nil)
             }
-            
         }
+        
         self.createSchedule()
         self.tableView.reloadData()
     }
@@ -165,12 +165,11 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBAction func tapBG(_ sender: Any) {
         inputTextField.resignFirstResponder()
     }
-    
 }
 
 extension AddViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return reviewPlannerViewModel.todayTodos.count
         return interval.count
     }
     
