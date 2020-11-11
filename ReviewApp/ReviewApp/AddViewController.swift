@@ -123,7 +123,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             delay += count
         }
         
-        dateFormatter.dateFormat = "yyyy. MM. dd. E"
+//        dateFormatter.dateFormat = "yyyy. MM. dd. E"
         
         newInterval.forEach {
             if $0 == 0 {
@@ -133,7 +133,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             }
             
             if let dDay = today?.addingTimeInterval(Double($0 * 86400)){
-                dateString = dateFormatter.string(from: dDay)
+                dateString = dDay.toString(format: "yyyy. MM. dd. E")
             }
             progressString = "\(index + 1)/\(interval.count)"
             index += 1
@@ -203,3 +203,12 @@ class ScheduleCell: UITableViewCell {
     }
 }
 
+extension Date {
+    
+    func toString(format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.string(from: self)
+    }
+}

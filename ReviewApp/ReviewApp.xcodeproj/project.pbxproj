@@ -13,6 +13,7 @@
 		186A75B3251A307D009CE14B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B1251A307D009CE14B /* Main.storyboard */; };
 		186A75B5251A3080009CE14B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B4251A3080009CE14B /* Assets.xcassets */; };
 		186A75B8251A3080009CE14B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B6251A3080009CE14B /* LaunchScreen.storyboard */; };
+		189ED26B255A6B9A00C0A20C /* ReviewPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */; };
 		18A7FD452554361C0064E8FB /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD442554361C0064E8FB /* NotificationViewController.swift */; };
 		18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD472557200A0064E8FB /* NotificationManager.swift */; };
 		18AF72002548257E0037D88E /* UserInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputController.swift */; };
@@ -34,6 +35,7 @@
 		186A75B4251A3080009CE14B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		186A75B7251A3080009CE14B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186A75B9251A3080009CE14B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewPlanner.storyboard; sourceTree = "<group>"; };
 		18A7FD442554361C0064E8FB /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		18A7FD472557200A0064E8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		18AF71FF2548257E0037D88E /* UserInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				186A75AD251A307D009CE14B /* SceneDelegate.swift */,
 				186A75AF251A307D009CE14B /* ReviewPlannerViewController.swift */,
 				186A75B1251A307D009CE14B /* Main.storyboard */,
+				189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */,
 				186A75B4251A3080009CE14B /* Assets.xcassets */,
 				186A75B9251A3080009CE14B /* Info.plist */,
 				186A75B6251A3080009CE14B /* LaunchScreen.storyboard */,
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				186A75B8251A3080009CE14B /* LaunchScreen.storyboard in Resources */,
+				189ED26B255A6B9A00C0A20C /* ReviewPlanner.storyboard in Resources */,
 				186A75B5251A3080009CE14B /* Assets.xcassets in Resources */,
 				186A75B3251A307D009CE14B /* Main.storyboard in Resources */,
 			);
@@ -394,7 +398,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9C2LX4Q2R4;
 				INFOPLIST_FILE = ReviewApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -415,7 +419,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9C2LX4Q2R4;
 				INFOPLIST_FILE = ReviewApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

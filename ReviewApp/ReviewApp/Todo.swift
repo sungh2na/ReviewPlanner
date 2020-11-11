@@ -102,11 +102,11 @@ class TodoManager {
     }
     
     func saveTodo() {
-        Storage.store(todos, to: .documents, as: "todos.jason")
+        Storage.store(todos, to: .documents, as: "todos.json")
     }
     
     func retrieveTodo() {
-        todos = Storage.retrive("todos.jason", from: .documents, as: [Todo].self) ?? []
+        todos = Storage.retrive("todos.json", from: .documents, as: [Todo].self) ?? []
         let lastId = todos.last?.id ?? 0
         let reviewId = todos.last?.reviewId ?? 0
         TodoManager.lastId = lastId
@@ -114,7 +114,7 @@ class TodoManager {
     }
     
     func todayTodo(_ date: Date) {
-        todayTodos = todos.filter { $0.date == date }
+        todayTodos = todos.filter { $0.date.toString(format: "yyyy MM dd") == date.toString(format: "yyyy MM dd") }
     }
     
     func getAllDate() -> [Date] {

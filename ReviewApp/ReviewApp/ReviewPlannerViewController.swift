@@ -35,6 +35,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
+        self.tableView.tableFooterView = UIView()
         self.calendar.scope = .month
         
         setNotification()
@@ -123,6 +124,10 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showModify", sender: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
     func modifytodo(_ todo: Todo) {
@@ -238,7 +243,6 @@ class ReviewPlannerCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var strikeThroughView: UIView!
-    @IBOutlet weak var strikeThroughWidth: NSLayoutConstraint!
     @IBOutlet weak var memoButton: UIButton!
     
     var doneButtonTapHandler: ((Bool) -> Void)?
@@ -262,11 +266,7 @@ class ReviewPlannerCell: UITableViewCell {
     }
     
     private func showStrikeThrough(_ show: Bool) {
-        if show {
-            strikeThroughWidth.constant = descriptionLabel.bounds.width
-        } else {
-            strikeThroughWidth.constant = 0
-        }
+        strikeThroughView.isHidden = !show
     }
     
     func reset() {
