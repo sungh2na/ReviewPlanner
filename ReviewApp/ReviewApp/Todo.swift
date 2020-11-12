@@ -89,6 +89,7 @@ class TodoManager {
         }
         saveTodo()
     }
+    
     func setProgress(_ todo: Todo) {        // 코드 수정하기
         for index in 0 ..< todos.count {
             if todos[index].reviewId == todo.reviewId {

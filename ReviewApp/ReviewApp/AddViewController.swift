@@ -33,7 +33,9 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         createSchedule()
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showUserInput" {
