@@ -97,8 +97,75 @@ center.add(request) { (error) in
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let container = appDelegate.persistentContainer
             ```
+    - 데이터 모델링
+        - 데이터 모델 작성
+            - 데이터 모델 편집기
+            - 데이터베이스로 저장할 데이터 모델링
+            - SQLite의 테이블 설계 과정
+            - 데이터 모델 편집기 하단 메뉴 사용
+        - 엔티티
+            - 하단 메뉴로 엔티티 추가
+            - 데이터의 기본 단위
+            - 이름규칙: 대문자로 시작
+            - RDB의 테이블
+        - 어트리뷰트
+            - 엔티티 내 + 버튼으로 추가
+            - 엔티티의 각 항목
+            - 데이터 타입 설정
+            - RDB의 테이블 내 컬럼
+        - 엔티티 속성
+            - 엔티티에서 클래스 생성
+            - 엔티티 이름
+            - 추상 엔티티 설정
+            - 부모 엔티티: 엔티티 상속
+            - 클래스(관리 객체) 생성 속성
+            - 인덱스
+            - 제약사항
+        - 어트리뷰트의 속성
+            - 어트리뷰트는 클래스의 프로퍼티로 생성
+            - transient: 실제 저장소에 저장 안함
+            - optional: 선택 사항
+            - indexed: 데이터베이스 인덱스
+            - 어트리뷰틑 타입과 최소/최대, 기본값
+- 3. 데이터 다루기
+    - 기본 CRUD
+        - 관리 객체 클래스 생성
+            - 모델에 작성한 엔티티 -> 관리 객체 클래스
+            - 엔티티 내 어트리뷰트 -> 클래스의 프로퍼티
+        - 모델에서 데이터 다루기
+            - 새로운 데이터 추가(Insert) -> 관리 객체 생성
+            - 데이터 쿼리(Select) -> 관리 객체 얻어오기
+            - 데이터 변경(Update) -> 관리 객체의 값 변경
+            - 데이터 삭제(Delete) -> 관리 객체 삭제
+        - 관리 객체 클래스
+            - 엔티티에서 클래스 자동 생성
+            - 프로젝트에 파일 추가 안됨
+            - 클래스 파일은 빌드 과정에서 생성
+            - NSManagedObject 자식 클래스
+            - 식별 정보: objectID
+            - 상태: isInserted, isUpdated, isDeleted
+            - 라이프사이클: awakeFromFetch, changedValues, didSave
+            - 생성된 관리 객체 클래스
+            - Todo+CoreDataClass.swift
+            ```Swift
+            public class Todo: NSManagedObject {
+            }
+            ```
+            - Todo+CoreDataProperties.swift
+            ```Swift
+            extension Todo {
+                @nonobjc public class func fetchRequest() -> NSFetchRequest<Todo> {
+                    return NSFetchRequest<Todo>(entityName: "Todo");
+                }
+                @NSManaged public var dueDate: NSDate?
+                @NSManaged public var title: String?
+            }
+        - 관리 객체 클래스 파일 수동 생성
+        - Entity의 속성에서 Codegen/Module 설정
+        - Editor에서 Create NSManagedObject Subclass 선택
+        
 
-#
+
 // DB 
 // weak, unowned
 // lazy
