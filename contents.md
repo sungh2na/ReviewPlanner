@@ -163,9 +163,69 @@ center.add(request) { (error) in
         - 관리 객체 클래스 파일 수동 생성
         - Entity의 속성에서 Codegen/Module 설정
         - Editor에서 Create NSManagedObject Subclass 선택
-        
+    - 새로운 객체 생성
+        - Entity에서 생성한 클래스(NSManagedObject 자식 클래스) 생성
+        ```Swift
+        init(context moc: NSManagedObjectContext)
+        ```
+        - 관리 객체 콘텍스트 얻기
+        - persistentContainer의 viewContext
+        ```Swift
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        ```
+        - 예제 코드
+        ```Swift
+        let todo = Todo(context: context)
+        todo.title = "앱 만들기"
+        todo.dueDate = Date() as NSDate
+        ```
+    - 데이터베이스에 반영
+        - 관리 객체 생성과 속성 설정
+        - 실제 데이터베이스에 반영되지 않은 상태
+        - 관리 객체 콘텍스트(NSManagedObjectContext) 사용
+        - 관리 객체 콘텍스트 얻기: persistentContainer의 viewContext
+        ```Swift
+        let container = appDelegate.persistentContainer
+        let context: NSManagedObjectContext = container.viewContext 
+    - 관리 객체 콘텍스트
+        - 관리 객체의 라이프사이클 관리
+        - 관리 객체 추가/변경/삭제/얻기 요청(FetchRequest) 실행
+        - 언두(Undo)와 다시 실행(Redo)
+        - 관리 객체 변경 알림(Notification)
+        - 관리 객체의 변경 사항을 데이터베이스에 반영 메소드
+        ```Swift
+        func save() throws
+        ```
+    - 할 일 추가 작성
+        ```Swift
+        var context: NSManagedObjectContext!    // 관리 객체 콘텍스트
 
+        override func viewDidLoad() {
+            super.viewDidLoad()
 
+            /* 관리객체 컨텍스트 준비 */
+            let appDelegate = UIApplication.shared.delegate as!AppDelegate
+            let container = appDelegate.persistentContainer
+            context = container.viewContext
+        }
+        /* todo 객체 만들고 데이터 저장 */
+        func addTodo(title: String, dueDate: Date) {
+            let newTodo = Todo(context: context)
+            newTodo.title = title
+            newTodo.dueDate = dueDate as NSDate?
+
+            do {
+                try context.save()
+            }
+            catch let error {
+                print("Error! \(error.localizedDescription)")
+            }
+        }
+        ```
+    - 저장된 데이터 확인하기
+        - 코어 데이터의 기본 설정: SQLite 사용
+        - 데이터베이스 저장 폴더 
 // DB 
 // weak, unowned
 // lazy
