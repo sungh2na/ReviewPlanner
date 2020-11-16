@@ -225,7 +225,105 @@ center.add(request) { (error) in
         ```
     - 저장된 데이터 확인하기
         - 코어 데이터의 기본 설정: SQLite 사용
-        - 데이터베이스 저장 폴더 
+        - 데이터베이스 저장 폴더: HOME/Library/Application Support
+        - splite3 콘솔 클라이언트로 확인
+         $ splite3 CoreDataTodo.splite
+        - 데이터 목록보기, 테이블 구조 보기
+         sqlite> .tables
+         sqlite> .shema [TABLE]
+        - 테이블 내 데이터 보기
+         sqlite> select * from ztodo;
+
+    - 데이터 얻기
+        - 데이터를 얻기 위한 요청: NSFetchRequest
+        - NSFetchRequest 얻기
+        ```Swift
+        let request1: NSFetchRequest<Todo> = Todo.fetchRequest()
+        let request2: NSFetchRequest<Todo>(entityName: "Todo")
+        ```
+        - 요청 실행: NSManagedObjectContext
+        ```Swift
+        func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T]
+        func count<T: NSFetchRequestResult>(for request: NSFetchRequest<T>) throws -> Int
+        ```
+        - 할 일 얻기 예제
+        ```Swift
+        let request = NSFetchRequest<Todo>(entityName: "Todo")
+        let todos: [Todo] = try? context.fetch(request)
+        ```
+    - NSFetchRequest
+        - 검색 조건: predicate
+        - 정렬 방식: sortDescriptors
+        - 요청 갯수 설정: fetchLimit
+        - 요청 시작 지점: fetchOffset
+        - 요청 결과 타입: resultType
+        - 연관된 객체 포함 여부: includesSubentities
+        - 데이터베이스에 반영되지 않은 변경 포함 여부
+         includesPendingChanges
+    - 조건에 맞는 데이터 얻기
+        - 조건 객체 생성: NSPredicate
+        ```Swift
+            init(format predicateFormat: String, _ args: CVarArgType...)
+        ```
+        - SAL에서 where에 해당
+        - Predicate Programming Guide 참조
+        - 예제: 일주일 내로 끝내야 하는 일
+        ```Swift
+        let predicate = NSPredicate(format: "dueDate <= %@", date)
+        ```
+        - 예제: 제목 비교
+        ```Swift
+        NSPredicate(format: "title == %@", "청소")
+        NSPredicate(format: "title contains %@ And dueDate <= %@", "굉장한", week)
+        ```
+        - 요청 객체에 검색 조건 설정: NSFetchRequest
+        ```Swift
+        var predicate: NSPredicate?
+        ```
+        - 예제: 일주일 내로 끝내야 하는 일
+        ```Swift
+        let week = Date(timeIntervalSinceNow: (60 * 60 * 24 * 7)) as NSDate
+        let predicate = NSPredicate(format: "dueDate <= %@", week)
+        request.predicate = predicate
+        let todos: [Todo] = try! context.fecth(request)
+    - 데이터 정렬 방식
+        - 정렬 방식: NSSortDescriptor
+        ```Swift
+        init(key: String?. ascending: Bool)
+        ```
+        - 요청 객체에 정렬 객체 설정: NSFetchRequest
+        ```Swift
+        var sortDescriptors: [NSSortDescriptor]?
+        ```
+        - 마감일로 정렬하기 예제 코드
+        ```Swift
+        let sort = NSSortDescriptor(key: "dueDate", ascending: true)
+        request.sortDescriptors = [sort]
+        ```
+    - 데이터 수정
+        - 관리 객체의 데이터 변경 후 저장
+        - 할 일 수정하기 예제
+        ``` Swift
+        let todo = todos[0]
+        todo.title = "새로운 할 일"
+        try! context.save()
+        ```
+    - 데이터 삭제
+        - 관리 객체 삭제 후 저장
+        - NSManagedObjectContext의 삭제 API
+        ```Swift
+        func delete(_ object: NSManagedObject)
+        ```
+        - 할 일 삭제 예제
+        ```Swift
+        let todo = self.todoAt[0]
+        context.deleteObject(todo)
+        try! context.save()
+        
+
+
+
+        
 // DB 
 // weak, unowned
 // lazy
