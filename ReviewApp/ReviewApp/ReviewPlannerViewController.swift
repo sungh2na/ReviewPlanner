@@ -8,7 +8,6 @@ import FSCalendar
 import UIKit
 import UserNotifications
 
-
 class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var calendar: FSCalendar!

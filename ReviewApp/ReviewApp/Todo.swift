@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct Todo: Codable, Equatable {
     let id: Int
@@ -41,6 +42,24 @@ class TodoManager {
         let nextReviewId = TodoManager.reviewId
         TodoManager.lastId = nextId
         return Todo(id: nextId, isDone: false, detail: detail, date: date, reviewId: nextReviewId, reviewNum: reviewNum, reviewTotal: reviewTotal)
+    }
+    
+    // coredata 이용
+    func createNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let newTodo = NewTodo(context: context)
+        let nextId = TodoManager.lastId + 1
+        let nextReviewId = TodoManager.reviewId
+        TodoManager.lastId = nextId
+        newTodo.id = Int16(nextId)
+        newTodo.isDone = false
+        newTodo.detail = detail
+        newTodo.date = date
+        newTodo.reviewId = Int16(nextReviewId)
+        newTodo.reviewTotal = Int16(reviewTotal)
+        
+        try! context.save()
     }
     
     func nextReviewId() {
@@ -122,6 +141,7 @@ class TodoManager {
         let dates = todos.map{ $0.date }
         return dates
     }
+    
 }
 
 class ReviewPlannerViewModel {
