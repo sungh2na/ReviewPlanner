@@ -14,6 +14,7 @@
 		186A75B5251A3080009CE14B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B4251A3080009CE14B /* Assets.xcassets */; };
 		186A75B8251A3080009CE14B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B6251A3080009CE14B /* LaunchScreen.storyboard */; };
 		189ED26B255A6B9A00C0A20C /* ReviewPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */; };
+		18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A269A125641593009539AA /* ReviewApp.xcdatamodeld */; };
 		18A7FD452554361C0064E8FB /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD442554361C0064E8FB /* NotificationViewController.swift */; };
 		18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD472557200A0064E8FB /* NotificationManager.swift */; };
 		18AF72002548257E0037D88E /* UserInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputController.swift */; };
@@ -36,6 +37,7 @@
 		186A75B7251A3080009CE14B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186A75B9251A3080009CE14B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewPlanner.storyboard; sourceTree = "<group>"; };
+		18A269A225641593009539AA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		18A7FD442554361C0064E8FB /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		18A7FD472557200A0064E8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		18AF71FF2548257E0037D88E /* UserInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				186A75AB251A307D009CE14B /* AppDelegate.swift */,
 				186A75AD251A307D009CE14B /* SceneDelegate.swift */,
 				186A75AF251A307D009CE14B /* ReviewPlannerViewController.swift */,
+				18A269A125641593009539AA /* ReviewApp.xcdatamodeld */,
 				186A75B1251A307D009CE14B /* Main.storyboard */,
 				189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */,
 				186A75B4251A3080009CE14B /* Assets.xcassets */,
@@ -247,6 +250,7 @@
 				186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */,
 				18AF72002548257E0037D88E /* UserInputController.swift in Sources */,
 				18B22562251B805B001DFAC5 /* Todo.swift in Sources */,
+				18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */,
 				18B22565251DDF64001DFAC5 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +457,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18A269A125641593009539AA /* ReviewApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18A269A225641593009539AA /* Model.xcdatamodel */,
+			);
+			currentVersion = 18A269A225641593009539AA /* Model.xcdatamodel */;
+			path = ReviewApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 186A75A0251A307D009CE14B /* Project object */;
 }
