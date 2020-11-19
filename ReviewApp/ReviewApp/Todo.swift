@@ -81,6 +81,7 @@ class TodoManager {
         newTodo.detail = todo.detail
         newTodo.date = todo.date
         newTodo.reviewId = Int16(todo.reviewId)
+        newTodo.reviewNum = Int16(todo.reviewNum)
         newTodo.reviewTotal = Int16(todo.reviewTotal)
         saveNewTodo()
     }
@@ -93,6 +94,12 @@ class TodoManager {
         saveTodo()
     }
     
+    func deleteNewTodo(_ todo: NewTodo) {
+        let object = context.object(with: todo.objectID)
+        context.delete(object)
+        saveNewTodo()
+    }
+    
     func deleteAllTodo(_ todo: Todo) {
         todos = todos.filter { existingTodo in
             return existingTodo.reviewId != todo.reviewId
@@ -100,11 +107,32 @@ class TodoManager {
         saveTodo()
     }
     
+    func deleteAllNewTodo(_ todo: NewTodo) {
+        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
+        let reviewId = todo.reviewId
+        let predicate = NSPredicate(format: "reviewId == %@", reviewId)
+        request.predicate = predicate
+        // 질문하기
+        let deletedTodo = try! context.fetch(request)
+        deletedTodo.forEach {
+            let object = context.object(with: $0.objectID)
+            context.delete(object)
+        }
+        saveNewTodo()
+    }
+    
     func delayTodo(_ todo: Todo) {
         guard let index = todos.firstIndex(of: todo) else { return }
         let today = todo.date
         let tomorrow = today.addingTimeInterval(Double(86400))
         todos[index].update(isDone: todo.isDone, detail: todo.detail, date: tomorrow, reviewNum: todo.reviewNum, reviewTotal: todo.reviewTotal)
+        saveTodo()
+    }
+    
+    func delayNewTodo(_ todo: NewTodo) {
+        let today = todo.date
+        let tomorrow = today?.addingTimeInterval(Double(86400))
+        todo.date = tomorrow
         saveTodo()
     }
     
@@ -205,12 +233,24 @@ class ReviewPlannerViewModel {
         manager.deleteTodo(todo)
     }
     
+    func deleteNewTodo(_ todo: NewTodo) {
+        manager.deleteNewTodo(todo)
+    }
+    
     func deleteAllTodo(_ todo: Todo) {
         manager.deleteAllTodo(todo)
     }
     
+    func deleteAllNewTodo(_ todo: NewTodo) {
+        manager.deleteAllNewTodo(todo)
+    }
+    
     func delayTodo(_ todo: Todo) {
         manager.delayTodo(todo)
+    }
+    
+    func delayNewTodo(_ todo: NewTodo) {
+        manager.delayNewTodo(todo)
     }
     
     func updateTodo(_ todo: Todo) {
