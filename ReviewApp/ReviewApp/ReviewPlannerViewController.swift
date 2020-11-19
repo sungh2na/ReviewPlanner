@@ -31,6 +31,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.loadNewTasks()
         reviewPlannerViewModel.todayTodo(selectedDate)
+        reviewPlannerViewModel.todayNewTodo(selectedDate)
         dateLabel.text = dateFormatter.string(from: selectedDate)
         
         self.view.addGestureRecognizer(self.scopeGesture)
@@ -191,22 +192,25 @@ extension ReviewPlannerViewController: UITableViewDelegate {
 extension ReviewPlannerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reviewPlannerViewModel.todayTodos.count
+//        return reviewPlannerViewModel.todayTodos.count
+        return reviewPlannerViewModel.todayNewTodos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
             return UITableViewCell()
         }
-        var todayTodo: Todo
-        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
+//        var todayTodo: Todo
+//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
+        var todayTodo: NewTodo
+        todayTodo = reviewPlannerViewModel.todayNewTodos[indexPath.row]
 
-        cell.doneButtonTapHandler = { isDone in
-            todayTodo.isDone = isDone
-            self.reviewPlannerViewModel.updateTodo(todayTodo)
-            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
-            tableView.reloadData()
-        }
+//        cell.doneButtonTapHandler = { isDone in
+//            todayTodo.isDone = isDone
+//            self.reviewPlannerViewModel.updateTodo(todayTodo)
+//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
+//            tableView.reloadData()
+//        }
         
         cell.updateUI(todo: todayTodo)
         return cell
@@ -258,7 +262,7 @@ class ReviewPlannerCell: UITableViewCell {
         reset()
     }
     
-    func updateUI(todo: Todo) {
+    func updateUI(todo: NewTodo) {
         checkButton.isSelected = todo.isDone
         progressLabel.text = "\(todo.reviewNum)/\(todo.reviewTotal)"
         descriptionLabel.text = todo.detail

@@ -36,6 +36,7 @@ class TodoManager {
     static var reviewId: Int = 0
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
+    var todayNewTodos: [NewTodo] = []
     var newTodos: [NewTodo] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
@@ -159,6 +160,17 @@ class TodoManager {
         todayTodos = todos.filter { $0.date.toString(format: "yyyy MM dd") == date.toString(format: "yyyy MM dd") }
     }
     
+    func todayNewTodo(_ date: Date) {
+        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
+        let newDate = date as NSDate
+        let yesterday = newDate.addingTimeInterval(-86400)
+        let tomorrow = newDate.addingTimeInterval(86400)
+//        startDate <= 저장한시간 AND 저장한시간 < endDate
+        let predicate = NSPredicate(format: "%@ < date And date < %@", yesterday, tomorrow)
+        request.predicate = predicate
+        todayNewTodos = try! context.fetch(request)
+    }
+    
     func getAllDate() -> [Date] {
         let dates = todos.map{ $0.date }
         return dates
@@ -175,6 +187,10 @@ class ReviewPlannerViewModel {
     
     var todayTodos: [Todo] {
         return manager.todayTodos
+    }
+    
+    var todayNewTodos: [NewTodo] {
+        return manager.todayNewTodos
     }
     
     func addTodo(_ todo: Todo) {
@@ -215,6 +231,10 @@ class ReviewPlannerViewModel {
     
     func todayTodo(_ date: Date) {
         manager.todayTodo(date)
+    }
+    
+    func todayNewTodo(_ date: Date) {
+        manager.todayNewTodo(date)
     }
     
     func getAllDate() -> [Date] {
