@@ -36,6 +36,7 @@ class TodoManager {
     static var reviewId: Int = 0
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
+    var newTodos: [NewTodo] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
     lazy var context = container.viewContext
@@ -149,6 +150,11 @@ class TodoManager {
         TodoManager.reviewId = reviewId
     }
     
+    func retrieveNewTodo() {
+        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
+        self.newTodos = try! context.fetch(request)
+    }
+    
     func todayTodo(_ date: Date) {
         todayTodos = todos.filter { $0.date.toString(format: "yyyy MM dd") == date.toString(format: "yyyy MM dd") }
     }
@@ -201,6 +207,10 @@ class ReviewPlannerViewModel {
     
     func loadTasks() {
         manager.retrieveTodo()
+    }
+    
+    func loadNewTasks() {
+        manager.retrieveNewTodo()
     }
     
     func todayTodo(_ date: Date) {

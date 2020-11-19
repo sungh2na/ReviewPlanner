@@ -29,6 +29,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
         reviewPlannerViewModel.loadTasks()
+        reviewPlannerViewModel.loadNewTasks()
         reviewPlannerViewModel.todayTodo(selectedDate)
         dateLabel.text = dateFormatter.string(from: selectedDate)
         
