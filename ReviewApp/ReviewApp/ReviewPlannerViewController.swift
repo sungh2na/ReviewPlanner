@@ -111,6 +111,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
             let dDay = selectedDate.addingTimeInterval(Double($0 * 86400))
             let todo = TodoManager.shared.createTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
             reviewPlannerViewModel.addTodo(todo)
+            reviewPlannerViewModel.addNewTodo(todo)
             index += 1
         }
         reviewPlannerViewModel.todayTodo(selectedDate)

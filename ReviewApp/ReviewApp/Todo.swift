@@ -36,6 +36,9 @@ class TodoManager {
     static var reviewId: Int = 0
     var todos: [Todo] = []
     var todayTodos: [Todo] = []
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var container = appDelegate.persistentContainer
+    lazy var context = container.viewContext
     
     func createTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) -> Todo {
         let nextId = TodoManager.lastId + 1
@@ -45,22 +48,21 @@ class TodoManager {
     }
     
     // coredata 이용
-    func createNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newTodo = NewTodo(context: context)
-        let nextId = TodoManager.lastId + 1
-        let nextReviewId = TodoManager.reviewId
-        TodoManager.lastId = nextId
-        newTodo.id = Int16(nextId)
-        newTodo.isDone = false
-        newTodo.detail = detail
-        newTodo.date = date
-        newTodo.reviewId = Int16(nextReviewId)
-        newTodo.reviewTotal = Int16(reviewTotal)
-        
-        try! context.save()
-    }
+//    func addNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
+//        let newTodo = NewTodo(context: context)
+//        let nextId = TodoManager.lastId + 1
+//        let nextReviewId = TodoManager.reviewId
+//        TodoManager.lastId = nextId
+//        newTodo.id = Int16(nextId)
+//        newTodo.isDone = false
+//        newTodo.detail = detail
+//        newTodo.date = date
+//        newTodo.reviewId = Int16(nextReviewId)
+//        newTodo.reviewTotal = Int16(reviewTotal)
+//
+//        try! context.save()
+//    }
+ 
     
     func nextReviewId() {
         TodoManager.reviewId += 1
@@ -69,6 +71,16 @@ class TodoManager {
     func addTodo(_ todo: Todo) {
         todos.append(todo)
         saveTodo()
+    }
+    func addNewTodo(_ todo: Todo) {
+        let newTodo = NewTodo(context: context)
+        newTodo.id = Int16(todo.id)
+        newTodo.isDone = todo.isDone
+        newTodo.detail = todo.detail
+        newTodo.date = todo.date
+        newTodo.reviewId = Int16(todo.reviewId)
+        newTodo.reviewTotal = Int16(todo.reviewTotal)
+        saveNewTodo()
     }
     
     func deleteTodo(_ todo: Todo) {
@@ -125,6 +137,10 @@ class TodoManager {
         Storage.store(todos, to: .documents, as: "todos.json")
     }
     
+    func saveNewTodo() {
+        print("home: \(NSHomeDirectory())")
+        try! context.save()
+    }
     func retrieveTodo() {
         todos = Storage.retrive("todos.json", from: .documents, as: [Todo].self) ?? []
         let lastId = todos.last?.id ?? 0
@@ -157,6 +173,10 @@ class ReviewPlannerViewModel {
     
     func addTodo(_ todo: Todo) {
         manager.addTodo(todo)
+    }
+    
+    func addNewTodo(_ todo: Todo) {
+        manager.addNewTodo(todo)
     }
     
     func deleteTodo(_ todo: Todo) {
