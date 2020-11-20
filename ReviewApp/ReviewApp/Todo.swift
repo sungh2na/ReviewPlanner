@@ -110,7 +110,7 @@ class TodoManager {
     func deleteAllNewTodo(_ todo: NewTodo) {
         let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
         let reviewId = todo.reviewId
-        let predicate = NSPredicate(format: "reviewId == %@", reviewId)
+        let predicate = NSPredicate(format: "reviewId == %d", reviewId)
         request.predicate = predicate
         // 질문하기
         let deletedTodo = try! context.fetch(request)
@@ -161,6 +161,14 @@ class TodoManager {
                 }
             }
         }
+    }
+    
+    func setNewProgress(_ todo: NewTodo) {
+        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
+        let reviewId = todo.reviewId
+        let reviewNum = todo.reviewNum
+        let predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
+        
     }
     
     func saveTodo() {
