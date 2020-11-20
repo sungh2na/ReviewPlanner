@@ -41,6 +41,7 @@ class TodoManager {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
     lazy var context = container.viewContext
+    let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
     
     func createTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) -> Todo {
         let nextId = TodoManager.lastId + 1
@@ -48,23 +49,6 @@ class TodoManager {
         TodoManager.lastId = nextId
         return Todo(id: nextId, isDone: false, detail: detail, date: date, reviewId: nextReviewId, reviewNum: reviewNum, reviewTotal: reviewTotal)
     }
-    
-    // coredata 이용
-//    func addNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
-//        let newTodo = NewTodo(context: context)
-//        let nextId = TodoManager.lastId + 1
-//        let nextReviewId = TodoManager.reviewId
-//        TodoManager.lastId = nextId
-//        newTodo.id = Int16(nextId)
-//        newTodo.isDone = false
-//        newTodo.detail = detail
-//        newTodo.date = date
-//        newTodo.reviewId = Int16(nextReviewId)
-//        newTodo.reviewTotal = Int16(reviewTotal)
-//
-//        try! context.save()
-//    }
- 
     
     func nextReviewId() {
         TodoManager.reviewId += 1
@@ -109,7 +93,6 @@ class TodoManager {
     }
     
     func deleteAllNewTodo(_ todo: NewTodo) {
-        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
         let reviewId = todo.reviewId
         let predicate = NSPredicate(format: "reviewId == %d", reviewId)
         request.predicate = predicate
@@ -165,7 +148,6 @@ class TodoManager {
     }
     
     func setNewProgress(_ todo: NewTodo) {
-        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
         let reviewId = todo.reviewId
         let reviewNum = todo.reviewNum
         var predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
@@ -211,21 +193,18 @@ class TodoManager {
     }
     
     func todayNewTodo(_ date: Date) {
-        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
         let newDate = date as NSDate
         let yesterday = newDate.addingTimeInterval(-86400)
         let tomorrow = newDate.addingTimeInterval(86400)
-//        startDate <= 저장한시간 AND 저장한시간 < endDate
         let predicate = NSPredicate(format: "%@ < date And date < %@", yesterday, tomorrow)
         request.predicate = predicate
         todayNewTodos = try! context.fetch(request)
     }
     
-    func getAllDate() -> [Date] {
-        let dates = todos.map{ $0.date }
+    func getAllDate() -> [Date?] {
+        let dates = newTodos.map{ $0.date }
         return dates
     }
-    
 }
 
 class ReviewPlannerViewModel {
@@ -291,6 +270,10 @@ class ReviewPlannerViewModel {
         manager.retrieveNewTodo()
     }
     
+    func saveTasks() {
+        manager.saveNewTodo()
+    }
+    
     func todayTodo(_ date: Date) {
         manager.todayTodo(date)
     }
@@ -299,7 +282,7 @@ class ReviewPlannerViewModel {
         manager.todayNewTodo(date)
     }
     
-    func getAllDate() -> [Date] {
+    func getAllDate() -> [Date?] {
         return manager.getAllDate()
     }
 }
