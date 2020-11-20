@@ -97,6 +97,7 @@ class TodoManager {
     func deleteNewTodo(_ todo: NewTodo) {
         let object = context.object(with: todo.objectID)
         context.delete(object)
+        setNewProgress(todo)
         saveNewTodo()
     }
     
@@ -167,8 +168,21 @@ class TodoManager {
         let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
         let reviewId = todo.reviewId
         let reviewNum = todo.reviewNum
-        let predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
-        
+        var predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
+        request.predicate = predicate
+        var todos = try! context.fetch(request)
+        todos = todos.map{
+            $0.reviewTotal = $0.reviewTotal - 1
+            return $0
+        }
+        predicate = NSPredicate(format: "reviewId == %d AND reviewNum >= %d", reviewId, reviewNum)
+        request.predicate = predicate
+        todos = try! context.fetch(request)
+        todos = todos.map{
+            $0.reviewNum = $0.reviewNum - 1
+            $0.reviewTotal = $0.reviewTotal - 1
+            return $0
+        }
     }
     
     func saveTodo() {
