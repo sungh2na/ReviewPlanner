@@ -135,6 +135,18 @@ class TodoManager {
         saveTodo()
     }
     
+    func updateNewTodo(_ todo: NewTodo) {
+        let predicate = NSPredicate(format: "reviewId == %d", todo.reviewId)
+        request.predicate = predicate
+        var todos = try! context.fetch(request)
+        todos = todos.map{
+            $0.detail = todo.detail
+            return $0
+        }
+        saveNewTodo()
+    }
+    
+    
     func setProgress(_ todo: Todo) {        // 코드 수정하기
         for index in 0 ..< todos.count {
             if todos[index].reviewId == todo.reviewId {
@@ -260,6 +272,10 @@ class ReviewPlannerViewModel {
     
     func updateAllTodo(_ todo: Todo) {
         manager.updateAllTodo(todo)
+    }
+    
+    func updateNewTodo(_ todo: NewTodo) {
+        manager.updateNewTodo(todo)
     }
     
     func loadTasks() {

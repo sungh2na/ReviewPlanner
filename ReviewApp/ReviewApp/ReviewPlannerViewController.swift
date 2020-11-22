@@ -97,8 +97,8 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
             if let secondView = segue.destination as? ModifyViewController {
                 secondView.delegate = self
                 if let index = sender as? Int {
-                    var todayTodo: Todo
-                    todayTodo = reviewPlannerViewModel.todayTodos[index]
+                    var todayTodo: NewTodo
+                    todayTodo = reviewPlannerViewModel.todayNewTodos[index]
                     secondView.todo = todayTodo
                 }
             }
@@ -132,10 +132,9 @@ extension ReviewPlannerViewController: UITableViewDelegate {
         return 50
     }
     
-    func modifytodo(_ todo: Todo) {
-        self.reviewPlannerViewModel.updateTodo(todo)
-        self.reviewPlannerViewModel.updateAllTodo(todo)
-        self.reviewPlannerViewModel.todayTodo(selectedDate)
+    func modifytodo(_ todo: NewTodo) {
+        self.reviewPlannerViewModel.updateNewTodo(todo)
+        self.reviewPlannerViewModel.todayNewTodo(selectedDate)
         tableView.reloadData()
         self.calendar.reloadData()
     }
