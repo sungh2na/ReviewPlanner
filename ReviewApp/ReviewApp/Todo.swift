@@ -214,7 +214,7 @@ class TodoManager {
     }
     
     func getAllDate() -> [Date?] {
-        let dates = newTodos.map{ $0.date }
+        let dates = newTodos.map{ return $0.date }
         return dates
     }
 }

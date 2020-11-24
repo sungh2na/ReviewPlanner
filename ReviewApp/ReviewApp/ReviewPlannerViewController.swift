@@ -235,7 +235,8 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
         let dates = reviewPlannerViewModel.getAllDate()
         for getDate in dates {
-            let dateString = dateFormatter.string(from: getDate!)           // 수정
+            guard let getDate = getDate else { return 0 }
+            let dateString = dateFormatter.string(from: getDate)           // 수정
             guard let eventDate = dateFormatter.date(from: dateString) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
                 return 1
