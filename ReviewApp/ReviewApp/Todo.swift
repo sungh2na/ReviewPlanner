@@ -68,6 +68,7 @@ class TodoManager {
         newTodo.reviewNum = Int16(todo.reviewNum)
         newTodo.reviewTotal = Int16(todo.reviewTotal)
         saveNewTodo()
+        retrieveNewTodo()
     }
     
 //    func deleteTodo(_ todo: Todo) {
@@ -83,6 +84,7 @@ class TodoManager {
         context.delete(object)
         setNewProgress(todo)
         saveNewTodo()
+        retrieveNewTodo()
     }
     
 //    func deleteAllTodo(_ todo: Todo) {
@@ -103,6 +105,7 @@ class TodoManager {
             context.delete(object)
         }
         saveNewTodo()
+        retrieveNewTodo()
     }
     
 //    func delayTodo(_ todo: Todo) {
@@ -118,6 +121,7 @@ class TodoManager {
         let tomorrow = today?.addingTimeInterval(Double(86400))
         todo.date = tomorrow
         saveNewTodo()
+        retrieveNewTodo()
     }
     
 //    func updateTodo(_ todo: Todo) {
@@ -144,6 +148,7 @@ class TodoManager {
             return $0
         }
         saveNewTodo()
+        retrieveNewTodo()
     }
     
     
