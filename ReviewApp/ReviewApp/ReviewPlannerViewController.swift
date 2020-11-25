@@ -28,9 +28,9 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
-        reviewPlannerViewModel.loadTasks()
+//        reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.loadNewTasks()
-        reviewPlannerViewModel.todayTodo(selectedDate)
+//        reviewPlannerViewModel.todayTodo(selectedDate)
         reviewPlannerViewModel.todayNewTodo(selectedDate)
         dateLabel.text = dateFormatter.string(from: selectedDate)
         
@@ -112,7 +112,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         interval.forEach {
             let dDay = selectedDate.addingTimeInterval(Double($0 * 86400))
             let todo = TodoManager.shared.createTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
-            reviewPlannerViewModel.addTodo(todo)
+//            reviewPlannerViewModel.addTodo(todo)
             reviewPlannerViewModel.addNewTodo(todo)
             index += 1
         }
@@ -224,7 +224,7 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
         dateLabel.text = dateFormatter.string(from: selectedDate)
-        reviewPlannerViewModel.todayTodo(date)
+//        reviewPlannerViewModel.todayTodo(date)
         reviewPlannerViewModel.todayNewTodo(date)
         tableView.reloadData()
     }
@@ -235,8 +235,8 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
         let dates = reviewPlannerViewModel.getAllDate()
         for getDate in dates {
-            guard let getDate = getDate else { return 0 }
-            let dateString = dateFormatter.string(from: getDate)           // 수정
+//            guard let getDate = getDate else { return 0 }
+            let dateString = dateFormatter.string(from: getDate!)           // 수정
             guard let eventDate = dateFormatter.date(from: dateString) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
                 return 1
