@@ -8,34 +8,10 @@
 import UIKit
 import CoreData
 
-struct Todo: Codable, Equatable {
-    let id: Int
-    var isDone: Bool
-    var detail: String
-    var date: Date
-    let reviewId: Int
-    var reviewNum: Int
-    var reviewTotal: Int
-
-    mutating func update(isDone: Bool, detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
-        self.isDone = isDone
-        self.detail = detail
-        self.date = date
-        self.reviewNum = reviewNum
-        self.reviewTotal = reviewTotal
-    }
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
 class TodoManager {
     static let shared = TodoManager()
     static var lastId: Int = 0
     static var reviewId: Int = 0
-//    var todos: [Todo] = []
-//    var todayTodos: [Todo] = []
     var todayNewTodos: [NewTodo] = []
     var newTodos: [NewTodo] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -43,26 +19,23 @@ class TodoManager {
     lazy var context = container.viewContext
     let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
     
-    func createTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) -> Todo {
-        let nextId = TodoManager.lastId + 1
-        let nextReviewId = TodoManager.reviewId
-        TodoManager.lastId = nextId
-        return Todo(id: nextId, isDone: false, detail: detail, date: date, reviewId: nextReviewId, reviewNum: reviewNum, reviewTotal: reviewTotal)
-    }
-    
     func nextReviewId() {
         TodoManager.reviewId += 1
     }
     
-    func addNewTodo(_ todo: Todo) {
+    func addNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
+        let nextId = TodoManager.lastId + 1
+        let nextReviewId = TodoManager.reviewId
+        TodoManager.lastId = nextId
+        
         let newTodo = NewTodo(context: context)
-        newTodo.id = Int16(todo.id)
-        newTodo.isDone = todo.isDone
-        newTodo.detail = todo.detail
-        newTodo.date = todo.date
-        newTodo.reviewId = Int16(todo.reviewId)
-        newTodo.reviewNum = Int16(todo.reviewNum)
-        newTodo.reviewTotal = Int16(todo.reviewTotal)
+        newTodo.id = Int16(nextId)
+        newTodo.isDone = false
+        newTodo.detail = detail
+        newTodo.date = date
+        newTodo.reviewId = Int16(nextReviewId)
+        newTodo.reviewNum = Int16(reviewNum)
+        newTodo.reviewTotal = Int16(reviewTotal)
         saveNewTodo()
         retrieveNewTodo()
     }
@@ -161,8 +134,8 @@ class ReviewPlannerViewModel {
         return manager.todayNewTodos
     }
 
-    func addNewTodo(_ todo: Todo) {
-        manager.addNewTodo(todo)
+    func addNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
+        manager.addNewTodo(detail: detail, date: date, reviewNum: reviewNum, reviewTotal: reviewTotal)
     }
 
     func deleteNewTodo(_ todo: NewTodo) {

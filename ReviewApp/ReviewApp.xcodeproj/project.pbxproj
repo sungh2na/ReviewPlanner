@@ -19,7 +19,6 @@
 		18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD472557200A0064E8FB /* NotificationManager.swift */; };
 		18AF72002548257E0037D88E /* UserInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputController.swift */; };
 		18B22562251B805B001DFAC5 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22561251B805B001DFAC5 /* Todo.swift */; };
-		18B22565251DDF64001DFAC5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22564251DDF64001DFAC5 /* Storage.swift */; };
 		18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B225712528AC42001DFAC5 /* AddViewController.swift */; };
 		18B2257F252CDF7E001DFAC5 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */; };
 		18C16B3D2541D26900814240 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C16B3C2541D26900814240 /* TableViewController.swift */; };
@@ -42,7 +41,6 @@
 		18A7FD472557200A0064E8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		18AF71FF2548257E0037D88E /* UserInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputController.swift; sourceTree = "<group>"; };
 		18B22561251B805B001DFAC5 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
-		18B22564251DDF64001DFAC5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		18B225712528AC42001DFAC5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 		18C16B3C2541D26900814240 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				186A75B9251A3080009CE14B /* Info.plist */,
 				186A75B6251A3080009CE14B /* LaunchScreen.storyboard */,
 				18B22561251B805B001DFAC5 /* Todo.swift */,
-				18B22564251DDF64001DFAC5 /* Storage.swift */,
 				18B225712528AC42001DFAC5 /* AddViewController.swift */,
 				18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */,
 				18C2641F253C876E00B9F1A0 /* DaysController.swift */,
@@ -251,7 +248,6 @@
 				18AF72002548257E0037D88E /* UserInputController.swift in Sources */,
 				18B22562251B805B001DFAC5 /* Todo.swift in Sources */,
 				18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */,
-				18B22565251DDF64001DFAC5 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
