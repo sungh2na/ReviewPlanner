@@ -12,43 +12,43 @@ class TodoManager {
     static let shared = TodoManager()
     static var lastId: Int = 0
     static var reviewId: Int = 0
-    var todayNewTodos: [NewTodo] = []
-    var newTodos: [NewTodo] = []
+    var todayTodos: [Todo] = []
+    var Todos: [Todo] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
     lazy var context = container.viewContext
-    let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
+    let request: NSFetchRequest<Todo> = Todo.fetchRequest()
     
     func nextReviewId() {
         TodoManager.reviewId += 1
     }
     
-    func addNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
+    func addTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
         let nextId = TodoManager.lastId + 1
         let nextReviewId = TodoManager.reviewId
         TodoManager.lastId = nextId
         
-        let newTodo = NewTodo(context: context)
-        newTodo.id = Int16(nextId)
-        newTodo.isDone = false
-        newTodo.detail = detail
-        newTodo.date = date
-        newTodo.reviewId = Int16(nextReviewId)
-        newTodo.reviewNum = Int16(reviewNum)
-        newTodo.reviewTotal = Int16(reviewTotal)
-        saveNewTodo()
-        retrieveNewTodo()
+        let todo = Todo(context: context)
+        todo.id = Int16(nextId)
+        todo.isDone = false
+        todo.detail = detail
+        todo.date = date
+        todo.reviewId = Int16(nextReviewId)
+        todo.reviewNum = Int16(reviewNum)
+        todo.reviewTotal = Int16(reviewTotal)
+        saveTodo()
+        retrieveTodo()
     }
     
-    func deleteNewTodo(_ todo: NewTodo) {
+    func deleteTodo(_ todo: Todo) {
         let object = context.object(with: todo.objectID)
         context.delete(object)
-        setNewProgress(todo)
-        saveNewTodo()
-        retrieveNewTodo()
+        setProgress(todo)
+        saveTodo()
+        retrieveTodo()
     }
     
-    func deleteAllNewTodo(_ todo: NewTodo) {
+    func deleteAllTodo(_ todo: Todo) {
         let reviewId = todo.reviewId
         let predicate = NSPredicate(format: "reviewId == %d", reviewId)
         request.predicate = predicate
@@ -58,19 +58,19 @@ class TodoManager {
             let object = context.object(with: $0.objectID)
             context.delete(object)
         }
-        saveNewTodo()
-        retrieveNewTodo()
+        saveTodo()
+        retrieveTodo()
     }
     
-    func delayNewTodo(_ todo: NewTodo) {
+    func delayTodo(_ todo: Todo) {
         let today = todo.date
         let tomorrow = today?.addingTimeInterval(Double(86400))
         todo.date = tomorrow
-        saveNewTodo()
-        retrieveNewTodo()
+        saveTodo()
+        retrieveTodo()
     }
     
-    func updateNewTodo(_ todo: NewTodo) {
+    func updateTodo(_ todo: Todo) {
         let predicate = NSPredicate(format: "reviewId == %d", todo.reviewId)
         request.predicate = predicate
         var todos = try! context.fetch(request)
@@ -78,11 +78,11 @@ class TodoManager {
             $0.detail = todo.detail
             return $0
         }
-        saveNewTodo()
-        retrieveNewTodo()
+        saveTodo()
+        retrieveTodo()
     }
     
-    func setNewProgress(_ todo: NewTodo) {
+    func setProgress(_ todo: Todo) {
         let reviewId = todo.reviewId
         let reviewNum = todo.reviewNum
         var predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
@@ -102,27 +102,27 @@ class TodoManager {
         }
     }
     
-    func saveNewTodo() {
+    func saveTodo() {
         print("home: \(NSHomeDirectory())")
         try! context.save()
     }
     
-    func retrieveNewTodo() {
-        let request: NSFetchRequest<NewTodo> = NewTodo.fetchRequest()
-        self.newTodos = try! context.fetch(request)
+    func retrieveTodo() {
+        let request: NSFetchRequest<Todo> = Todo.fetchRequest()
+        self.Todos = try! context.fetch(request)
     }
     
-    func todayNewTodo(_ date: Date) {
+    func todayTodo(_ date: Date) {
         let newDate = date as NSDate
         let yesterday = newDate.addingTimeInterval(-86400)
         let tomorrow = newDate.addingTimeInterval(86400)
         let predicate = NSPredicate(format: "%@ < date And date < %@", yesterday, tomorrow)
         request.predicate = predicate
-        todayNewTodos = try! context.fetch(request)
+        todayTodos = try! context.fetch(request)
     }
     
     func getAllDate() -> [Date?] {
-        let dates = newTodos.map{ return $0.date }
+        let dates = Todos.map{ return $0.date }
         return dates
     }
 }
@@ -130,40 +130,40 @@ class TodoManager {
 class ReviewPlannerViewModel {
     private let manager = TodoManager.shared
     
-    var todayNewTodos: [NewTodo] {
-        return manager.todayNewTodos
+    var todayTodos: [Todo] {
+        return manager.todayTodos
     }
 
-    func addNewTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
-        manager.addNewTodo(detail: detail, date: date, reviewNum: reviewNum, reviewTotal: reviewTotal)
+    func addTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
+        manager.addTodo(detail: detail, date: date, reviewNum: reviewNum, reviewTotal: reviewTotal)
     }
 
-    func deleteNewTodo(_ todo: NewTodo) {
-        manager.deleteNewTodo(todo)
+    func deleteTodo(_ todo: Todo) {
+        manager.deleteTodo(todo)
     }
 
-    func deleteAllNewTodo(_ todo: NewTodo) {
-        manager.deleteAllNewTodo(todo)
+    func deleteAllTodo(_ todo: Todo) {
+        manager.deleteAllTodo(todo)
     }
     
-    func delayNewTodo(_ todo: NewTodo) {
-        manager.delayNewTodo(todo)
+    func delayTodo(_ todo: Todo) {
+        manager.delayTodo(todo)
     }
     
-    func updateNewTodo(_ todo: NewTodo) {
-        manager.updateNewTodo(todo)
+    func updateTodo(_ todo: Todo) {
+        manager.updateTodo(todo)
     }
     
-    func loadNewTasks() {
-        manager.retrieveNewTodo()
+    func loadTasks() {
+        manager.retrieveTodo()
     }
     
     func saveTasks() {
-        manager.saveNewTodo()
+        manager.saveTodo()
     }
 
-    func todayNewTodo(_ date: Date) {
-        manager.todayNewTodo(date)
+    func todayTodo(_ date: Date) {
+        manager.todayTodo(date)
     }
     
     func getAllDate() -> [Date?] {

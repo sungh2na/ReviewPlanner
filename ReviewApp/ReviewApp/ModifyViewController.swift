@@ -8,7 +8,7 @@
 import UIKit
 
 protocol Edit_2_Delegate{
-    func modifytodo(_ todo: NewTodo)
+    func modifytodo(_ todo: Todo)
 }
 
 class ModifyViewController: UIViewController {
@@ -17,7 +17,7 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var inputTextField: UITextField!
     
     var delegate: Edit_2_Delegate?
-    var todo: NewTodo?
+    var todo: Todo?
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
