@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NotificationViewController: UITableViewController {
     
@@ -15,6 +16,17 @@ class NotificationViewController: UITableViewController {
     let datePicker = UIDatePicker()
     var hour: Int = 9
     var minute: Int = 00
+    var notiTime: [NotiTime] = []
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var container = appDelegate.persistentContainer
+    lazy var context = container.viewContext
+    
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "a hh:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +34,12 @@ class NotificationViewController: UITableViewController {
         notiSwitch.isOn = false
         dateTxt.textAlignment = .right
         dateTxt.text = "오전 9:00"
-        // Do any additional setup after loading the view.
+        
+        let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
+        self.notiTime = try! context.fetch(request)
+        if !notiTime.isEmpty {
+            dateTxt.text = formatter.string(from: notiTime[0].time!)
+        }
     }
     
     func createDatePicker() {
@@ -44,9 +61,6 @@ class NotificationViewController: UITableViewController {
     }
     
     @objc func donePressed() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "a hh:mm"
-        formatter.locale = Locale(identifier: "ko_KR")
         dateTxt.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
         formatter.dateFormat = "hh"
@@ -54,6 +68,14 @@ class NotificationViewController: UITableViewController {
         formatter.dateFormat = "mm"
         minute = Int(formatter.string(from: datePicker.date))!      // 수정
         switchDidChange(notiSwitch)
+        
+        if !notiTime.isEmpty{
+            let object = context.object(with: notiTime[0].objectID)
+            context.delete(object)
+        }
+        let notiTime = NotiTime(context: context)
+        notiTime.time = datePicker.date
+        try! context.save()
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
