@@ -30,16 +30,24 @@ class NotificationViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDatePicker()
-        notiSwitch.isOn = false
-        dateTxt.textAlignment = .right
-        dateTxt.text = "오전 9:00"
-        
         let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
         self.notiTime = try! context.fetch(request)
-        if !notiTime.isEmpty {
-            dateTxt.text = formatter.string(from: notiTime[0].time!)
+       
+        if notiTime.isEmpty {
+            notiSwitch.isOn = false
+            dateTxt.textAlignment = .right
+            dateTxt.text = "오전 9:00"
+        } else {
+            dateTxt.text = formatter.string(from: notiTime[0].date!)
+            notiSwitch.isOn = true
+//            hour = notiTime[0]
+            formatter.dateFormat = "hh"
+            hour = Int(formatter.string(from: notiTime[0].date!))!        // 수정
+            formatter.dateFormat = "mm"
+            minute = Int(formatter.string(from: notiTime[0].date!))!      // 수정
         }
+        
+        createDatePicker()
     }
     
     func createDatePicker() {
@@ -68,20 +76,19 @@ class NotificationViewController: UITableViewController {
         formatter.dateFormat = "mm"
         minute = Int(formatter.string(from: datePicker.date))!      // 수정
         switchDidChange(notiSwitch)
-        
-        if !notiTime.isEmpty{
-            let object = context.object(with: notiTime[0].objectID)
-            context.delete(object)
-        }
-        let notiTime = NotiTime(context: context)
-        notiTime.time = datePicker.date
-        try! context.save()
     }
     
     @IBAction func switchDidChange(_ sender: UISwitch) {
         let notificationManager = NotificationManager.shared
         if sender.isOn {
             notificationManager.schedule(hour: hour, minute: minute)
+            if !notiTime.isEmpty{
+                let object = context.object(with: notiTime[0].objectID)
+                context.delete(object)
+            }
+            let notiTime = NotiTime(context: context)
+            notiTime.date = datePicker.date
+            try! context.save()
         } else {
             notificationManager.cancelNotification()
         }

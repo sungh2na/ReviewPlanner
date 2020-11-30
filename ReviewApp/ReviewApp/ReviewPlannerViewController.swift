@@ -7,6 +7,7 @@
 import FSCalendar
 import UIKit
 import UserNotifications
+import CoreData
 
 class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate, UIGestureRecognizerDelegate {
 
@@ -40,13 +41,22 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         self.calendar.scope = .month
         
         setNotification()
+        
     }
     
     func setNotification() {
         let notificationManager = NotificationManager.shared
         notificationManager.requestPermission()
         notificationManager.addNotification(title: "This is a test reminder")
-//        notificationManager.schedule(hour: 9, minute: 00)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let container = appDelegate.persistentContainer
+        let context = container.viewContext
+        let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
+        let notiTime = try! context.fetch(request)
+        if notiTime.isEmpty {
+            notificationManager.schedule(hour: 9, minute: 00)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
