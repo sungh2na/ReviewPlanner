@@ -15,7 +15,7 @@ class NotificationViewController: UITableViewController {
     
     let datePicker = UIDatePicker()
     var hour: Int = 9
-    var minute: Int = 00
+    var minute: Int = 0
     var notiTime: [NotiTime] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
@@ -32,20 +32,13 @@ class NotificationViewController: UITableViewController {
         super.viewDidLoad()
         let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
         self.notiTime = try! context.fetch(request)
-       
-        if notiTime.isEmpty {
-            notiSwitch.isOn = false
-            dateTxt.textAlignment = .right
-            dateTxt.text = "오전 9:00"
-        } else {
-            dateTxt.text = formatter.string(from: notiTime[0].date!)
-            notiSwitch.isOn = true
-//            hour = notiTime[0]
-            formatter.dateFormat = "hh"
-            hour = Int(formatter.string(from: notiTime[0].date!))!        // 수정
-            formatter.dateFormat = "mm"
-            minute = Int(formatter.string(from: notiTime[0].date!))!      // 수정
-        }
+        dateTxt.textAlignment = .right
+        dateTxt.text = formatter.string(from: notiTime[0].date!)
+        notiSwitch.isOn = notiTime[0].isOn
+        formatter.dateFormat = "HH"
+        hour = Int(formatter.string(from: notiTime[0].date!))!        // 수정
+        formatter.dateFormat = "mm"
+        minute = Int(formatter.string(from: notiTime[0].date!))!      // 수정
         
         createDatePicker()
     }
@@ -66,14 +59,18 @@ class NotificationViewController: UITableViewController {
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.backgroundColor = .white
+        datePicker.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "a hh:mm"
+        datePicker.date = notiTime[0].date!     // 수정
     }
     
     @objc func donePressed() {
-        dateTxt.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
-        formatter.dateFormat = "hh"
+        formatter.dateFormat = "a hh:mm"
+        dateTxt.text = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "HH"
         hour = Int(formatter.string(from: datePicker.date))!        // 수정
-        formatter.dateFormat = "mm"
+        formatter.dateFormat = "m"
         minute = Int(formatter.string(from: datePicker.date))!      // 수정
         switchDidChange(notiSwitch)
     }
@@ -82,15 +79,18 @@ class NotificationViewController: UITableViewController {
         let notificationManager = NotificationManager.shared
         if sender.isOn {
             notificationManager.schedule(hour: hour, minute: minute)
-            if !notiTime.isEmpty{
-                let object = context.object(with: notiTime[0].objectID)
-                context.delete(object)
-            }
-            let notiTime = NotiTime(context: context)
-            notiTime.date = datePicker.date
+            let object = context.object(with: notiTime[0].objectID)
+            context.delete(object)
+            let newNotiTime = NotiTime(context: context)
+            newNotiTime.date = datePicker.date
+            newNotiTime.isOn = true
             try! context.save()
         } else {
             notificationManager.cancelNotification()
+            let notiTime = NotiTime(context: context)
+            notiTime.date = datePicker.date
+            notiTime.isOn = false
+            try! context.save()
         }
     }
 }

@@ -55,7 +55,12 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
         let notiTime = try! context.fetch(request)
         if notiTime.isEmpty {
+            let newNotiTime = NotiTime(context: context)
+            dateFormatter.dateFormat = "a hh:mm"
+            newNotiTime.date = dateFormatter.date(from: "오전 09:00")!
+            newNotiTime.isOn = true
             notificationManager.schedule(hour: 9, minute: 00)
+            try! context.save()
         }
     }
 
