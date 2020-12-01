@@ -87,9 +87,9 @@ class NotificationViewController: UITableViewController {
             try! context.save()
         } else {
             notificationManager.cancelNotification()
-            let notiTime = NotiTime(context: context)
-            notiTime.date = datePicker.date
-            notiTime.isOn = false
+            let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
+            self.notiTime = try! context.fetch(request)
+            notiTime[0].isOn = false
             try! context.save()
         }
     }
