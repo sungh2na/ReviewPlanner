@@ -16,6 +16,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var noticeLabel: UILabel!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     let dateFormatter: DateFormatter = {
@@ -29,9 +30,7 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
-//        reviewPlannerViewModel.loadTasks()
         reviewPlannerViewModel.loadTasks()
-//        reviewPlannerViewModel.todayTodo(selectedDate)
         reviewPlannerViewModel.todayTodo(selectedDate)
         dateLabel.text = dateFormatter.string(from: selectedDate)
         
@@ -41,7 +40,14 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         self.calendar.scope = .month
         
         setNotification()
-        
+    }
+    
+    func noticeLabelOn() {
+        noticeLabel.text = "일정 없음. \n 추가하려면 '+'버튼을 눌러주세요."
+    }
+    
+    func noticeLabelOff() {
+        noticeLabel.text = ""
     }
     
     func setNotification() {
@@ -122,7 +128,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     
     func addTaskButtonTapped(_ detail: String, _ interval: [Int]) {
         var index = 0
-        //let interval = [0, 1, 5, 10, 30]
         TodoManager.shared.nextReviewId()
         interval.forEach {
             let dDay = selectedDate.addingTimeInterval(Double($0 * 86400))
@@ -161,8 +166,6 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     func delayAction(at indexPath: IndexPath) -> UIContextualAction {
         let todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
         let action = UIContextualAction(style: .normal, title: "Delay") { (action, view, completion) in
-//            self.reviewPlannerViewModel.delayTodo(todayTodo)
-//            self.reviewPlannerViewModel.todayTodo(todayTodo.date)
             self.reviewPlannerViewModel.delayTodo(todayTodo)
             self.reviewPlannerViewModel.todayTodo(self.selectedDate)
             self.tableView.reloadData()
@@ -206,7 +209,7 @@ extension ReviewPlannerViewController: UITableViewDelegate {
 extension ReviewPlannerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return reviewPlannerViewModel.todayTodos.count
+        reviewPlannerViewModel.todayTodos.isEmpty ? noticeLabelOn() : noticeLabelOff()
         return reviewPlannerViewModel.todayTodos.count
     }
     
@@ -214,14 +217,11 @@ extension ReviewPlannerViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewPlannerCell", for: indexPath) as? ReviewPlannerCell else {
             return UITableViewCell()
         }
-//        var todayTodo: Todo
-//        todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
         var todayTodo: Todo
         todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
 
         cell.doneButtonTapHandler = { isDone in
             todayTodo.isDone = isDone
-//            self.reviewPlannerViewModel.updateTodo(todayTodo)
             self.reviewPlannerViewModel.saveTasks()
             self.reviewPlannerViewModel.todayTodo(self.selectedDate)
             tableView.reloadData()
@@ -249,8 +249,6 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
         let dates = reviewPlannerViewModel.getAllDate()
         for getDate in dates {
             guard let eventDate = getDate else { return 0 }
-//            let dateString = dateFormatter.string(from: getDate!)           // 수정
-//            guard let eventDate = dateFormatter.date(from: dateString) else { return 0 }
             if date.compare(eventDate) == .orderedSame {
                 return 1
             }

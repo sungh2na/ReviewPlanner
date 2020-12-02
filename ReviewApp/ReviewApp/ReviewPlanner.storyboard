@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MRh-Qx-mlH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MRh-Qx-mlH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -162,10 +162,11 @@
                                     <outlet property="delegate" destination="MRh-Qx-mlH" id="gOo-Na-Nzl"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JM-et-znJ">
-                                <rect key="frame" x="186" y="660" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 없음.  추가하려면 '+' 버튼을 눌러주세요" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JM-et-znJ">
+                                <rect key="frame" x="57" y="660.5" width="300.5" height="20.5"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhM-Xr-G9y">
@@ -207,6 +208,7 @@
                         <outlet property="calendar" destination="YpT-5Q-hYc" id="q8r-7R-81v"/>
                         <outlet property="calendarHeightConstraint" destination="gj0-UG-M6s" id="Bda-Vc-JPH"/>
                         <outlet property="dateLabel" destination="5jl-Hf-S22" id="b2q-6R-X3x"/>
+                        <outlet property="noticeLabel" destination="9JM-et-znJ" id="4o6-BW-GQe"/>
                         <outlet property="tableView" destination="3ec-Ds-zXs" id="mbk-7L-vC7"/>
                         <segue destination="fDX-jl-FZk" kind="presentation" identifier="showAdd" id="GZm-mh-siU"/>
                         <segue destination="55l-jP-AgQ" kind="presentation" identifier="showModify" id="BjK-tL-I4Q"/>
