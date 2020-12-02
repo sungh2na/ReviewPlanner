@@ -31,7 +31,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
         reviewPlannerViewModel.loadTasks()
-        reviewPlannerViewModel.todayTodo(selectedDate)
         dateLabel.text = dateFormatter.string(from: selectedDate)
         
         self.view.addGestureRecognizer(self.scopeGesture)
@@ -134,7 +133,6 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
             reviewPlannerViewModel.addTodo(detail: detail, date: dDay, reviewNum: index + 1, reviewTotal: interval.count)
             index += 1
         }
-        reviewPlannerViewModel.todayTodo(selectedDate)
         tableView.reloadData()
         calendar.reloadData()
     }
@@ -152,7 +150,6 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     
     func modifytodo(_ todo: Todo) {
         self.reviewPlannerViewModel.updateTodo(todo)
-        self.reviewPlannerViewModel.todayTodo(selectedDate)
         tableView.reloadData()
         self.calendar.reloadData()
     }
@@ -167,7 +164,6 @@ extension ReviewPlannerViewController: UITableViewDelegate {
         let todayTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
         let action = UIContextualAction(style: .normal, title: "Delay") { (action, view, completion) in
             self.reviewPlannerViewModel.delayTodo(todayTodo)
-            self.reviewPlannerViewModel.todayTodo(self.selectedDate)
             self.tableView.reloadData()
             self.calendar.reloadData()
             completion(true)
@@ -183,13 +179,11 @@ extension ReviewPlannerViewController: UITableViewDelegate {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteTodo(todayNewTodo)
-                self.reviewPlannerViewModel.todayTodo(self.selectedDate)
                 self.tableView.reloadData()
                 self.calendar.reloadData()
             }
             let deleteAll = UIAlertAction(title: "해당 일정 전체 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteAllTodo(todayNewTodo)
-                self.reviewPlannerViewModel.todayTodo(self.selectedDate)
                 self.tableView.reloadData()
                 self.calendar.reloadData()
             }
@@ -209,6 +203,7 @@ extension ReviewPlannerViewController: UITableViewDelegate {
 extension ReviewPlannerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        reviewPlannerViewModel.todayTodo(selectedDate)
         reviewPlannerViewModel.todayTodos.isEmpty ? noticeLabelOn() : noticeLabelOff()
         return reviewPlannerViewModel.todayTodos.count
     }
@@ -223,7 +218,6 @@ extension ReviewPlannerViewController: UITableViewDataSource {
         cell.doneButtonTapHandler = { isDone in
             todayTodo.isDone = isDone
             self.reviewPlannerViewModel.saveTasks()
-            self.reviewPlannerViewModel.todayTodo(self.selectedDate)
             tableView.reloadData()
         }
         
@@ -237,8 +231,6 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
         dateLabel.text = dateFormatter.string(from: selectedDate)
-//        reviewPlannerViewModel.todayTodo(date)
-        reviewPlannerViewModel.todayTodo(date)
         tableView.reloadData()
     }
 }
