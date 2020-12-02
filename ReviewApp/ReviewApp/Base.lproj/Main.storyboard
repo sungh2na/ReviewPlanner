@@ -100,7 +100,7 @@
                                                 <constraint firstItem="AlD-xf-fkG" firstAttribute="centerY" secondItem="bBz-g7-qqv" secondAttribute="centerY" id="0oI-SI-H6z"/>
                                                 <constraint firstItem="swl-Ey-kAJ" firstAttribute="leading" secondItem="bBz-g7-qqv" secondAttribute="leading" constant="20" symbolic="YES" id="EJU-7w-xPP"/>
                                                 <constraint firstItem="swl-Ey-kAJ" firstAttribute="top" secondItem="bBz-g7-qqv" secondAttribute="topMargin" id="PU2-EP-cCd"/>
-                                                <constraint firstItem="AlD-xf-fkG" firstAttribute="leading" secondItem="bBz-g7-qqv" secondAttribute="leading" constant="314" id="QrU-iV-BEV"/>
+                                                <constraint firstAttribute="trailing" secondItem="AlD-xf-fkG" secondAttribute="trailing" constant="20" symbolic="YES" id="fST-gJ-RCT"/>
                                                 <constraint firstItem="swl-Ey-kAJ" firstAttribute="centerX" secondItem="bBz-g7-qqv" secondAttribute="centerX" id="wGK-fT-1Bj"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -62,11 +62,11 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         if notiTime.isEmpty {
             let newNotiTime = NotiTime(context: context)
             dateFormatter.dateFormat = "a hh:mm"
-            newNotiTime.date = dateFormatter.date(from: "오전 09:00")!
-            newNotiTime.isOn = true
-            notificationManager.schedule(hour: 9, minute: 00)
+            newNotiTime.date = dateFormatter.date(from: "오전 01:31")!
+            newNotiTime.isOn = false
             try! context.save()
         }
+        dateFormatter.dateFormat = "yyyy. MM. dd. E"
     }
 
     override func viewDidAppear(_ animated: Bool) {
