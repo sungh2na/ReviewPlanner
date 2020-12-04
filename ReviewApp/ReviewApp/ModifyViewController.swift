@@ -18,11 +18,6 @@ class ModifyViewController: UIViewController {
     
     var delegate: Edit_2_Delegate?
     var todo: Todo?
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,3 +53,4 @@ class ModifyViewController: UIViewController {
         inputTextField.resignFirstResponder()
     }
 }
+

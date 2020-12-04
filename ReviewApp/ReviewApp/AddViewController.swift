@@ -24,12 +24,6 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     var newInterval: [Int] = []
     var holidays: Set<String> = []
     var schedules: [Schedule] = []
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy. MM. dd. E"
-        formatter.locale = Locale(identifier: "ko_KR")
-        return formatter
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,8 +106,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             var count = 0
             newInterval[index] += delay
             if let dDay = today?.addingTimeInterval(Double(newInterval[index] * 86400)){
-                dateFormatter.dateFormat = "E"
-                dateString = dateFormatter.string(from: dDay)
+                dateString = dDay.toString(format: "E")
                 while holidays.contains(dateString) {       // 모든 요일을 휴일로 선택하면 에러 발생
                     count += 1
                     if let weekIndex = week.firstIndex(of: dateString) {
@@ -124,8 +117,6 @@ class AddViewController: UIViewController, Edit_4_Delegate {
             newInterval[index] += count
             delay += count
         }
-        
-//        dateFormatter.dateFormat = "yyyy. MM. dd. E"
         
         newInterval.forEach {
             if $0 == 0 {
@@ -206,7 +197,6 @@ class ScheduleCell: UITableViewCell {
 }
 
 extension Date {
-    
     func toString(format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format

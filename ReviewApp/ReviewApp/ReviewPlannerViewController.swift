@@ -19,19 +19,18 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
     @IBOutlet weak var noticeLabel: UILabel!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
-    let dateFormatter: DateFormatter = {
+    var selectedDate: Date = Date()
+    let formatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy. MM. dd. E"
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter
     }()
-    var selectedDate: Date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
         reviewPlannerViewModel.loadTasks()
-        dateLabel.text = dateFormatter.string(from: selectedDate)
+        dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
         
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
@@ -61,12 +60,11 @@ class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Del
         let notiTime = try! context.fetch(request)
         if notiTime.isEmpty {
             let newNotiTime = NotiTime(context: context)
-            dateFormatter.dateFormat = "a hh:mm"
-            newNotiTime.date = dateFormatter.date(from: "오전 01:31")!
+            formatter.dateFormat = "a hh:mm"
+            newNotiTime.date = formatter.date(from: "오전 01:31")!    // 수정
             newNotiTime.isOn = false
             try! context.save()
         }
-        dateFormatter.dateFormat = "yyyy. MM. dd. E"
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -230,7 +228,7 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
-        dateLabel.text = dateFormatter.string(from: selectedDate)
+        dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
         tableView.reloadData()
     }
 }
