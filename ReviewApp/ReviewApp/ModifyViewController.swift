@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol Edit_2_Delegate{
+protocol ModifyDelegate{
     func modifytodo(_ todo: Todo)
 }
 
@@ -16,7 +16,7 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var inputTextField: UITextField!
     
-    var delegate: Edit_2_Delegate?
+    var delegate: ModifyDelegate?
     var todo: Todo?
     
     override func viewDidLoad() {

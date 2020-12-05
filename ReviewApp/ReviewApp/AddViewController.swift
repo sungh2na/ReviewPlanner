@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol Edit_1_Delegate{
+protocol AddDelegate{
     func addTaskButtonTapped(_ detail: String, _ interval: [Int])
 }
 
-class AddViewController: UIViewController, Edit_4_Delegate {
+class AddViewController: UIViewController, UserInputDelegate {
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
@@ -19,7 +19,7 @@ class AddViewController: UIViewController, Edit_4_Delegate {
     @IBOutlet var holidayButton: [UIButton]!
     
     var today: Date?
-    var delegate: Edit_1_Delegate?
+    var delegate: AddDelegate?
     var interval = [0, 1, 5, 10, 30]
     var newInterval: [Int] = []
     var holidays: Set<String> = []

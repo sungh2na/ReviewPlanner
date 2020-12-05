@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol Edit_4_Delegate{
+protocol UserInputDelegate{
     func userInputButtonTapped(_ interval: [Int])
 }
 
@@ -18,7 +18,7 @@ class UserInputController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
 
-    var delegate: Edit_4_Delegate?    
+    var delegate: UserInputDelegate?    
     var interval = [0]
     
     override func viewDidLoad() {

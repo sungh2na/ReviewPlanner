@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-protocol Edit_3_Delegate: class {
+protocol DaysDelegate: class {
     func storedDays(_ days: [Int])
 }
 
 class DaysController : UITableViewController {
     var storedDays: [Int]?
     var days: [Int] = [0]
-    weak var delegate: Edit_3_Delegate?
+    weak var delegate: DaysDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

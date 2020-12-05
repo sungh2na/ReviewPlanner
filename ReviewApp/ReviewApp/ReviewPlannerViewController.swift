@@ -9,7 +9,7 @@ import UIKit
 import UserNotifications
 import CoreData
 
-class ReviewPlannerViewController: UIViewController, Edit_1_Delegate, Edit_2_Delegate, UIGestureRecognizerDelegate {
+class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
