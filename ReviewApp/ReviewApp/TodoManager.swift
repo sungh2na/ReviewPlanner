@@ -13,7 +13,6 @@ class TodoManager {
     static var lastId: Int = 0
     static var reviewId: Int = 0
     var todayTodos: [Todo] = []
-    var Todos: [Todo] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
     lazy var context = container.viewContext
@@ -37,7 +36,6 @@ class TodoManager {
         todo.reviewNum = Int16(reviewNum)
         todo.reviewTotal = Int16(reviewTotal)
         saveTodo()
-        retrieveTodo()
     }
     
     func deleteTodo(_ todo: Todo) {
@@ -45,13 +43,11 @@ class TodoManager {
         context.delete(object)
         setProgress(todo)
         saveTodo()
-        retrieveTodo()
     }
     
     func deleteAllTodo(_ todo: Todo) {
         let reviewId = todo.reviewId
-        let predicate = NSPredicate(format: "reviewId == %d", reviewId)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "reviewId == %d", reviewId)
         // 질문하기
         let deletedTodo = try! context.fetch(request)
         deletedTodo.forEach {
@@ -59,7 +55,6 @@ class TodoManager {
             context.delete(object)
         }
         saveTodo()
-        retrieveTodo()
     }
     
     func delayTodo(_ todo: Todo) {
@@ -67,33 +62,29 @@ class TodoManager {
         let tomorrow = today?.addingTimeInterval(Double(86400))
         todo.date = tomorrow
         saveTodo()
-        retrieveTodo()
     }
     
     func updateTodo(_ todo: Todo) {
-        let predicate = NSPredicate(format: "reviewId == %d", todo.reviewId)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "reviewId == %d", todo.reviewId)
         var todos = try! context.fetch(request)
         todos = todos.map{
             $0.detail = todo.detail
             return $0
         }
         saveTodo()
-        retrieveTodo()
     }
     
     func setProgress(_ todo: Todo) {
         let reviewId = todo.reviewId
         let reviewNum = todo.reviewNum
-        var predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
         var todos = try! context.fetch(request)
         todos = todos.map{
             $0.reviewTotal = $0.reviewTotal - 1
             return $0
         }
-        predicate = NSPredicate(format: "reviewId == %d AND reviewNum >= %d", reviewId, reviewNum)
-        request.predicate = predicate
+        
+        request.predicate = NSPredicate(format: "reviewId == %d AND reviewNum >= %d", reviewId, reviewNum)
         todos = try! context.fetch(request)
         todos = todos.map{
             $0.reviewNum = $0.reviewNum - 1
@@ -107,21 +98,14 @@ class TodoManager {
         try! context.save()
     }
     
-    func retrieveTodo() {
-        let request: NSFetchRequest<Todo> = Todo.fetchRequest()
-        self.Todos = try! context.fetch(request)
-    }
-    
     func todayTodo(_ date: Date) {
-        let newDate = date as NSDate
-        let yesterday = newDate.addingTimeInterval(-86400)
-        let tomorrow = newDate.addingTimeInterval(86400)
-        let predicate = NSPredicate(format: "%@ < date And date < %@", yesterday, tomorrow)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "date == %@", date as NSDate)
         todayTodos = try! context.fetch(request)
     }
     
     func getAllDate() -> [Date?] {
+        let request: NSFetchRequest<Todo> = Todo.fetchRequest()
+        let Todos = try! context.fetch(request)
         let dates = Todos.map{ return $0.date }
         return dates
     }
@@ -152,10 +136,6 @@ class ReviewPlannerViewModel {
     
     func updateTodo(_ todo: Todo) {
         manager.updateTodo(todo)
-    }
-    
-    func loadTasks() {
-        manager.retrieveTodo()
     }
     
     func saveTasks() {
