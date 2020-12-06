@@ -37,6 +37,9 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         self.tableView.tableFooterView = UIView()
         self.calendar.scope = .month
         
+        formatter.dateFormat = "yyyy. MM. dd. E"
+        selectedDate = formatter.date(from: dateLabel.text!)!    // 수정
+        print(selectedDate)
         setNotification()
     }
     
@@ -201,6 +204,7 @@ extension ReviewPlannerViewController: UITableViewDelegate {
 extension ReviewPlannerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        print(selectedDate.toString(format: "yyyy. MM. dd. E"))
         reviewPlannerViewModel.todayTodo(selectedDate)
         reviewPlannerViewModel.todayTodos.isEmpty ? noticeLabelOn() : noticeLabelOff()
         return reviewPlannerViewModel.todayTodos.count
@@ -228,6 +232,7 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
+        print(selectedDate)
         dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
         tableView.reloadData()
     }
@@ -237,6 +242,7 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
         let dates = reviewPlannerViewModel.getAllDate()
+//        print(dates.count)
         for getDate in dates {
             guard let eventDate = getDate else { return 0 }
             if date.compare(eventDate) == .orderedSame {
