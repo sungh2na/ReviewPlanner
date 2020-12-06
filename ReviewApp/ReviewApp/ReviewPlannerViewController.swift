@@ -20,6 +20,7 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     var selectedDate: Date = Date()
+        
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -30,12 +31,12 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
         reviewPlannerViewModel.loadTasks()
-        dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
         
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.tableView.tableFooterView = UIView()
         self.calendar.scope = .month
+        self.calendar.select(selectedDate)
         
         setNotification()
     }
