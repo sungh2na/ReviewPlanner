@@ -567,16 +567,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkk-Uc-cGV">
-                                <rect key="frame" x="351" y="754" width="24" height="26"/>
-                                <color key="tintColor" systemColor="systemPinkColor"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapDelete:" destination="55l-jP-AgQ" eventType="touchUpInside" id="tIS-uZ-76Q"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 수정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJe-om-shr">
                                 <rect key="frame" x="175.5" y="20" width="63" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -595,11 +585,9 @@
                             <constraint firstItem="cnn-Ad-TM3" firstAttribute="leading" secondItem="GhQ-6C-Usb" secondAttribute="leading" constant="28" id="1xu-Jz-hSU"/>
                             <constraint firstItem="LbH-u8-F2W" firstAttribute="top" secondItem="aOH-Gq-s7A" secondAttribute="top" constant="20" id="6X4-ec-wYc"/>
                             <constraint firstItem="K3U-w8-LEr" firstAttribute="top" secondItem="aOH-Gq-s7A" secondAttribute="top" constant="17" id="7gx-m7-0Gb"/>
-                            <constraint firstItem="aOH-Gq-s7A" firstAttribute="bottom" secondItem="Dkk-Uc-cGV" secondAttribute="bottom" constant="28" id="993-OG-r0Q"/>
                             <constraint firstItem="hry-0F-sxM" firstAttribute="leading" secondItem="aOH-Gq-s7A" secondAttribute="leading" constant="28" id="DlU-5A-eXf"/>
                             <constraint firstItem="hry-0F-sxM" firstAttribute="top" secondItem="cnn-Ad-TM3" secondAttribute="bottom" constant="-2" id="H5e-Ey-JkF"/>
                             <constraint firstItem="vrz-ZB-vKq" firstAttribute="centerX" secondItem="GhQ-6C-Usb" secondAttribute="centerX" id="I6o-pg-6ng"/>
-                            <constraint firstItem="aOH-Gq-s7A" firstAttribute="trailing" secondItem="Dkk-Uc-cGV" secondAttribute="trailing" constant="39" id="Lua-Ua-9rN"/>
                             <constraint firstItem="vrz-ZB-vKq" firstAttribute="top" secondItem="WKI-7e-3kF" secondAttribute="bottom" constant="32" id="RIR-JE-aYy"/>
                             <constraint firstItem="cnn-Ad-TM3" firstAttribute="top" secondItem="vrz-ZB-vKq" secondAttribute="bottom" constant="45" id="S3R-BA-6i2"/>
                             <constraint firstItem="LbH-u8-F2W" firstAttribute="leading" secondItem="aOH-Gq-s7A" secondAttribute="leading" constant="28" id="dvN-t0-uLZ"/>
@@ -786,7 +774,6 @@
         <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
