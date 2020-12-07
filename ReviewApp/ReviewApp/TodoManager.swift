@@ -103,7 +103,7 @@ class TodoManager {
         todayTodos = try! context.fetch(request)
     }
     
-    func getAllDate() -> [Date?] {
+    func getAllDate() -> [Date?] {      // 날짜 중복 제거해서 가져오기로 수정
         let request: NSFetchRequest<Todo> = Todo.fetchRequest()
         let Todos = try! context.fetch(request)
         let dates = Todos.map{ return $0.date }

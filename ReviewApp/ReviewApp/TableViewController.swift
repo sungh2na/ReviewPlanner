@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class TableViewController: UITableViewController {
+class SettingViewController: UITableViewController {
 
     @IBOutlet weak var notiSwitch: UISwitch!
     @IBOutlet weak var dateTxt: UITextField!

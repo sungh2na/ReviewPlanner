@@ -49,13 +49,11 @@ class NotificationManager {
             content.title = "Noitification on a certain date"
             content.sound = UNNotificationSound.default
             content.body = "This is a local nottification on certain date"
-//            content.summaryArgument = ""
-//            content.summaryArgumentCount = 40
            
             var dateComponents = DateComponents()
             dateComponents.hour = hour
             dateComponents.minute = minute
-//            dateComponents.second = second
+            
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id , content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request) { (error) in

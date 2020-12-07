@@ -40,7 +40,7 @@
         <!--설정-->
         <scene sceneID="p1n-0j-zb7">
             <objects>
-                <tableViewController id="vdl-CV-ZZP" customClass="TableViewController" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vdl-CV-ZZP" customClass="SettingViewController" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0x9-WM-6TP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,7 +181,6 @@
         <!--복습 요일 설정-->
         <scene sceneID="TZh-8P-A6x">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OHS-XO-5Jr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="UGa-jk-GO7" customClass="DaysController" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wMT-aY-lRc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -353,6 +352,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="복습 요일 설정" id="VeF-b0-C37"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OHS-XO-5Jr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="546" y="2430"/>
         </scene>
