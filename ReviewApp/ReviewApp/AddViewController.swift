@@ -95,7 +95,7 @@ class AddViewController: UIViewController, UserInputDelegate {
         var intervalString = ""
         var dateString = ""
         var progressString = ""
-        let week = ["일", "월", "화", "수", "목", "금", "토"]
+        let week = Week.allCases.map { $0.rawValue }
         var index = 0
         var delay = 0
         
@@ -138,11 +138,11 @@ class AddViewController: UIViewController, UserInputDelegate {
     @IBAction func holidayButtonTapped(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            holidays.remove(sender.titleLabel!.text!)
+            holidays.remove(sender.titleLabel?.text ?? "")
         } else {
             if holidays.count < 6 {
                 sender.isSelected = true
-                holidays.insert(sender.titleLabel!.text!)   // 수정
+                holidays.insert(sender.titleLabel?.text ?? "")
             } else { // 모두 휴일로 지정
                 let alert = UIAlertController(title: " ", message: "휴일을 지정할 수 없습니다.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -205,7 +205,7 @@ extension Date {
     }
 }
 
-enum Week: String { // ???
+enum Week: String, CaseIterable {
     case sun = "일"
     case mon = "월"
     case tue = "화"
@@ -214,3 +214,61 @@ enum Week: String { // ???
     case fri = "금"
     case sat = "토"
 }
+
+
+//let a: [Week] = Week.allCases
+// map, compactMap, flatMap, filter, forEach, reduce
+
+// Map
+let a = [1,2,3,4,5]
+let s = a.map { "\($0)" }
+
+func map1(arr: [Int]) -> [String] {
+    var result: [String] = []
+    for i in arr {
+        result.append("\(i)")
+    }
+    return result
+}
+
+func map2(arr: [Int]) -> [Double] {
+    var result: [Double] = []
+    for i in arr {
+        result.append(Double(i))
+    }
+    return result
+}
+
+func map<T>(arr: [Int], transform: (Int) -> T) -> [T] {
+    var result: [T] = []
+    for i in arr {
+        result.append(transform(i))
+    }
+    return result
+}
+
+let t = map(arr: a, transform: { $0 * 2 })
+
+var aa: Int? = 0
+let bb = aa.map { "\($0)" }
+
+// compactMap
+let aaa: [Int?] = [1, 2, 3, 4, 5, nil]
+let bbb = aaa.compactMap { $0 }
+
+func compactMap<T>(arr: [Int?], transform: (Int?) -> T) -> [T] {
+    var result: [T] = []
+    for i in arr {
+        if i == nil {
+            continue
+        }
+        else {
+            result.append(transform(i))
+        }
+    }
+    return result
+}
+
+// flatMap
+let fff: [[Int]] = [[1, 2, 3], [4, 5, 6]]
+let f2 = fff.flatMap { $0 }

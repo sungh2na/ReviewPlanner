@@ -2,95 +2,90 @@
 //  SettingViewController.swift
 //  ReviewApp
 //
-//  Created by Y on 2020/10/11.
+//  Created by Y on 2020/10/22.
 //
 
+import Foundation
 import UIKit
+import CoreData
 
-class SettingViewController: UIViewController {
+class SettingViewController: UITableViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    let settingViewModel = SettingViewModel()
-//
+    @IBOutlet weak var notiSwitch: UISwitch!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateTxt: UITextField!
+    
+    let datePicker = UIDatePicker()
+    var hour: Int = 9
+    var minute: Int = 0
+    var notiTime: [NotiTime] = []
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var container = appDelegate.persistentContainer
+    lazy var context = container.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
+        self.notiTime = try! context.fetch(request)
+        dateLabel.textAlignment = .right
+        dateLabel.text = notiTime[0].date!.toString(format: "a hh:mm") // 수정
+        notiSwitch.isOn = notiTime[0].isOn
+        hour = Int(notiTime[0].date!.toString(format: "HH"))!   // 수정
+        minute = Int(notiTime[0].date!.toString(format: "mm"))!
+        createDatePicker()
     }
-}
-
-extension SettingViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))      // 뷰 분리하기 어케하냐
-        let lbl = UILabel(frame: CGRect(x: 15, y: 0, width: view.frame.width - 15, height: 40))
-        guard let section = SettingViewModel.Section(rawValue: section) else {
-            return UIView()
-        }
+    
+    func createDatePicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
         
-        lbl.text = section.title
-        view.addSubview(lbl)
-        return view
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+    
+        dateTxt.inputAccessoryView = toolbar
+        dateTxt.inputView = datePicker
+        
+        datePicker.datePickerMode = .time
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.backgroundColor = .systemBackground
+        datePicker.locale = Locale(identifier: "ko_KR")
+        datePicker.date = notiTime[0].date!     // 수정
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+    @objc func donePressed() {
+        self.view.endEditing(true)
+        dateLabel.text = datePicker.date.toString(format: "a hh:mm")
+        hour = Int(datePicker.date.toString(format: "HH")) ?? 0
+        minute = Int(datePicker.date.toString(format: "m"))!       // 수정
+        switchDidChange(notiSwitch)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return settingViewModel.numOfSection
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return settingViewModel.generalDatas.count
+    @IBAction func switchDidChange(_ sender: UISwitch) {
+        let notificationManager = NotificationManager.shared
+        if sender.isOn {
+            notificationManager.schedule(hour: hour, minute: minute)
+            let object = context.object(with: notiTime[0].objectID)
+            context.delete(object)
+            let newNotiTime = NotiTime(context: context)
+            newNotiTime.date = datePicker.date
+            newNotiTime.isOn = true
+            try! context.save()
         } else {
-            return settingViewModel.etcDatas.count
+            notificationManager.cancelNotification()
+            let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
+            self.notiTime = try! context.fetch(request)
+            notiTime[0].isOn = false
+            try! context.save()
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as? SettingCell else {
-            return UITableViewCell()
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0, indexPath.row == 1 {
+            dateTxt.becomeFirstResponder()
         }
-        var settingInfo: SettingInfo
-        if indexPath.section == 0 {
-            settingInfo = settingViewModel.generalDatas[indexPath.row]
-        } else {
-            settingInfo = settingViewModel.etcDatas[indexPath.row]
-        }
-//        settingInfo = settingViewModel.settingInfos[indexPath.row]
-
-        cell.updateUI(settingInfo: settingInfo)
-
-        return cell
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension SettingViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("---> \(indexPath.row)")
-        switch settingViewModel.generalDatas[indexPath.row].data {
-        case "알림 설정" : return
-        case "복습day 설정" :
-            // 옵셔널 바인딩
-            if let controller = self.storyboard?.instantiateViewController(withIdentifier: "DaysController") {
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
-        case "오픈소스":
-            if let controller = self.storyboard?.instantiateViewController(withIdentifier: "OpenSourceView") {
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
-        case "버전 정보": return
-        default: return
-        }
-    }
-}
-
-class SettingCell: UITableViewCell {
-    @IBOutlet weak var settingData: UILabel!
-    @IBOutlet weak var forward: UIButton!
-    func updateUI(settingInfo: SettingInfo) {
-        settingData.text = settingInfo.data
-    }
-}
-//class SettingView: UIView {
-//
-//}

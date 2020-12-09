@@ -38,7 +38,7 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         self.calendar.scope = .month
         
         formatter.dateFormat = "yyyy. MM. dd. E"
-        selectedDate = formatter.date(from: dateLabel.text!)! // 수정
+        selectedDate = formatter.date(from: dateLabel.text ?? "") ?? Date()
         setNotification()
     }
     
@@ -63,7 +63,7 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         if notiTime.isEmpty {
             let newNotiTime = NotiTime(context: context)
             formatter.dateFormat = "a hh:mm"
-            newNotiTime.date = formatter.date(from: "오전 01:31")!    // 수정
+            newNotiTime.date = formatter.date(from: "오전 09:00") ?? Date()
             newNotiTime.isOn = false
             try! context.save()
         }
@@ -231,22 +231,18 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
         print(selectedDate)
-        dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
         tableView.reloadData()
     }
 }
 
 extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {                // 달력에 이벤트 표시
-        let dates = reviewPlannerViewModel.getAllDate()
-        for getDate in dates {
-            guard let eventDate = getDate else { return 0 }
-            if date.compare(eventDate) == .orderedSame {
-                return 1
-            }
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        if reviewPlannerViewModel.isEmpty(date: date) {
+            return 1
+        } else {
+            return 0
         }
-        return 0
     }
 }
 

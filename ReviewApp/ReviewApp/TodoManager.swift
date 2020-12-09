@@ -47,6 +47,7 @@ class TodoManager {
     
     func deleteAllTodo(_ todo: Todo) {
         let reviewId = todo.reviewId
+        request.fetchLimit = Int(todo.reviewTotal)
         request.predicate = NSPredicate(format: "reviewId == %d", reviewId)
         // 질문하기
         let deletedTodo = try! context.fetch(request)
@@ -65,31 +66,29 @@ class TodoManager {
     }
     
     func updateTodo(_ todo: Todo) {
+        request.fetchLimit = Int(todo.reviewTotal)
         request.predicate = NSPredicate(format: "reviewId == %d", todo.reviewId)
-        var todos = try! context.fetch(request)
-        todos = todos.map{
+        let todos = try! context.fetch(request)
+        todos.forEach {
             $0.detail = todo.detail
-            return $0
         }
         saveTodo()
     }
     
     func setProgress(_ todo: Todo) {
-        let reviewId = todo.reviewId
-        let reviewNum = todo.reviewNum
-        request.predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", reviewId, reviewNum)
+        request.fetchLimit = Int(todo.reviewNum) - 1
+        request.predicate = NSPredicate(format: "reviewId == %d AND reviewNum < %d", todo.reviewId, todo.reviewNum)
         var todos = try! context.fetch(request)
-        todos = todos.map{
-            $0.reviewTotal = $0.reviewTotal - 1
-            return $0
+        todos.forEach {
+            $0.reviewTotal -= 1
         }
         
-        request.predicate = NSPredicate(format: "reviewId == %d AND reviewNum >= %d", reviewId, reviewNum)
+        request.fetchLimit = Int(todo.reviewTotal - todo.reviewNum)
+        request.predicate = NSPredicate(format: "reviewId == %d AND reviewNum > %d", todo.reviewId, todo.reviewNum)
         todos = try! context.fetch(request)
-        todos = todos.map{
-            $0.reviewNum = $0.reviewNum - 1
-            $0.reviewTotal = $0.reviewTotal - 1
-            return $0
+        todos.forEach {
+            $0.reviewNum -= 1
+            $0.reviewTotal -= 1
         }
     }
     
@@ -100,14 +99,14 @@ class TodoManager {
     
     func todayTodo(_ date: Date) {
         request.predicate = NSPredicate(format: "date == %@", date as NSDate)
+        request.fetchLimit = .max
         todayTodos = try! context.fetch(request)
     }
     
-    func getAllDate() -> [Date?] {      // 날짜 중복 제거해서 가져오기로 수정
-        let request: NSFetchRequest<Todo> = Todo.fetchRequest()
-        let Todos = try! context.fetch(request)
-        let dates = Todos.map{ return $0.date }
-        return dates
+    func isEmpty(date: Date) -> Bool {
+        request.predicate = NSPredicate(format: "date == %@", date as NSDate)
+        request.fetchLimit = 1
+        return !((try? context.fetch(request))?.isEmpty ?? true)
     }
 }
 
@@ -145,8 +144,8 @@ class ReviewPlannerViewModel {
     func todayTodo(_ date: Date) {
         manager.todayTodo(date)
     }
-    
-    func getAllDate() -> [Date?] {
-        return manager.getAllDate()
+
+    func isEmpty(date: Date) -> Bool {
+        return manager.isEmpty(date: date)
     }
 }
