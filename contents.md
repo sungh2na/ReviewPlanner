@@ -249,7 +249,7 @@ center.add(request) { (error) in
         - 할 일 얻기 예제
         ```Swift
         let request = NSFetchRequest<Todo>(entityName: "Todo")
-        let todos: [Todo] = try? context.fetch(request)
+        let todos: [Todo] = try! context.fetch(request)
         ```
     - NSFetchRequest
         - 검색 조건: predicate
@@ -286,6 +286,7 @@ center.add(request) { (error) in
         let predicate = NSPredicate(format: "dueDate <= %@", week)
         request.predicate = predicate
         let todos: [Todo] = try! context.fecth(request)
+        ```
     - 데이터 정렬 방식
         - 정렬 방식: NSSortDescriptor
         ```Swift
@@ -325,47 +326,35 @@ center.add(request) { (error) in
 
         
 // DB 
+- 여러 종류의 연관된 데이터가 서로 공유되어 효율적으로 작업을 처리할 수 있도록 저장된 집합체
+- 특정 조직의 여러 사용자가 공유하여 사용할 수 있도록 통합해서 저장한 운영 데이터의 집합
+
+// 가비지 컬렉션
+- 메모리가 시스템에서 더 이상 사용되지 않는것을 자동으로 찾아 해제하는 기술
+- 메모리 감시를 위한 추가 자원이 필요
+- 명확한 규칙이 없기 때문에 인스턴스가 언제 메모리에서 해제될지 예측 어려움
+
+// ARC ( Autometic Reference Counting)
+- 스위프트가 프로그램의 메모리 사용을 관리하기 위하여 사용하는 메모리 관리 기법
+
+// 강한참조
+- 클래스 타입의 프로퍼티, 변수, 상수등을 선언할 때 별도의 식별자를 명시하지 않는 경우
+
 // weak, unowned
+- 강한참조로 인해 레퍼런스 사이클이 발생했을 때 인스턴스의 참조 횟수를 증가시키지 않기 위해 사용하는 키워드
+- weak(약한참조)은 참조하던 인스턴스가 메모리에서 해제되면 nil이 할당되므로 옵셔널 변수
+- unowned(미소유참조) 자신이 참조하는 인스턴스가 항상 메모리에 존재할 것이라는 전제, 참조하던 인스턴스가 해제된 후
+접근하면 런타임오류
+
 // lazy
+- 지연 저장 프로퍼티
+- 호출이 있을 떄 값이 할당 됨, 상수는 인스턴스가 완전히 생성되기 전에 초기화 되므로 변수에 사용
+- 클래스 인스턴스의 저장 프로퍼티로 다른 클래스 인스턴스나 구조체 인스턴스를 할당해야 할 때
+
+// 클로저의 정의
+- 일정 기능을 하는 코드를 하나의 블록으로 모아놓은 것
+
+
 // RestAPI
 // 오픈소스 SwiftDate 사용법 익히기
-// ARC(Auto Reference Counting)
-// 클로저의 정의
-
-// 가비지컬렉터
-
-// A
-// A -> B
-
-// 1 2 -> 0
-// A -> B
-// 0    1
-// A <- B
-// 1    1
-// C -> A, B
-// 2    2
-// C버림
-// 1    1
-// A <--> B
-// A <--} B
-// 1     
-
-//class A {
-//
-//    var a: () -> Void = { [weak self] in
-//        self.test()
-//    }
-//
-//    func test() {
-//
-//    }
-//}
-
-// 둘다 약한참조 만들어주는데 weak은 nil은반환하고 unowned는 crash가 나서 확실때 쓴다.
-// 서로 강한 참조가 발생해서 레퍼런스 카운트가 서로 1일때 하나를 weak으로 해주면 레퍼런스 카운트가 0으로 되어서 참조하는 객체가 사라지고
-
-// 정의를 먼저 확실하게 말하기
-// 그 객체가 사라지니까 참조하고있던 객체도사라짐.
-// 강한참조, 약한참조 레퍼런스 싸이클 생겼을때 weak unowned를 사용하게됨.
-
 
