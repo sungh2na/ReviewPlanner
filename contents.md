@@ -354,9 +354,14 @@ center.add(request) { (error) in
 ### 클로저의 정의
 - 일정 기능을 하는 코드를 하나의 블록으로 모아놓은 것
 
-### map, reduce, filter, platmap, compactmap
+### map, reduce, filter, flatmap, compactmap
 - map은 컨테이너 각 요소에 매개변수로 받은 클로져 연산을 적용한 후 다른 컨테이너로 반환해주는 함수,
 다른 데이터 타입으로 변경할 때 주로 쓰임.
+- filter 컨테이너 내부의 값을 걸러서 추출하여 새로운 컨테이너에 반환
+- reduce 컨테이너 내부의 콘텐츠를 하나로 합하는 기능을 가진 고차함수, 
+전달인자로 전달받은 클로저의 연산 결과로 합해줌.
+- compactmap 은 map에서 nil이 아닌 것을 빼고 리턴
+- flatmap은 중첩된 배열의 경우 단일 배열로 만들어줌.
 
 ### hugging priority, compression resistance priority
 - 뷰가 커졌을 때 hugging priority가 더 높은 것은 설정한 크기를 유지하고 낮은 것의 크기를 늘려서 뷰를 채움
