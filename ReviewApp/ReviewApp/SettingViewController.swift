@@ -28,10 +28,11 @@ class SettingViewController: UITableViewController {
         let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
         self.notiTime = try! context.fetch(request)
         dateLabel.textAlignment = .right
-        dateLabel.text = notiTime[0].date!.toString(format: "a hh:mm") // 수정
+        
+        dateLabel.text = (notiTime[0].date ?? Date()).toString(format: "a hh:mm")
         notiSwitch.isOn = notiTime[0].isOn
-        hour = Int(notiTime[0].date!.toString(format: "HH"))!   // 수정
-        minute = Int(notiTime[0].date!.toString(format: "mm"))!
+        hour = Int((notiTime[0].date ?? Date()).toString(format: "HH")) ?? 9
+        minute = Int((notiTime[0].date ?? Date()).toString(format: "mm")) ?? 0
         createDatePicker()
     }
     
@@ -51,14 +52,14 @@ class SettingViewController: UITableViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.backgroundColor = .systemBackground
         datePicker.locale = Locale(identifier: "ko_KR")
-        datePicker.date = notiTime[0].date!     // 수정
+        datePicker.date = notiTime[0].date ?? Date()
     }
     
     @objc func donePressed() {
         self.view.endEditing(true)
         dateLabel.text = datePicker.date.toString(format: "a hh:mm")
-        hour = Int(datePicker.date.toString(format: "HH")) ?? 0
-        minute = Int(datePicker.date.toString(format: "m"))!       // 수정
+        hour = Int(datePicker.date.toString(format: "HH")) ?? 9
+        minute = Int(datePicker.date.toString(format: "m")) ?? 0
         switchDidChange(notiSwitch)
     }
     

@@ -37,10 +37,8 @@ class ModifyViewController: UIViewController {
     }
     
     @IBAction func done(_ sender: Any) {
-//        var todayTodo: Todo
         if delegate != nil {
             if let todo = self.todo {
-//                todayTodo = todo
                 todo.detail = inputTextField.text! // 수정
                 todo.date = datePicker.date
                 delegate?.modifytodo(todo)

@@ -20,20 +20,21 @@ class AddViewController: UIViewController, UserInputDelegate {
     
     var today: Date?
     var delegate: AddDelegate?
-    var interval = [0, 1, 5, 10, 30]
+    var interval = [0, 1, 3, 7, 15]
     var newInterval: [Int] = []
     var holidays: Set<String> = []
     var schedules: [Schedule] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userInputButtonTapped(interval)
         tableView.tableFooterView = UIView()
         createSchedule()
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showUserInput" {
-            if let secondView = segue.destination as? UserInputController {
+            if let secondView = segue.destination as? UserInputViewController {
                 secondView.delegate = self
             }
         }
@@ -57,12 +58,12 @@ class AddViewController: UIViewController, UserInputDelegate {
             (action) in self.interval = [0, 1, 3, 7, 15]
             self.userInputButtonTapped(self.interval)
         }
-        let interval_2 =  UIAlertAction(title: "오늘, 1일, 5일, 10일, 20일", style: .default) {
-            (action) in self.interval = [0, 1, 5, 10, 20]
+        let interval_2 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일, 30일", style: .default) {
+            (action) in self.interval = [0, 1, 3, 7, 15, 30]
             self.userInputButtonTapped(self.interval)
         }
-        let interval_3 =  UIAlertAction(title: "오늘, 1일, 7일, 15일, 30일", style: .default) {
-            (action) in self.interval = [0, 1, 7, 15, 30]
+        let interval_3 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일, 30일, 60일", style: .default) {
+            (action) in self.interval = [0, 1, 3, 7, 15, 30, 60]
             self.userInputButtonTapped(self.interval)
         }
         let interval_4 =  UIAlertAction(title: "직접입력", style: .default) {
@@ -214,61 +215,3 @@ enum Week: String, CaseIterable {
     case fri = "금"
     case sat = "토"
 }
-
-
-//let a: [Week] = Week.allCases
-// map, compactMap, flatMap, filter, forEach, reduce
-
-// Map
-let a = [1,2,3,4,5]
-let s = a.map { "\($0)" }
-
-func map1(arr: [Int]) -> [String] {
-    var result: [String] = []
-    for i in arr {
-        result.append("\(i)")
-    }
-    return result
-}
-
-func map2(arr: [Int]) -> [Double] {
-    var result: [Double] = []
-    for i in arr {
-        result.append(Double(i))
-    }
-    return result
-}
-
-func map<T>(arr: [Int], transform: (Int) -> T) -> [T] {
-    var result: [T] = []
-    for i in arr {
-        result.append(transform(i))
-    }
-    return result
-}
-
-let t = map(arr: a, transform: { $0 * 2 })
-
-var aa: Int? = 0
-let bb = aa.map { "\($0)" }
-
-// compactMap
-let aaa: [Int?] = [1, 2, 3, 4, 5, nil]
-let bbb = aaa.compactMap { $0 }
-
-func compactMap<T>(arr: [Int?], transform: (Int?) -> T) -> [T] {
-    var result: [T] = []
-    for i in arr {
-        if i == nil {
-            continue
-        }
-        else {
-            result.append(transform(i))
-        }
-    }
-    return result
-}
-
-// flatMap
-let fff: [[Int]] = [[1, 2, 3], [4, 5, 6]]
-let f2 = fff.flatMap { $0 }

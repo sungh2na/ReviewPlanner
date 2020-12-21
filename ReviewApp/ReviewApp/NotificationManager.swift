@@ -46,9 +46,9 @@ class NotificationManager {
         
         for notification in notifications {
             let content = UNMutableNotificationContent()
-            content.title = "Noitification on a certain date"
+            content.title = "ReLeDiary"
             content.sound = UNNotificationSound.default
-            content.body = "This is a local nottification on certain date"
+            content.body = "오늘의 복습일정을 확인해주세요 :)"
            
             var dateComponents = DateComponents()
             dateComponents.hour = hour

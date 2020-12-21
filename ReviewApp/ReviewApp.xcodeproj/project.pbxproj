@@ -16,7 +16,7 @@
 		189ED26B255A6B9A00C0A20C /* ReviewPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */; };
 		18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A269A125641593009539AA /* ReviewApp.xcdatamodeld */; };
 		18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD472557200A0064E8FB /* NotificationManager.swift */; };
-		18AF72002548257E0037D88E /* UserInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputController.swift */; };
+		18AF72002548257E0037D88E /* UserInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputViewController.swift */; };
 		18B22562251B805B001DFAC5 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22561251B805B001DFAC5 /* TodoManager.swift */; };
 		18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B225712528AC42001DFAC5 /* AddViewController.swift */; };
 		18B2257F252CDF7E001DFAC5 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */; };
@@ -36,7 +36,7 @@
 		189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewPlanner.storyboard; sourceTree = "<group>"; };
 		18A269A225641593009539AA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		18A7FD472557200A0064E8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		18AF71FF2548257E0037D88E /* UserInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputController.swift; sourceTree = "<group>"; };
+		18AF71FF2548257E0037D88E /* UserInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputViewController.swift; sourceTree = "<group>"; };
 		18B22561251B805B001DFAC5 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		18B225712528AC42001DFAC5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				18B225712528AC42001DFAC5 /* AddViewController.swift */,
 				18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */,
 				18C16B3C2541D26900814240 /* SettingViewController.swift */,
-				18AF71FF2548257E0037D88E /* UserInputController.swift */,
+				18AF71FF2548257E0037D88E /* UserInputViewController.swift */,
 				18A7FD472557200A0064E8FB /* NotificationManager.swift */,
 			);
 			path = ReviewApp;
@@ -237,7 +237,7 @@
 				18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */,
 				18C16B3D2541D26900814240 /* SettingViewController.swift in Sources */,
 				186A75AE251A307D009CE14B /* SceneDelegate.swift in Sources */,
-				18AF72002548257E0037D88E /* UserInputController.swift in Sources */,
+				18AF72002548257E0037D88E /* UserInputViewController.swift in Sources */,
 				18B22562251B805B001DFAC5 /* TodoManager.swift in Sources */,
 				18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */,
 			);

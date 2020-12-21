@@ -11,7 +11,7 @@ protocol UserInputDelegate{
     func userInputButtonTapped(_ interval: [Int])
 }
 
-class UserInputController: UIViewController {
+class UserInputViewController: UIViewController {
     
     @IBOutlet weak var inputNumberField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
@@ -38,7 +38,7 @@ class UserInputController: UIViewController {
     
     @IBAction func addClicked(_ sender: Any) {
         guard let inputInterval = inputNumberField.text else { return }
-        interval.append(Int(inputInterval)!)    // 수정해야함
+        interval.append(Int(inputInterval) ?? 0)
         intervalLabel.text = interval.map {
             if $0 == 0 {
                 return "오늘"
