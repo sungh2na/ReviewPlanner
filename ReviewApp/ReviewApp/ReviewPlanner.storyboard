@@ -66,7 +66,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09.23 수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jl-Hf-S22">
-                                <rect key="frame" x="25" y="468" width="64" height="21"/>
+                                <rect key="frame" x="23" y="468" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -193,7 +193,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="5jl-Hf-S22" firstAttribute="leading" secondItem="vde-6z-lUr" secondAttribute="leading" constant="25" id="4Tw-s8-DDF"/>
+                            <constraint firstItem="5jl-Hf-S22" firstAttribute="leading" secondItem="vde-6z-lUr" secondAttribute="leading" constant="23" id="4Tw-s8-DDF"/>
                             <constraint firstItem="nhM-Xr-G9y" firstAttribute="top" secondItem="vde-6z-lUr" secondAttribute="top" id="IT2-zk-db8"/>
                             <constraint firstItem="5jl-Hf-S22" firstAttribute="top" secondItem="YpT-5Q-hYc" secondAttribute="bottom" constant="10" id="LLg-ix-veX"/>
                             <constraint firstItem="3ec-Ds-zXs" firstAttribute="leading" secondItem="vde-6z-lUr" secondAttribute="leading" id="Pdb-On-0Zu"/>
