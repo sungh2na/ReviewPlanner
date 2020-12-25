@@ -38,7 +38,6 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         self.calendar.scope = .month
         
         formatter.dateFormat = "yyyy. MM. dd. E"
-        selectedDate = formatter.date(from: dateLabel.text ?? "") ?? Date()
         setNotification()
     }
     
@@ -230,7 +229,7 @@ extension ReviewPlannerViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
-        print(selectedDate)
+        dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
         tableView.reloadData()
     }
 }
