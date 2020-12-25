@@ -701,7 +701,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnj-i8-u6h">
-                                <rect key="frame" x="358" y="106" width="28" height="25"/>
+                                <rect key="frame" x="351" y="96" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="gyz-03-xHI"/>
+                                    <constraint firstAttribute="width" constant="45" id="lr6-pn-0RW"/>
+                                </constraints>
                                 <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="delete.left.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
@@ -732,7 +736,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEX-wX-vgp">
-                                <rect key="frame" x="113" y="207" width="23" height="24"/>
+                                <rect key="frame" x="103" y="194" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2tX-0R-keS"/>
+                                    <constraint firstAttribute="width" constant="50" id="75h-Jn-Feb"/>
+                                </constraints>
                                 <color key="tintColor" red="0.56415965030000004" green="0.56415965030000004" blue="0.56415965030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="plus" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" weight="semibold"/>
@@ -747,12 +755,12 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="EhX-zC-2av" firstAttribute="top" secondItem="GMl-kT-3SN" secondAttribute="top" constant="70" id="4cs-zx-r9g"/>
-                            <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" secondItem="hnj-i8-u6h" secondAttribute="trailing" constant="28" id="9gU-Dp-QP8"/>
+                            <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" secondItem="hnj-i8-u6h" secondAttribute="trailing" constant="18" id="9gU-Dp-QP8"/>
                             <constraint firstItem="Whf-UL-GVa" firstAttribute="leading" secondItem="GMl-kT-3SN" secondAttribute="leading" id="9ud-qW-oWp"/>
                             <constraint firstItem="Whf-UL-GVa" firstAttribute="top" secondItem="GMl-kT-3SN" secondAttribute="top" constant="5" id="BPM-2r-J5b"/>
                             <constraint firstItem="ORC-Nu-Tml" firstAttribute="top" secondItem="EhX-zC-2av" secondAttribute="bottom" constant="10" id="QbE-2D-zHx"/>
                             <constraint firstItem="kvd-Pt-Fqp" firstAttribute="leading" secondItem="GMl-kT-3SN" secondAttribute="leading" constant="28" id="Swi-WX-0jc"/>
-                            <constraint firstItem="EKR-tw-AQ5" firstAttribute="top" secondItem="hnj-i8-u6h" secondAttribute="bottom" constant="10" id="Td3-Fq-vkr"/>
+                            <constraint firstItem="EKR-tw-AQ5" firstAttribute="top" secondItem="hnj-i8-u6h" secondAttribute="bottom" id="Td3-Fq-vkr"/>
                             <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" secondItem="EKR-tw-AQ5" secondAttribute="trailing" constant="28" id="Vw7-Om-SeW"/>
                             <constraint firstItem="ORC-Nu-Tml" firstAttribute="leading" secondItem="AuS-Nb-s1s" secondAttribute="leading" constant="28" id="X5L-E1-JOJ"/>
                             <constraint firstItem="y9K-w4-PHC" firstAttribute="centerY" secondItem="Whf-UL-GVa" secondAttribute="centerY" id="YQQ-tD-9B3"/>
@@ -761,12 +769,12 @@
                             <constraint firstItem="lA3-kI-Vcm" firstAttribute="top" secondItem="EKR-tw-AQ5" secondAttribute="bottom" constant="60" id="bxC-kL-YJS"/>
                             <constraint firstItem="Vl2-Qj-k07" firstAttribute="top" secondItem="EKR-tw-AQ5" secondAttribute="bottom" constant="8" symbolic="YES" id="cpO-ib-SXJ"/>
                             <constraint firstItem="EKR-tw-AQ5" firstAttribute="leading" secondItem="GMl-kT-3SN" secondAttribute="leading" constant="28" id="czG-Vx-rjF"/>
-                            <constraint firstItem="PEX-wX-vgp" firstAttribute="top" secondItem="EKR-tw-AQ5" secondAttribute="bottom" constant="65" id="f2a-2K-VNF"/>
+                            <constraint firstItem="PEX-wX-vgp" firstAttribute="top" secondItem="EKR-tw-AQ5" secondAttribute="bottom" constant="52" id="f2a-2K-VNF"/>
                             <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" secondItem="EhX-zC-2av" secondAttribute="trailing" id="fu4-Pw-vqD"/>
                             <constraint firstItem="EKR-tw-AQ5" firstAttribute="top" secondItem="kvd-Pt-Fqp" secondAttribute="bottom" constant="10" id="gWr-iC-DI2"/>
                             <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ORC-Nu-Tml" secondAttribute="trailing" symbolic="YES" id="mGC-nK-gpg"/>
                             <constraint firstItem="kvd-Pt-Fqp" firstAttribute="top" secondItem="ORC-Nu-Tml" secondAttribute="bottom" constant="8" symbolic="YES" id="o0g-bq-ObO"/>
-                            <constraint firstItem="PEX-wX-vgp" firstAttribute="leading" secondItem="lA3-kI-Vcm" secondAttribute="trailing" constant="10" id="ogg-u3-cc1"/>
+                            <constraint firstItem="PEX-wX-vgp" firstAttribute="leading" secondItem="lA3-kI-Vcm" secondAttribute="trailing" id="ogg-u3-cc1"/>
                             <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" secondItem="E02-Ce-DA5" secondAttribute="trailing" id="ozv-ey-RaS"/>
                             <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" secondItem="kvd-Pt-Fqp" secondAttribute="trailing" constant="60" id="qTG-EI-Ofh"/>
                             <constraint firstItem="lA3-kI-Vcm" firstAttribute="leading" secondItem="AuS-Nb-s1s" secondAttribute="leading" constant="28" id="rqR-ub-CuE"/>
