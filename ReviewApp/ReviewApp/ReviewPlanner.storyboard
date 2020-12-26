@@ -782,7 +782,14 @@
                             <constraint firstItem="EhX-zC-2av" firstAttribute="leading" secondItem="GMl-kT-3SN" secondAttribute="leading" id="wrX-9s-6xd"/>
                             <constraint firstItem="GMl-kT-3SN" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kvd-Pt-Fqp" secondAttribute="trailing" symbolic="YES" id="ybL-hX-baE"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gqR-0U-QDq" appends="YES" id="wdf-nX-huY"/>
+                        </connections>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" id="GDM-P4-MDy">
+                        <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="addButton" destination="PEX-wX-vgp" id="n22-L5-0IW"/>
@@ -792,10 +799,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vrb-96-MUK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="gqR-0U-QDq"/>
-                <tabBarItem title="" id="GDM-P4-MDy">
-                    <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
-                </tabBarItem>
+                <tapGestureRecognizer id="gqR-0U-QDq">
+                    <connections>
+                        <action selector="tapBG:" destination="qaK-L0-M3m" id="6CP-TL-h0g"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1694.2028985507247" y="1707.5892857142856"/>
         </scene>

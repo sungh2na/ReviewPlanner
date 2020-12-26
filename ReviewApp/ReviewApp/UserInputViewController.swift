@@ -61,4 +61,8 @@ class UserInputViewController: UIViewController {
             }
         }.joined()
     }
+    
+    @IBAction func tapBG(_ sender: Any) {
+        inputNumberField.resignFirstResponder()
+    }
 }
