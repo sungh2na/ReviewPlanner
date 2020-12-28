@@ -38,16 +38,13 @@ class SettingViewController: UITableViewController {
     
     func createDatePicker() {
         let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "확인", style: UIBarButtonItem.Style.done, target: nil, action: #selector(donePressed))
         
+        toolbar.sizeToFit()
         toolbar.setItems([flexSpace, doneButton], animated: true)
-    
         dateTxt.inputAccessoryView = toolbar
         dateTxt.inputView = datePicker
-        
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.backgroundColor = .systemBackground
