@@ -46,7 +46,7 @@ class NotificationManager {
         
         for notification in notifications {
             let content = UNMutableNotificationContent()
-            content.title = "ReLeDiary"
+            content.title = "ReLe Planner"
             content.sound = UNNotificationSound.default
             content.body = "오늘의 복습일정을 확인해주세요 :)"
            
