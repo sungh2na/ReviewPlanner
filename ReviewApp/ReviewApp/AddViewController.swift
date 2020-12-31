@@ -54,18 +54,20 @@ class AddViewController: UIViewController, UserInputDelegate {
     @IBAction func setInterval(_ sender: Any) {
 //        interval = [0, 1, 5, 10, 30]
         let alert = UIAlertController(title:"복습 주기 선택", message: "원하는 복습 주기가 없을 경우 직접 입력", preferredStyle: .actionSheet)
-        let interval_1 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일", style: .default) {
+        let interval_1 =  UIAlertAction(title: "오늘", style: .default) {
+            (action) in self.interval = [0]
+            self.userInputButtonTapped(self.interval)
+        }
+        
+        let interval_2 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일", style: .default) {
             (action) in self.interval = [0, 1, 3, 7, 15]
             self.userInputButtonTapped(self.interval)
         }
-        let interval_2 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일, 30일", style: .default) {
+        let interval_3 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일, 30일", style: .default) {
             (action) in self.interval = [0, 1, 3, 7, 15, 30]
             self.userInputButtonTapped(self.interval)
         }
-        let interval_3 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일, 30일, 60일", style: .default) {
-            (action) in self.interval = [0, 1, 3, 7, 15, 30, 60]
-            self.userInputButtonTapped(self.interval)
-        }
+        
         let interval_4 =  UIAlertAction(title: "직접입력", style: .default) {
             (action) in self.performSegue(withIdentifier: "showUserInput", sender: nil)
         }
