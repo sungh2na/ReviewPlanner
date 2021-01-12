@@ -39,8 +39,7 @@ class TodoManager {
     }
     
     func deleteTodo(_ todo: Todo) {
-        let object = context.object(with: todo.objectID)
-        context.delete(object)
+        context.delete(todo)
         setProgress(todo)
         saveTodo()
     }
