@@ -290,13 +290,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘, 1일, 5일, 10일, 30일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7X-sE-cY0">
-                                <rect key="frame" x="28" y="151.5" width="180" height="30"/>
+                                <rect key="frame" x="28" y="151.5" width="180" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="woL-kH-c9C">
-                                <rect key="frame" x="0.0" y="318.5" width="414" height="358"/>
+                                <rect key="frame" x="0.0" y="309" width="414" height="358"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="358" id="in0-6d-ZLG"/>
                                 </constraints>
@@ -370,19 +370,19 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d8-DZ-SY6">
-                                <rect key="frame" x="30" y="201.5" width="29.5" height="20.5"/>
+                                <rect key="frame" x="30" y="192" width="29.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="복습 일정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgN-Db-nwG">
-                                <rect key="frame" x="28" y="290" width="63.5" height="20.5"/>
+                                <rect key="frame" x="28" y="280.5" width="63.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DyX-NQ-1UC">
-                                <rect key="frame" x="20" y="222" width="374" height="40"/>
+                                <rect key="frame" x="20" y="212.5" width="374" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fab-fj-dEw">
                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="40"/>
@@ -467,7 +467,11 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-mU-vYh">
-                                <rect key="frame" x="28" y="151.5" width="180" height="30"/>
+                                <rect key="frame" x="28" y="130" width="250" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="IpF-yH-Rtn"/>
+                                    <constraint firstAttribute="height" constant="50" id="O51-Eh-snQ"/>
+                                </constraints>
                                 <connections>
                                     <action selector="setInterval:" destination="fDX-jl-FZk" eventType="touchUpInside" id="ItK-om-Bjc"/>
                                 </connections>
@@ -482,7 +486,6 @@
                             <constraint firstItem="ogs-Nq-vtu" firstAttribute="top" secondItem="tSS-8S-KNV" secondAttribute="top" constant="70" id="2sk-kP-T3b"/>
                             <constraint firstItem="zgN-Db-nwG" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" constant="28" id="3Kb-YY-n8P"/>
                             <constraint firstItem="Zkn-nP-FQE" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" id="6zs-Kw-Jwh"/>
-                            <constraint firstItem="zj5-mU-vYh" firstAttribute="top" secondItem="G7X-sE-cY0" secondAttribute="top" id="8CX-9p-uEG"/>
                             <constraint firstItem="O6A-OM-41a" firstAttribute="leading" secondItem="Bw4-Pj-Pg2" secondAttribute="leading" constant="28" id="9Ir-Bm-NwS"/>
                             <constraint firstItem="7d8-DZ-SY6" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" constant="30" id="9aC-2z-TwM"/>
                             <constraint firstItem="JCd-9j-Eoi" firstAttribute="centerY" secondItem="Zkn-nP-FQE" secondAttribute="centerY" id="9uI-RM-gMa"/>
@@ -494,7 +497,6 @@
                             <constraint firstItem="Zbr-j5-dn3" firstAttribute="top" secondItem="O6A-OM-41a" secondAttribute="bottom" constant="30" id="NhQ-cA-ngr"/>
                             <constraint firstItem="Zbr-j5-dn3" firstAttribute="leading" secondItem="Bw4-Pj-Pg2" secondAttribute="leading" constant="28" id="Oel-Dv-Iul"/>
                             <constraint firstItem="3JK-f9-AZf" firstAttribute="centerY" secondItem="Zkn-nP-FQE" secondAttribute="centerY" id="P3f-Or-JpN"/>
-                            <constraint firstItem="zj5-mU-vYh" firstAttribute="leading" secondItem="G7X-sE-cY0" secondAttribute="leading" id="P6X-we-N35"/>
                             <constraint firstItem="tSS-8S-KNV" firstAttribute="trailing" secondItem="O6A-OM-41a" secondAttribute="trailing" constant="28" id="P9u-CF-qxS"/>
                             <constraint firstItem="tSS-8S-KNV" firstAttribute="trailing" secondItem="ogs-Nq-vtu" secondAttribute="trailing" id="RkQ-xk-Go2"/>
                             <constraint firstItem="tSS-8S-KNV" firstAttribute="trailing" secondItem="DyX-NQ-1UC" secondAttribute="trailing" constant="20" id="Tll-o6-7gj"/>
@@ -504,12 +506,12 @@
                             <constraint firstItem="Zkn-nP-FQE" firstAttribute="top" secondItem="tSS-8S-KNV" secondAttribute="top" constant="5" id="cXD-Mj-ECv"/>
                             <constraint firstItem="tSS-8S-KNV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G7X-sE-cY0" secondAttribute="trailing" symbolic="YES" id="duW-Q4-FZ4"/>
                             <constraint firstItem="zgN-Db-nwG" firstAttribute="top" secondItem="DyX-NQ-1UC" secondAttribute="bottom" constant="28" id="fWK-CW-55c"/>
+                            <constraint firstItem="zj5-mU-vYh" firstAttribute="top" secondItem="tSS-8S-KNV" secondAttribute="top" constant="130" id="gdN-3r-AVF"/>
                             <constraint firstItem="O6A-OM-41a" firstAttribute="top" secondItem="ogs-Nq-vtu" secondAttribute="bottom" id="kNH-r2-MKO"/>
                             <constraint firstItem="G7X-sE-cY0" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" constant="28" id="lac-V3-IvK"/>
-                            <constraint firstItem="zj5-mU-vYh" firstAttribute="bottom" secondItem="G7X-sE-cY0" secondAttribute="bottom" id="mP2-yF-QiB"/>
                             <constraint firstItem="DyX-NQ-1UC" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" constant="20" id="nbP-2v-oaW"/>
+                            <constraint firstItem="zj5-mU-vYh" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" constant="28" id="tal-4j-wIC"/>
                             <constraint firstItem="woL-kH-c9C" firstAttribute="leading" secondItem="tSS-8S-KNV" secondAttribute="leading" id="xqc-Gu-Dcz"/>
-                            <constraint firstItem="zj5-mU-vYh" firstAttribute="trailing" secondItem="G7X-sE-cY0" secondAttribute="trailing" id="yvT-8M-Lyv"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Bln-B7-bFW" appends="YES" id="UWT-av-m0U"/>
