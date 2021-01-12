@@ -63,12 +63,12 @@ class SettingViewController: UITableViewController {
     @IBAction func switchDidChange(_ sender: UISwitch) {
         let notificationManager = NotificationManager.shared
         if sender.isOn {
+            notificationManager.cancelNotification()        // 알림 중복 설정 방지
             notificationManager.schedule(hour: hour, minute: minute)
-            let object = context.object(with: notiTime[0].objectID)
-            context.delete(object)
-            let newNotiTime = NotiTime(context: context)
-            newNotiTime.date = datePicker.date
-            newNotiTime.isOn = true
+            let request: NSFetchRequest<NotiTime> = NotiTime.fetchRequest()
+            self.notiTime = try! context.fetch(request)
+            notiTime[0].date = datePicker.date
+            notiTime[0].isOn = true
             try! context.save()
         } else {
             notificationManager.cancelNotification()
