@@ -48,11 +48,10 @@ class TodoManager {
         let reviewId = todo.reviewId
         request.fetchLimit = Int(todo.reviewTotal)
         request.predicate = NSPredicate(format: "reviewId == %d", reviewId)
-        // 질문하기
+        // 한번에 삭제하는 법 찾아보기
         let deletedTodo = try! context.fetch(request)
         deletedTodo.forEach {
-            let object = context.object(with: $0.objectID)
-            context.delete(object)
+            context.delete($0)
         }
         saveTodo()
     }
