@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddDelegate{
     func addTaskButtonTapped(_ detail: String, _ interval: [Int])
 }
 
 class AddViewController: UIViewController, UserInputDelegate {
-    
+ 
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -25,13 +26,40 @@ class AddViewController: UIViewController, UserInputDelegate {
     var holidays: Set<String> = []
     var schedules: [Schedule] = []
     
+    var usedInfo: [UsedInfo] = []
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var container = appDelegate.persistentContainer
+    lazy var context = container.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        userInputButtonTapped(interval)
+        let request: NSFetchRequest<UsedInfo> = UsedInfo.fetchRequest()
+        self.usedInfo = try! context.fetch(request)
+        if usedInfo.isEmpty {
+            let newInfo = UsedInfo(context: context)
+            newInfo.intervals = self.interval
+            newInfo.holidays = self.holidays
+            try! context.save()
+        } else {
+            interval = usedInfo[0].intervals ?? []
+            holidays = usedInfo[0].holidays ?? []
+        }
+        
+        intervalButtonTapped(interval)
+        setHolidayButton(holidays)
         tableView.tableFooterView = UIView()
         createSchedule()
         
     }
+    
+    func setHolidayButton(_ holidays: Set<String>) {
+        holidayButton.forEach {
+            if holidays.contains($0.titleLabel?.text ?? "") {
+                $0.isSelected = true
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showUserInput" {
             if let secondView = segue.destination as? UserInputViewController {
@@ -45,6 +73,12 @@ class AddViewController: UIViewController, UserInputDelegate {
     }
     
     @IBAction func done(_ sender: Any) {
+        let request: NSFetchRequest<UsedInfo> = UsedInfo.fetchRequest()
+        self.usedInfo = try! context.fetch(request)
+        self.usedInfo[0].intervals = interval
+        self.usedInfo[0].holidays = holidays
+        try! context.save()
+        
         if delegate != nil {
             delegate?.addTaskButtonTapped(inputTextField.text!, newInterval)
         }
@@ -56,16 +90,16 @@ class AddViewController: UIViewController, UserInputDelegate {
         let alert = UIAlertController(title:"복습 주기 선택", message: "원하는 복습 주기가 없을 경우 직접 입력", preferredStyle: .actionSheet)
         let interval_1 =  UIAlertAction(title: "오늘", style: .default) {
             (action) in self.interval = [0]
-            self.userInputButtonTapped(self.interval)
+            self.intervalButtonTapped(self.interval)
         }
         
         let interval_2 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일", style: .default) {
             (action) in self.interval = [0, 1, 3, 7, 15]
-            self.userInputButtonTapped(self.interval)
+            self.intervalButtonTapped(self.interval)
         }
         let interval_3 =  UIAlertAction(title: "오늘, 1일, 3일, 7일, 15일, 30일", style: .default) {
             (action) in self.interval = [0, 1, 3, 7, 15, 30]
-            self.userInputButtonTapped(self.interval)
+            self.intervalButtonTapped(self.interval)
         }
         
         let interval_4 =  UIAlertAction(title: "직접입력", style: .default) {
@@ -81,7 +115,7 @@ class AddViewController: UIViewController, UserInputDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    func userInputButtonTapped(_ interval: [Int]) {
+    func intervalButtonTapped(_ interval: [Int]) {
         self.interval = interval
         self.intervalLabel.text = interval.map {
             if $0 == 0 {
@@ -90,6 +124,7 @@ class AddViewController: UIViewController, UserInputDelegate {
                 return ", \($0)일"
             }
         }.joined()
+        
         self.createSchedule()
         self.tableView.reloadData()
     }
@@ -153,7 +188,6 @@ class AddViewController: UIViewController, UserInputDelegate {
                 present(alert, animated: true, completion: nil)
             }
         }
-        
         self.createSchedule()
         self.tableView.reloadData()
     }

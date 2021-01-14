@@ -14,7 +14,7 @@
         <attribute name="reviewTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="UsedInfo" representedClassName="UsedInfo" syncable="YES" codeGenerationType="class">
-        <attribute name="holidays" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="holidays" optional="YES" attributeType="Transformable" customClassName="Set&lt;String&gt;"/>
         <attribute name="intervals" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
     </entity>
     <elements>

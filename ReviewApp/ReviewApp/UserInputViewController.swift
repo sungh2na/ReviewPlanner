@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserInputDelegate{
-    func userInputButtonTapped(_ interval: [Int])
+    func intervalButtonTapped(_ interval: [Int])
 }
 
 class UserInputViewController: UIViewController {
@@ -31,7 +31,7 @@ class UserInputViewController: UIViewController {
     
     @IBAction func done(_ sender: Any) {
         if delegate != nil {
-            delegate?.userInputButtonTapped(interval)
+            delegate?.intervalButtonTapped(interval)
         }
         dismiss(animated: true, completion: nil)
     }
