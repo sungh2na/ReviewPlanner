@@ -17,6 +17,7 @@
 		18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A269A125641593009539AA /* ReviewApp.xcdatamodeld */; };
 		18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD472557200A0064E8FB /* NotificationManager.swift */; };
 		18AF72002548257E0037D88E /* UserInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF71FF2548257E0037D88E /* UserInputViewController.swift */; };
+		18B15AD525B27BEC000F016D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B15AD425B27BEC000F016D /* CloudKit.framework */; };
 		18B22562251B805B001DFAC5 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B22561251B805B001DFAC5 /* TodoManager.swift */; };
 		18B225722528AC42001DFAC5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B225712528AC42001DFAC5 /* AddViewController.swift */; };
 		18B2257F252CDF7E001DFAC5 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */; };
@@ -37,6 +38,8 @@
 		18A269A225641593009539AA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		18A7FD472557200A0064E8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		18AF71FF2548257E0037D88E /* UserInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputViewController.swift; sourceTree = "<group>"; };
+		18B15AD325B27BC7000F016D /* ReviewApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReviewApp.entitlements; sourceTree = "<group>"; };
+		18B15AD425B27BEC000F016D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		18B22561251B805B001DFAC5 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		18B225712528AC42001DFAC5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		18B2257E252CDF7E001DFAC5 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CC8DF47B144193663573CCE /* Pods_ReviewApp.framework in Frameworks */,
+				18B15AD525B27BEC000F016D /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +83,7 @@
 		186A75AA251A307D009CE14B /* ReviewApp */ = {
 			isa = PBXGroup;
 			children = (
+				18B15AD325B27BC7000F016D /* ReviewApp.entitlements */,
 				186A75AB251A307D009CE14B /* AppDelegate.swift */,
 				186A75AD251A307D009CE14B /* SceneDelegate.swift */,
 				186A75AF251A307D009CE14B /* ReviewPlannerViewController.swift */,
@@ -110,6 +115,7 @@
 		A6A70D6E0053880BDF805F51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18B15AD425B27BEC000F016D /* CloudKit.framework */,
 				22B7AA7A0ED498DB94937282 /* Pods_ReviewApp.framework */,
 			);
 			name = Frameworks;
@@ -387,6 +393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ReviewApp/ReviewApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9C2LX4Q2R4;
 				INFOPLIST_FILE = ReviewApp/Info.plist;
@@ -409,6 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ReviewApp/ReviewApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9C2LX4Q2R4;
 				INFOPLIST_FILE = ReviewApp/Info.plist;
