@@ -35,23 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentCloudKitContainer = {
-        
-//        let container = NSPersistentContainer(name: "ReviewApp")
-        let container = NSPersistentCloudKitContainer(name: "ReviewApp")
-        
-        // Create a store description for a CloudKit-backed local store
-        let cloudStoreLocation = URL(fileURLWithPath: "/files/cloud.sqlite")
-        let cloudStoreDescription = NSPersistentStoreDescription(url: cloudStoreLocation)
-        cloudStoreDescription.configuration = "Cloud"
+    lazy var persistentContainer: NSPersistentContainer = {
 
-        // Set the container options on the cloud store
-        cloudStoreDescription.cloudKitContainerOptions =
-            NSPersistentCloudKitContainerOptions(containerIdentifier: "SungheeNa.ReLePlanner")
-            
-        // Update the container's list of store descriptions
-        container.persistentStoreDescriptions = [cloudStoreDescription]
-        
+        let container = NSPersistentCloudKitContainer(name: "ReviewApp")
+
+
         // Load both stores
         container.loadPersistentStores { storeDescription, error in
             guard error == nil else {
@@ -59,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
         return container
     }()
 
