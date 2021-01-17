@@ -35,19 +35,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentCloudKitContainer = {
         
 //        let container = NSPersistentContainer(name: "ReviewApp")
         let container = NSPersistentCloudKitContainer(name: "ReviewApp")
         
         // Create a store description for a CloudKit-backed local store
-        let cloudStoreLocation = URL(fileURLWithPath: "/path/to/cloud.store")
+        let cloudStoreLocation = URL(fileURLWithPath: "/files/cloud.sqlite")
         let cloudStoreDescription = NSPersistentStoreDescription(url: cloudStoreLocation)
         cloudStoreDescription.configuration = "Cloud"
 
         // Set the container options on the cloud store
         cloudStoreDescription.cloudKitContainerOptions =
-            NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.SungheeNa.ReLePlanner")
+            NSPersistentCloudKitContainerOptions(containerIdentifier: "SungheeNa.ReLePlanner")
             
         // Update the container's list of store descriptions
         container.persistentStoreDescriptions = [cloudStoreDescription]
