@@ -35,6 +35,7 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.tableView.tableFooterView = UIView()
+        self.calendar.select(Date())
         self.calendar.scope = .month
 
         formatter.dateFormat = "yyyy. MM. dd. E"
@@ -239,11 +240,19 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         if reviewPlannerViewModel.isEmpty(date: date) {
-            return 1
-        } else {
             return 0
+        } else {
+            return 1
         }
     }
+   
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+//        if date < Date() {
+//            return UIColor.red
+//        } else {
+//            return UIColor.black
+//        }
+//    }
 }
 
 class ReviewPlannerCell: UITableViewCell {
