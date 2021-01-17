@@ -104,7 +104,7 @@ class TodoManager {
     func isEmpty(date: Date) -> Bool {
         request.predicate = NSPredicate(format: "date == %@", date as NSDate)
         request.fetchLimit = 1
-        return !((try? context.fetch(request))?.isEmpty ?? true)
+        return (try? context.fetch(request))?.isEmpty ?? true
     }
 }
 
