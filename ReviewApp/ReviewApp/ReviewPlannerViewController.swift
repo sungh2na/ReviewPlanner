@@ -31,15 +31,13 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         super.viewDidLoad()
         calendar.locale = Locale(identifier: "ko_KR")
         dateLabel.text = selectedDate.toString(format: "yyyy. MM. dd. E")
-        
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.tableView.tableFooterView = UIView()
         self.calendar.select(Date())
         self.calendar.scope = .month
 
-        formatter.dateFormat = "yyyy. MM. dd. E"
-        selectedDate = formatter.date(from: dateLabel.text ?? "") ?? Date()    // 이벤트 표시
+        selectedDate = self.calendar.selectedDate ?? Date() // 이벤트 표시
         setNotification()
     }
     
