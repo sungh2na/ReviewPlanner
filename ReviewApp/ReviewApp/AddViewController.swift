@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import StoreKit
 
 protocol AddDelegate{
     func addTaskButtonTapped(_ detail: String, _ interval: [Int])
@@ -82,7 +83,11 @@ class AddViewController: UIViewController, UserInputDelegate {
         if delegate != nil {
             delegate?.addTaskButtonTapped(inputTextField.text!, newInterval)
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            if let scene = UIApplication.shared.windows.first?.windowScene {
+                SKStoreReviewController.requestReview(in: scene)
+            }
+        })
     }
 
     @IBAction func setInterval(_ sender: Any) {
