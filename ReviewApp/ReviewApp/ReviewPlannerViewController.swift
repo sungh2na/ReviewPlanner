@@ -36,18 +36,18 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
         self.tableView.tableFooterView = UIView()
         self.calendar.select(Date())
         self.calendar.scope = .month
+        
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-
         selectedDate = self.calendar.selectedDate ?? Date() // 이벤트 표시
         setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
+        self.calendar.today = Date()
     }
     
     @objc func willEnterForeground() {
-        print("willEnterForeground")
+        self.calendar.today = Date()
     }
     
     func noticeLabelOn() {
