@@ -523,6 +523,13 @@ viewModel의 값이 변화하면 View의 정보가 바뀌게 됨.
 - ViewModel과 View는 1:N관계
 - 각각의 부분이 독립적이기 때문에 모듈화하여 개발하기 용이하나 ViewModel 개발이 어려움
 
+### NotificationCenter
+- register된 observer들에게 정보를 broadcast 할 수 있게 해주는 dispatch mechanism이다.
+- addObserver(_:selector:name:object:) 등 을 통해 Observer를 추가하고, 관찰을 시작한다.
+- event가 발생하면 Object는 Notification center에게 notifiction을 post(송신) 한다.
+- Notification center는 모든 registered Observer들에게 해당 내용을 Broadcast 한다.
+- Observer들은 발생한 event에 대한 처리를 한다.
+
 
 // RestAPI
 // 오픈소스 SwiftDate 사용법 익히기
