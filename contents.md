@@ -565,5 +565,16 @@ Array 같은 타입의 데이터를 순서대로 넣은 컬렉션
 Set 같은 타입의 데이터의 묶음, 유일한 값이어야 함, hashable
 Dictionary 키와 쌍으로 된 데이터를 순서 없이 저장, 키는 hashable
 
+## iOS 관련 
+- 뷰컨트롤러 생명주기
+- Init
+- loadView
+- ViewDidLoad -> 뷰컨트롤러가 로드될 떄 한번만 실행, 초기화 
+- ViewWillAppear -> 뷰컨트롤러가 화면에 나타나기 직전 수행
+- ViewDidAppear -> 뷰컨트롤러가 화면에 나타난 직후 수행, 애니메이션 등
+- ViewWillDisappear -> 뷰가 사라지기 직전수행
+- ViewDidDisappear -> 뷰가 완전히 사라지고 나서 수행
+- ViewDidUnload
+
 // RestAPI
 // 오픈소스 SwiftDate 사용법 익히기
