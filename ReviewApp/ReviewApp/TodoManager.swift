@@ -146,4 +146,5 @@ class ReviewPlannerViewModel {
     func isEmpty(date: Date) -> Bool {
         return manager.isEmpty(date: date)
     }
+    
 }

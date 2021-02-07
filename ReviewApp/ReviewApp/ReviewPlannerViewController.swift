@@ -252,6 +252,17 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
             return 1
         }
     }
+    
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        // 글자 위치 수정
+        // 해당 날짜에 todo 가져와서 모두 완료하지 않았으면 표시
+        if date < Date() {
+            return "완료"
+        } else {
+            return nil
+        }
+    }
+}
    
 //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
 //        if date < Date() {
@@ -260,7 +271,6 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
 //            return UIColor.black
 //        }
 //    }
-}
 
 class ReviewPlannerCell: UITableViewCell {
     
