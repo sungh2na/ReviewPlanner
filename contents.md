@@ -1,4 +1,4 @@
-<image src="Resource/logo.png" >
+<image src="Resource/logo1.png" >
 
 ## Screenshots
 <image src="Resource/screenshot.jpeg">
