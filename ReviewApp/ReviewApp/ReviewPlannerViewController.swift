@@ -8,6 +8,7 @@ import FSCalendar
 import UIKit
 import UserNotifications
 import CoreData
+import DeviceKit
 
 class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate, UIGestureRecognizerDelegate {
 
@@ -44,6 +45,11 @@ class ReviewPlannerViewController: UIViewController, AddDelegate, ModifyDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         self.calendar.today = Date()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        view.layoutIfNeeded()
     }
     
     @objc func willEnterForeground() {
@@ -184,7 +190,12 @@ extension ReviewPlannerViewController: UITableViewDelegate {
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let todayNewTodo = reviewPlannerViewModel.todayTodos[indexPath.row]
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let alert: UIAlertController
+            if Device.current.isPad {
+                alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            } else {
+                alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            }
             let delete = UIAlertAction(title: "해당 일정만 삭제", style: .default) {
                 (action) in self.reviewPlannerViewModel.deleteTodo(todayNewTodo)
                 self.tableView.reloadData()
@@ -253,15 +264,15 @@ extension ReviewPlannerViewController: FSCalendarDataSource, FSCalendarDelegateA
         }
     }
     
-    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-        // 글자 위치 수정
-        // 해당 날짜에 todo 가져와서 모두 완료하지 않았으면 표시
-        if date < Date() {
-            return "완료"
-        } else {
-            return nil
-        }
-    }
+//    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+//        // 글자 위치 수정
+//        // 해당 날짜에 todo 가져와서 모두 완료하지 않았으면 표시
+//        if date < Date() {
+//            return "완료"
+//        } else {
+//            return nil
+//        }
+//    }
 }
    
 //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {

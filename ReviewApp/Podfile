@@ -7,6 +7,7 @@ target 'ReviewApp' do
 
   # Pods for ReviewApp
 
-pod 'FSCalendar' 
+pod 'FSCalendar'
+pod 'DeviceKit'
 
 end

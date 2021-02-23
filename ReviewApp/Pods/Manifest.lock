@@ -1,16 +1,20 @@
 PODS:
+  - DeviceKit (4.3.0)
   - FSCalendar (2.8.1)
 
 DEPENDENCIES:
+  - DeviceKit
   - FSCalendar
 
 SPEC REPOS:
   trunk:
+    - DeviceKit
     - FSCalendar
 
 SPEC CHECKSUMS:
+  DeviceKit: 7decde449c308ac7e816e2184ded1c7c596fb885
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
 
-PODFILE CHECKSUM: f258973cc6bb70084626eb04ce0e6790ccb6a30a
+PODFILE CHECKSUM: 3d8176b88077cc587fc636d183f0b3e577bf24ee
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

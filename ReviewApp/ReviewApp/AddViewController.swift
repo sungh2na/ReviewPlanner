@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DeviceKit
 import CoreData
 import StoreKit
 
@@ -92,7 +93,12 @@ class AddViewController: UIViewController, UserInputDelegate {
 
     @IBAction func setInterval(_ sender: Any) {
 //        interval = [0, 1, 5, 10, 30]
-        let alert = UIAlertController(title:"복습 주기 선택", message: "원하는 복습 주기가 없을 경우 직접 입력", preferredStyle: .actionSheet)
+        let alert: UIAlertController
+        if Device.current.isPad {
+            alert = UIAlertController(title:"복습 주기 선택", message: "원하는 복습 주기가 없을 경우 직접 입력", preferredStyle: .alert)
+        } else {
+            alert = UIAlertController(title:"복습 주기 선택", message: "원하는 복습 주기가 없을 경우 직접 입력", preferredStyle: .actionSheet)
+        }
         let interval_1 =  UIAlertAction(title: "오늘", style: .default) {
             (action) in self.interval = [0]
             self.intervalButtonTapped(self.interval)
