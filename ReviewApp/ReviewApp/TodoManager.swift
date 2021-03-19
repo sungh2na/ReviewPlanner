@@ -18,6 +18,21 @@ class TodoManager {
     lazy var context = container.viewContext
     let request: NSFetchRequest<Todo> = Todo.fetchRequest()
     
+    init() {
+        do {
+            let initRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+            initRequest.fetchLimit = 1
+            initRequest.sortDescriptors = [
+                NSSortDescriptor(key: "id", ascending: false)
+            ]
+            let maxID = try context.fetch(initRequest).first?.id ?? 0
+            TodoManager.lastId = Int(maxID)
+            TodoManager.reviewId = Int(maxID)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func nextReviewId() {
         TodoManager.reviewId += 1
     }
@@ -148,3 +163,4 @@ class ReviewPlannerViewModel {
     }
     
 }
+
