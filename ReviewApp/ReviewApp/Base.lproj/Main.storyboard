@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +16,23 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mK1-YY-EFF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1601" y="506"/>
+            <point key="canvasLocation" x="-1788" y="522"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wtr-wX-9gf">
+            <objects>
+                <viewController id="aFX-zd-DXf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kJ0-RB-Ihz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="VSL-7M-9C9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="note.text" catalog="system" id="lAR-Lv-JfI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bDH-Lb-n2v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1201" y="893"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j7D-Ha-HMc">
@@ -30,12 +47,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="HuD-dU-qmC" kind="relationship" relationship="viewControllers" id="38W-la-qE0"/>
+                        <segue destination="aFX-zd-DXf" kind="relationship" relationship="viewControllers" id="zVA-0N-6eK"/>
                         <segue destination="jjO-yY-zyZ" kind="relationship" relationship="viewControllers" id="Zef-ez-gnT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="po8-99-kTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1130.4347826086957" y="46.875"/>
+            <point key="canvasLocation" x="-1129" y="50"/>
         </scene>
         <!--설정-->
         <scene sceneID="p1n-0j-zb7">
@@ -272,6 +290,7 @@
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="note.text" catalog="system" width="128" height="106"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
