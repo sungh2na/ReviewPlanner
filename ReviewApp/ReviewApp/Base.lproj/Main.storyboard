@@ -18,10 +18,10 @@
             </objects>
             <point key="canvasLocation" x="-1788" y="522"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="Wtr-wX-9gf">
             <objects>
-                <viewController id="aFX-zd-DXf" sceneMemberID="viewController">
+                <viewController id="aFX-zd-DXf" customClass="SearchViewController" customModule="ReviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kJ0-RB-Ihz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                 <rect key="frame" x="20" y="44" width="374" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cPj-il-NBN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="cPj-il-NBN" customClass="SearchCell" customModule="ReviewApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cPj-il-NBN" id="jqc-vP-cWA">
@@ -50,6 +50,9 @@
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                                     </state>
                                                     <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="checkButtonTapped:" destination="cPj-il-NBN" eventType="touchUpInside" id="h0K-kf-ogO"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSg-ub-MAk">
                                                     <rect key="frame" x="55" y="21.5" width="228" height="1"/>
@@ -102,6 +105,13 @@
                                                 <constraint firstItem="m2t-Ep-SXK" firstAttribute="centerY" secondItem="jqc-vP-cWA" secondAttribute="centerY" id="vOy-qY-tfz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkButton" destination="FMD-A9-gRI" id="bur-yl-m7j"/>
+                                            <outlet property="descriptionLabel" destination="m2t-Ep-SXK" id="R4c-e5-u3w"/>
+                                            <outlet property="memoButton" destination="jML-8f-tGg" id="keZ-fD-zkA"/>
+                                            <outlet property="progressLabel" destination="hxH-wb-fcs" id="sez-WO-ZfM"/>
+                                            <outlet property="strikeThroughView" destination="hSg-ub-MAk" id="nUg-9Q-oOu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -123,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDH-Lb-n2v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1201.449275362319" y="892.63392857142856"/>
+            <point key="canvasLocation" x="-1238" y="874"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j7D-Ha-HMc">

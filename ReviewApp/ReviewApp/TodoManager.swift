@@ -13,6 +13,7 @@ class TodoManager {
     static var lastId: Int = 0
     static var reviewId: Int = 0
     var todayTodos: [Todo] = []
+    var searchTodos: [Todo] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var container = appDelegate.persistentContainer
     lazy var context = container.viewContext
@@ -121,6 +122,12 @@ class TodoManager {
         request.fetchLimit = 1
         return (try? context.fetch(request))?.isEmpty ?? true
     }
+    
+    func searchTodo(_ isDone: Bool) {
+        request.predicate = NSPredicate(format: "isDone == %@", isDone)
+        request.fetchLimit = .max
+        searchTodos = try! context.fetch(request)
+    }
 }
 
 class ReviewPlannerViewModel {
@@ -128,6 +135,10 @@ class ReviewPlannerViewModel {
     
     var todayTodos: [Todo] {
         return manager.todayTodos
+    }
+    
+    var searchTodos: [Todo] {
+        return manager.searchTodos
     }
 
     func addTodo(detail: String, date: Date, reviewNum: Int, reviewTotal: Int) {
@@ -156,6 +167,10 @@ class ReviewPlannerViewModel {
 
     func todayTodo(_ date: Date) {
         manager.todayTodo(date)
+    }
+    
+    func searchTodo(_ isDone: Bool) {
+        manager.searchTodo(isDone)
     }
 
     func isEmpty(date: Date) -> Bool {
