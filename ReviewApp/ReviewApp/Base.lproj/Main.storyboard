@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c2T-oE-9Co">
-                                <rect key="frame" x="20" y="44" width="374" height="755"/>
+                                <rect key="frame" x="20" y="129" width="374" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="cPj-il-NBN" customClass="SearchCell" customModule="ReviewApp" customModuleProvider="target">
@@ -119,13 +119,37 @@
                                     <outlet property="delegate" destination="aFX-zd-DXf" id="jcl-A0-8ey"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 검색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UQ-9j-vp2">
+                                <rect key="frame" x="176" y="44" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COy-dy-MvI">
+                                <rect key="frame" x="20" y="85" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rY-AN-cmF">
+                                <rect key="frame" x="20" y="80" width="30" height="30"/>
+                                <connections>
+                                    <action selector="setIsDone:" destination="aFX-zd-DXf" eventType="touchUpInside" id="j4O-xz-zOP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VSL-7M-9C9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="COy-dy-MvI" firstAttribute="leading" secondItem="VSL-7M-9C9" secondAttribute="leading" constant="20" id="22N-VT-I0r"/>
+                            <constraint firstItem="c2T-oE-9Co" firstAttribute="top" secondItem="COy-dy-MvI" secondAttribute="bottom" constant="23" id="B2r-oM-dZR"/>
                             <constraint firstItem="c2T-oE-9Co" firstAttribute="leading" secondItem="VSL-7M-9C9" secondAttribute="leading" constant="20" id="Ci1-EI-Bnx"/>
-                            <constraint firstItem="c2T-oE-9Co" firstAttribute="top" secondItem="VSL-7M-9C9" secondAttribute="top" id="Qkz-6Y-S6k"/>
+                            <constraint firstItem="7UQ-9j-vp2" firstAttribute="leading" secondItem="VSL-7M-9C9" secondAttribute="leading" constant="176" id="Dni-H8-DIg"/>
+                            <constraint firstItem="0rY-AN-cmF" firstAttribute="leading" secondItem="VSL-7M-9C9" secondAttribute="leading" constant="20" id="I0f-9p-ecx"/>
+                            <constraint firstItem="7UQ-9j-vp2" firstAttribute="top" secondItem="VSL-7M-9C9" secondAttribute="top" id="IN5-nk-qqT"/>
                             <constraint firstItem="VSL-7M-9C9" firstAttribute="bottom" secondItem="c2T-oE-9Co" secondAttribute="bottom" constant="14" id="q2n-Mv-iIZ"/>
+                            <constraint firstItem="0rY-AN-cmF" firstAttribute="top" secondItem="VSL-7M-9C9" secondAttribute="top" constant="36" id="qRn-sO-feB"/>
+                            <constraint firstItem="COy-dy-MvI" firstAttribute="top" secondItem="7UQ-9j-vp2" secondAttribute="bottom" constant="20" id="qvd-0w-P4h"/>
                             <constraint firstItem="VSL-7M-9C9" firstAttribute="trailing" secondItem="c2T-oE-9Co" secondAttribute="trailing" constant="20" id="xR0-1e-O7H"/>
                         </constraints>
                     </view>
@@ -133,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDH-Lb-n2v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1238" y="874"/>
+            <point key="canvasLocation" x="-1239.1304347826087" y="873.88392857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j7D-Ha-HMc">

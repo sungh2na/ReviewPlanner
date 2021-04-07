@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DeviceKit
 
 class SearchViewController: UIViewController {
 
@@ -15,6 +16,31 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    @IBAction func setIsDone(_ sender: Any) {
+        var isDone = false
+        let alert: UIAlertController
+        if Device.current.isPad {
+            alert = UIAlertController(title:"진행여부 선택", message: "전체 완료 미완료 중 선택", preferredStyle: .alert)
+        } else {
+            alert = UIAlertController(title:"진행여부 선택", message: "전체 완료 미완료 중 선택", preferredStyle: .actionSheet)
+        }
+        let isDoneAll = UIAlertAction(title: "전체", style: .default) {
+            (action) in
+        }
+        let isDoneTrue = UIAlertAction(title: "완료", style: .default) {
+            (action) in isDone = true
+        }
+        let isDonefalse = UIAlertAction(title: "미완료", style: .default) {
+            (action) in isDone = false
+        }
+        let cancel =  UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(isDoneAll)
+        alert.addAction(isDoneTrue)
+        alert.addAction(isDonefalse)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension SearchViewController: UITableViewDelegate {
