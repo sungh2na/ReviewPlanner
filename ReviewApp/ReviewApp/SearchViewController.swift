@@ -24,6 +24,7 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         reviewPlannerViewModel.searchTodo(false)
+        print("###############\(reviewPlannerViewModel.searchTodos.count)")
         return reviewPlannerViewModel.searchTodos.count
     }
     

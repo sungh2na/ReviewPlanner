@@ -124,7 +124,8 @@ class TodoManager {
     }
     
     func searchTodo(_ isDone: Bool) {
-        request.predicate = NSPredicate(format: "isDone == %@", isDone)
+//        request.predicate = NSPredicate(format: "isDone == %@", isDone)
+        request.predicate = NSPredicate(format: "isDone == %@", NSNumber(value: isDone))
         request.fetchLimit = .max
         searchTodos = try! context.fetch(request)
     }
