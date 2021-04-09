@@ -9,11 +9,12 @@ import UIKit
 import DeviceKit
 
 class SearchViewController: UIViewController {
-
-    let reviewPlannerViewModel = ReviewPlannerViewModel()
     
-    var isDone: Int = 0
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchLabel: UILabel!
+    
+    let reviewPlannerViewModel = ReviewPlannerViewModel()
+    var isDone: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +32,17 @@ class SearchViewController: UIViewController {
         }
         let isDoneAll = UIAlertAction(title: "전체", style: .default) {
             (action) in self.isDone = 0
+            self.searchLabel.text = "전체"
             self.tableView.reloadData()
         }
         let isDoneTrue = UIAlertAction(title: "완료", style: .default) {
             (action) in self.isDone = 1
+            self.searchLabel.text = "완료"
             self.tableView.reloadData()
         }
         let isDonefalse = UIAlertAction(title: "미완료", style: .default) {
             (action) in self.isDone = 2
+            self.searchLabel.text = "미완료"
             self.tableView.reloadData()
         }
         let cancel =  UIAlertAction(title: "취소", style: .cancel)

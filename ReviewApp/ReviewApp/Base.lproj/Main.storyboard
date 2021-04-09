@@ -155,6 +155,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="note.text" catalog="system" id="lAR-Lv-JfI"/>
                     <connections>
+                        <outlet property="searchLabel" destination="COy-dy-MvI" id="NWf-Zp-WFY"/>
                         <outlet property="tableView" destination="c2T-oE-9Co" id="0Pj-cA-S4r"/>
                     </connections>
                 </viewController>
