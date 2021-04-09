@@ -123,11 +123,28 @@ class TodoManager {
         return (try? context.fetch(request))?.isEmpty ?? true
     }
     
-    func searchTodo(_ isDone: Bool) {
+    func searchTodo(_ isDone: Int) {   // all, ture, false
 //        request.predicate = NSPredicate(format: "isDone == %@", isDone)
-        request.predicate = NSPredicate(format: "isDone == %@", NSNumber(value: isDone))
-        request.fetchLimit = .max
-        searchTodos = try! context.fetch(request)
+//        request.predicate = NSPredicate(format: "isDone == %@", NSNumber(value: isDone))
+//        request.fetchLimit = .max
+//        searchTodos = try! context.fetch(request)
+//        request.predicate = nil
+//        request.fetchLimit = .max
+//        context.fetch(request)
+        switch isDone {
+        case 1:
+            request.predicate = NSPredicate(format: "isDone == %@", NSNumber(value: true))
+            request.fetchLimit = .max
+            searchTodos = try! context.fetch(request)
+        case 2:
+            request.predicate = NSPredicate(format: "isDone == %@", NSNumber(value: false))
+            request.fetchLimit = .max
+            searchTodos = try! context.fetch(request)
+        default:
+            request.predicate = nil
+            request.fetchLimit = .max
+            searchTodos = try! context.fetch(request)
+        }
     }
 }
 
@@ -170,7 +187,7 @@ class ReviewPlannerViewModel {
         manager.todayTodo(date)
     }
     
-    func searchTodo(_ isDone: Bool) {
+    func searchTodo(_ isDone: Int) {
         manager.searchTodo(isDone)
     }
 

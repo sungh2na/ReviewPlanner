@@ -154,6 +154,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="note.text" catalog="system" id="lAR-Lv-JfI"/>
+                    <connections>
+                        <outlet property="tableView" destination="c2T-oE-9Co" id="0Pj-cA-S4r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDH-Lb-n2v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,12 +12,17 @@ class SearchViewController: UIViewController {
 
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     
+    var isDone: Int = 0
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        
     }
     @IBAction func setIsDone(_ sender: Any) {
-        var isDone = false
         let alert: UIAlertController
         if Device.current.isPad {
             alert = UIAlertController(title:"진행여부 선택", message: "전체 완료 미완료 중 선택", preferredStyle: .alert)
@@ -25,13 +30,16 @@ class SearchViewController: UIViewController {
             alert = UIAlertController(title:"진행여부 선택", message: "전체 완료 미완료 중 선택", preferredStyle: .actionSheet)
         }
         let isDoneAll = UIAlertAction(title: "전체", style: .default) {
-            (action) in
+            (action) in self.isDone = 0
+            self.tableView.reloadData()
         }
         let isDoneTrue = UIAlertAction(title: "완료", style: .default) {
-            (action) in isDone = true
+            (action) in self.isDone = 1
+            self.tableView.reloadData()
         }
         let isDonefalse = UIAlertAction(title: "미완료", style: .default) {
-            (action) in isDone = false
+            (action) in self.isDone = 2
+            self.tableView.reloadData()
         }
         let cancel =  UIAlertAction(title: "취소", style: .cancel)
         alert.addAction(isDoneAll)
@@ -49,7 +57,7 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        reviewPlannerViewModel.searchTodo(false)
+        reviewPlannerViewModel.searchTodo(isDone)
         print("###############\(reviewPlannerViewModel.searchTodos.count)")
         return reviewPlannerViewModel.searchTodos.count
     }
