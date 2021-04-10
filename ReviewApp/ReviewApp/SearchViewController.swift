@@ -12,6 +12,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet weak var startDate: UIDatePicker!
+    @IBOutlet weak var endDate: UIDatePicker!
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     var isDone: Int = 0
