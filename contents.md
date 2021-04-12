@@ -9,6 +9,8 @@
 ### iphone
 <image src="Resource/screenshot.jpeg">
 
+https://apps.apple.com/kr/app/rele-planner-%EB%A6%AC%EB%A6%AC%ED%94%8C%EB%9E%98%EB%84%88/id1546958882
+
 ## 앱 설명
 - **(Repetitive Learning Planner)**
 
