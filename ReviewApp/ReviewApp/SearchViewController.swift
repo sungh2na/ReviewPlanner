@@ -17,6 +17,12 @@ class SearchViewController: UIViewController {
     
     let reviewPlannerViewModel = ReviewPlannerViewModel()
     var isDone: Int = 0
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy. MM. dd"
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +61,21 @@ class SearchViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func setSDate(_ sender: Any) {
+        let startDateString = startDate.date.toString(format: "yyyy. MM. dd")
+        startDate.date = formatter.date(from: startDateString) ?? Date()    // 15:00 으로 설정
+        tableView.reloadData()
+        
+    }
+    @IBAction func setEDate(_ sender: Any) {
+        let endDateString = endDate.date.toString(format: "yyyy. MM. dd")
+        endDate.date = formatter.date(from: endDateString) ?? Date()
+        tableView.reloadData()
+        endDate.resignFirstResponder()
+    }
 }
+
+
 
 extension SearchViewController: UITableViewDelegate {
     
@@ -63,8 +83,8 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        reviewPlannerViewModel.searchTodo(isDone)
-        print("###############\(reviewPlannerViewModel.searchTodos.count)")
+        reviewPlannerViewModel.searchTodo(isDone, startDate.date, endDate.date)
+        print("###############\(startDate.date), \(endDate.date))")
         return reviewPlannerViewModel.searchTodos.count
     }
     
@@ -74,7 +94,7 @@ extension SearchViewController: UITableViewDataSource {
         }
         var searchTodo: Todo
         searchTodo = reviewPlannerViewModel.searchTodos[indexPath.row]
-
+        print("$$$$$$$$$$$$$\(searchTodo.date)")
         cell.doneButtonTapHandler = { isDone in
             searchTodo.isDone = isDone
             self.reviewPlannerViewModel.saveTasks()
