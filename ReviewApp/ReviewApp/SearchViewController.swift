@@ -73,6 +73,7 @@ class SearchViewController: UIViewController {
         tableView.reloadData()
         endDate.resignFirstResponder()
     }
+
 }
 
 

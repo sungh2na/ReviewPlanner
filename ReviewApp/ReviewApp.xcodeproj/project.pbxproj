@@ -14,6 +14,7 @@
 		186A75B5251A3080009CE14B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B4251A3080009CE14B /* Assets.xcassets */; };
 		186A75B8251A3080009CE14B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186A75B6251A3080009CE14B /* LaunchScreen.storyboard */; };
 		1896212026137489002345FD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896211F26137489002345FD /* SearchViewController.swift */; };
+		18962128262C88D0002345FD /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18962127262C88D0002345FD /* CalendarViewController.swift */; };
 		189ED26B255A6B9A00C0A20C /* ReviewPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */; };
 		18A269A325641593009539AA /* ReviewApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A269A125641593009539AA /* ReviewApp.xcdatamodeld */; };
 		18A7FD482557200B0064E8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7FD472557200A0064E8FB /* NotificationManager.swift */; };
@@ -36,6 +37,7 @@
 		186A75B7251A3080009CE14B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186A75B9251A3080009CE14B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1896211F26137489002345FD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		18962127262C88D0002345FD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewPlanner.storyboard; sourceTree = "<group>"; };
 		18A269A225641593009539AA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		18A7FD472557200A0064E8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				1896211F26137489002345FD /* SearchViewController.swift */,
 				18A269A125641593009539AA /* ReviewApp.xcdatamodeld */,
 				186A75B1251A307D009CE14B /* Main.storyboard */,
+				18962127262C88D0002345FD /* CalendarViewController.swift */,
 				189ED26A255A6B9A00C0A20C /* ReviewPlanner.storyboard */,
 				186A75B4251A3080009CE14B /* Assets.xcassets */,
 				186A75B9251A3080009CE14B /* Info.plist */,
@@ -239,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18962128262C88D0002345FD /* CalendarViewController.swift in Sources */,
 				18B2257F252CDF7E001DFAC5 /* ModifyViewController.swift in Sources */,
 				1896212026137489002345FD /* SearchViewController.swift in Sources */,
 				186A75B0251A307D009CE14B /* ReviewPlannerViewController.swift in Sources */,
